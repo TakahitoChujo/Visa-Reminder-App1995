@@ -1,0 +1,12 @@
+node_modules/
+.expo/
+dist/
+dist2/
+coverage/
+*.bak
+*.bak2
+*.tmp
+*.backup
+.env
+.env.local
+*.log
