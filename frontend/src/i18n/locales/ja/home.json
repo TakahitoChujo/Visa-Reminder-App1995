@@ -1,0 +1,27 @@
+{
+  "title": "在留資格",
+  "registeredCards": "登録された在留カード",
+  "registrationCount": "登録数",
+  "needsAttention": "要確認",
+  "empty": {
+    "title": "在留カードが登録されていません",
+    "description": "在留カードの有効期限を登録して、更新時期を忘れないようにしましょう"
+  },
+  "card": {
+    "registerNew": "在留資格を登録",
+    "registerNewLong": "新しい在留資格を登録",
+    "checklist": "チェックリスト",
+    "day": "日"
+  },
+  "accessibility": {
+    "registerCard": "在留資格を登録",
+    "registerCardHint": "在留資格の登録画面を開きます",
+    "cardDetail": "{{type}} 有効期限まで{{days}}日",
+    "cardDetailHint": "在留資格の詳細・編集画面を開きます",
+    "openChecklist": "チェックリストを開く",
+    "openChecklistHint": "必要書類のチェックリストを開きます",
+    "registerNewCard": "新しい在留資格を登録",
+    "registerNewCardHint": "在留資格の登録画面を開きます",
+    "upgradeHint": "アップグレード情報を確認します"
+  }
+}

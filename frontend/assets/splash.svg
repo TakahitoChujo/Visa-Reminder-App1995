@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1284" height="2778" viewBox="0 0 1284 2778">
+  <defs>
+    <linearGradient id="splashBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3468FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2550E0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="splashShine" x1="0%" y1="0%" x2="50%" y2="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="1284" height="2778" fill="url(#splashBg)" />
+
+  <!-- Subtle decorative circles in background -->
+  <circle cx="200" cy="600" r="300" fill="#FFFFFF" opacity="0.03" />
+  <circle cx="1100" cy="2200" r="400" fill="#FFFFFF" opacity="0.03" />
+  <circle cx="1000" cy="400" r="200" fill="#FFFFFF" opacity="0.02" />
+  <circle cx="100" cy="2400" r="250" fill="#FFFFFF" opacity="0.02" />
+
+  <!-- Shine overlay -->
+  <rect width="1284" height="2778" fill="url(#splashShine)" />
+
+  <!-- Main icon group - centered -->
+  <g transform="translate(642, 1180)">
+
+    <!-- Calendar body -->
+    <rect x="-180" y="-140" width="360" height="375" rx="30" ry="30" fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Calendar header -->
+    <rect x="-180" y="-140" width="360" height="90" rx="30" ry="30" fill="#FFFFFF" />
+    <rect x="-180" y="-80" width="360" height="30" fill="#FFFFFF" />
+
+    <!-- Calendar header accent line -->
+    <rect x="-180" y="-52" width="360" height="3.5" fill="#2E5BFF" opacity="0.15" />
+
+    <!-- Calendar binding rings -->
+    <rect x="-100" y="-162" width="18" height="52" rx="9" ry="9" fill="#FFFFFF" opacity="0.9" />
+    <rect x="-9" y="-162" width="18" height="52" rx="9" ry="9" fill="#FFFFFF" opacity="0.9" />
+    <rect x="82" y="-162" width="18" height="52" rx="9" ry="9" fill="#FFFFFF" opacity="0.9" />
+
+    <!-- Calendar month text placeholder -->
+    <rect x="-130" y="-118" width="105" height="12" rx="6" fill="#2E5BFF" opacity="0.3" />
+
+    <!-- Calendar date grid - row 1 -->
+    <circle cx="-110" cy="-5" r="14" fill="#E8EEFF" />
+    <circle cx="-50" cy="-5" r="14" fill="#E8EEFF" />
+    <circle cx="10" cy="-5" r="14" fill="#E8EEFF" />
+    <circle cx="70" cy="-5" r="14" fill="#E8EEFF" />
+    <circle cx="130" cy="-5" r="14" fill="#E8EEFF" />
+
+    <!-- Calendar date grid - row 2 -->
+    <circle cx="-110" cy="60" r="14" fill="#E8EEFF" />
+    <circle cx="-50" cy="60" r="14" fill="#E8EEFF" />
+    <!-- Highlighted date -->
+    <circle cx="10" cy="60" r="20" fill="#2E5BFF" />
+    <circle cx="70" cy="60" r="14" fill="#E8EEFF" />
+    <circle cx="130" cy="60" r="14" fill="#E8EEFF" />
+
+    <!-- Calendar date grid - row 3 -->
+    <circle cx="-110" cy="125" r="14" fill="#E8EEFF" />
+    <circle cx="-50" cy="125" r="14" fill="#E8EEFF" />
+    <circle cx="10" cy="125" r="14" fill="#E8EEFF" />
+    <circle cx="70" cy="125" r="14" fill="#E8EEFF" />
+    <circle cx="130" cy="125" r="14" fill="#E8EEFF" />
+
+    <!-- Calendar date grid - row 4 -->
+    <circle cx="-110" cy="190" r="14" fill="#E8EEFF" />
+    <circle cx="-50" cy="190" r="14" fill="#E8EEFF" />
+    <circle cx="10" cy="190" r="14" fill="#E8EEFF" />
+
+    <!-- Checkmark on highlighted date -->
+    <path d="M-2 60 L7 69 L22 52" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Notification bell -->
+    <g transform="translate(195, -175)">
+      <!-- Bell body -->
+      <path d="M0 -48 C0 -48, -30 -25, -30 10 C-30 35, -30 45, -45 52 L45 52 C30 45, 30 35, 30 10 C30 -25, 0 -48, 0 -48 Z"
+            fill="#FFFFFF" opacity="0.95" />
+      <!-- Bell top -->
+      <circle cx="0" cy="-50" r="9" fill="#FFFFFF" opacity="0.95" />
+      <!-- Bell clapper -->
+      <circle cx="0" cy="63" r="12" fill="#FFFFFF" opacity="0.95" />
+      <!-- Alert dot -->
+      <circle cx="32" cy="-35" r="16" fill="#EF4444" />
+      <circle cx="32" cy="-35" r="13" fill="#FF6B6B" />
+      <!-- Sound waves -->
+      <path d="M50 0 C58 -7, 58 7, 50 0" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.45" />
+      <path d="M57 -12 C70 -20, 70 12, 57 5" stroke="#FFFFFF" stroke-width="2.5" fill="none" opacity="0.3" />
+    </g>
+  </g>
+
+  <!-- App name text -->
+  <text x="642" y="1510" font-family="'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif"
+        font-size="56" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">
+    在留資格更新
+  </text>
+  <text x="642" y="1580" font-family="'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif"
+        font-size="56" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">
+    リマインダー
+  </text>
+
+  <!-- Subtitle -->
+  <text x="642" y="1650" font-family="'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif"
+        font-size="28" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.7" letter-spacing="2">
+    Visa Renewal Reminder
+  </text>
+
+  <!-- Bottom decorative line -->
+  <rect x="567" y="1700" width="150" height="3" rx="1.5" fill="#FFFFFF" opacity="0.3" />
+</svg>

@@ -1,0 +1,52 @@
+{
+  "section": {
+    "basicInfo": "Basic Information",
+    "deadlineInfo": "Deadline Information",
+    "memo": "Memo (Optional)"
+  },
+  "label": {
+    "expirationDate": "Expiration Date",
+    "residenceType": "Visa Type",
+    "memo": "Memo",
+    "applicationPeriod": "Application Period",
+    "daysRemaining": "Days Remaining"
+  },
+  "placeholder": {
+    "selectDate": "Select a date",
+    "selectType": "Select a type",
+    "memoInput": "Enter a memo as needed (e.g., company name, planned application date)"
+  },
+  "helper": {
+    "dateWeb": "Click the calendar icon to select a date",
+    "dateNative": "Tap the calendar icon to select a date",
+    "typeAutoSet": "Required documents are automatically set based on the visa type",
+    "memoEncrypted": "Avoid entering personal information (name, residence card number, etc.). Memos are stored encrypted."
+  },
+  "info": {
+    "applicationPeriodTitle": "About the Application Period",
+    "applicationPeriodBody": "Residence status renewal applications can be submitted approximately 4 months before the expiration date.\nWe recommend starting preparations early."
+  },
+  "reminder": {
+    "title": "Scheduled Notifications",
+    "fourMonths": "4 months before",
+    "threeMonths": "3 months before",
+    "oneMonth": "1 month before",
+    "twoWeeks": "2 weeks before"
+  },
+  "datePreview": {
+    "expirationDate": "Expiration Date",
+    "applicationStart": "Application Period",
+    "applicationStartSuffix": " onwards",
+    "daysRemaining": "Days Remaining",
+    "daySuffix": " days"
+  },
+  "accessibility": {
+    "residenceType": "Visa type: {{type}}",
+    "residenceTypeUnselected": "Not selected",
+    "residenceTypeHint": "Tap to select a visa type",
+    "memoHint": "Enter a memo up to {{max}} characters"
+  },
+  "validation": {
+    "pastDate": "Past dates cannot be selected"
+  }
+}

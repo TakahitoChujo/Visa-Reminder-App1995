@@ -1,0 +1,522 @@
+/**
+ * 在留カード登録画面
+ */
+
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  Platform,
+  Alert,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import { useResidenceStore } from '../store/useResidenceStore';
+import { ResidenceType } from '../types';
+import { theme } from '../theme';
+import { format, subMonths, differenceInDays } from 'date-fns';
+import { DateInput } from '../components/DateInput';
+
+const RESIDENCE_TYPES: { value: ResidenceType; label: string }[] = [
+  { value: 'work_visa', label: '技術・人文知識・国際業務' },
+  { value: 'spouse_japanese', label: '日本人の配偶者等' },
+  { value: 'spouse_permanent', label: '永住者の配偶者等' },
+  { value: 'permanent_application', label: '永住申請準備' },
+  { value: 'student', label: '留学' },
+  { value: 'designated_activities', label: '特定活動' },
+  { value: 'skilled_worker', label: '特定技能' },
+  { value: 'other', label: 'その他' },
+];
+
+export function RegisterScreen() {
+  const navigation = useNavigation();
+  const { addCard } = useResidenceStore();
+
+  const [expirationDate, setExpirationDate] = useState('');
+  const [residenceType, setResidenceType] = useState<ResidenceType | ''>('');
+  const [memo, setMemo] = useState('');
+  const [showTypePicker, setShowTypePicker] = useState(false);
+
+  const handleSave = async () => {
+    if (!expirationDate || !residenceType) {
+      Alert.alert('エラー', '有効期限と資格タイプを入力してください');
+      return;
+    }
+
+    try {
+      await addCard({
+        expirationDate,
+        residenceType,
+        memo,
+      });
+
+      Alert.alert('成功', '在留資格を登録しました', [
+        { text: 'OK', onPress: () => navigation.goBack() },
+      ]);
+    } catch (error) {
+      Alert.alert('エラー', '登録に失敗しました');
+    }
+  };
+
+  const isValidDate = (dateString: string) => {
+    if (!dateString) return false;
+    const date = new Date(dateString);
+    return date instanceof Date && !isNaN(date.getTime());
+  };
+
+  const getApplicationStartDate = () => {
+    if (!expirationDate || !isValidDate(expirationDate)) return null;
+    return subMonths(new Date(expirationDate), 4);
+  };
+
+  const getDaysRemaining = () => {
+    if (!expirationDate || !isValidDate(expirationDate)) return null;
+    return differenceInDays(new Date(expirationDate), new Date());
+  };
+
+  const selectedType = RESIDENCE_TYPES.find((t) => t.value === residenceType);
+
+  return (
+    <View style={styles.container}>
+      
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={24} color={theme.colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>在留資格の登録</Text>
+        <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+          <Text style={styles.saveButtonText}>保存</Text>
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView
+        style={styles.content}
+        contentContainerStyle={styles.contentContainer}
+      >
+        
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Ionicons name="document-text-outline" size={24} color={theme.colors.primary} />
+            <Text style={styles.sectionTitle}>基本情報</Text>
+          </View>
+
+          
+          <View style={styles.formGroup}>
+            <Text style={styles.label}>
+              有効期限<Text style={styles.required}>*</Text>
+            </Text>
+            <DateInput
+              value={expirationDate}
+              onChange={setExpirationDate}
+              placeholder="日付を選択してください"
+            />
+            <View style={styles.helper}>
+              <Ionicons name="information-circle-outline" size={14} color={theme.colors.textSecondary} />
+              <Text style={styles.helperText}>
+                {Platform.OS === 'web'
+                  ? 'カレンダーアイコンをクリックして日付を選択してください'
+                  : 'カレンダーアイコンをタップして日付を選択してください'
+                }
+              </Text>
+            </View>
+          </View>
+
+          
+          <View style={styles.formGroup}>
+            <Text style={styles.label}>
+              資格タイプ<Text style={styles.required}>*</Text>
+            </Text>
+            <TouchableOpacity
+              style={styles.picker}
+              onPress={() => setShowTypePicker(!showTypePicker)}
+            >
+              <Text style={[styles.pickerText, !residenceType && styles.pickerPlaceholder]}>
+                {selectedType?.label || '選択してください'}
+              </Text>
+              <Ionicons name="chevron-down" size={20} color={theme.colors.textSecondary} />
+            </TouchableOpacity>
+
+            {showTypePicker && (
+              <View style={styles.pickerOptions}>
+                {RESIDENCE_TYPES.map((type) => (
+                  <TouchableOpacity
+                    key={type.value}
+                    style={styles.pickerOption}
+                    onPress={() => {
+                      setResidenceType(type.value);
+                      setShowTypePicker(false);
+                    }}
+                  >
+                    <Text style={styles.pickerOptionText}>{type.label}</Text>
+                    {residenceType === type.value && (
+                      <Ionicons name="checkmark" size={20} color={theme.colors.primary} />
+                    )}
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+
+            <View style={styles.helper}>
+              <Ionicons name="information-circle-outline" size={14} color={theme.colors.textSecondary} />
+              <Text style={styles.helperText}>資格タイプに応じて必要書類が自動で設定されます</Text>
+            </View>
+          </View>
+
+          
+          <View style={styles.infoBox}>
+            <Text style={styles.infoBoxTitle}>申請可能時期について</Text>
+            <Text style={styles.infoBoxText}>
+              在留期間更新申請は、有効期限の約4ヶ月前から可能です。{'\n'}
+              余裕を持って準備を始めることをお勧めします。
+            </Text>
+          </View>
+        </View>
+
+        
+        {expirationDate && isValidDate(expirationDate) && (
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Ionicons name="calendar-outline" size={24} color={theme.colors.primary} />
+              <Text style={styles.sectionTitle}>期限情報</Text>
+            </View>
+
+            <View style={styles.datePreview}>
+              <View style={styles.dateRow}>
+                <Text style={styles.dateLabel}>有効期限</Text>
+                <Text style={[styles.dateValue, styles.dateValueHighlight]}>
+                  {format(new Date(expirationDate), 'yyyy年M月d日')}
+                </Text>
+              </View>
+              <View style={styles.dateRow}>
+                <Text style={styles.dateLabel}>申請可能開始日（目安）</Text>
+                <Text style={styles.dateValue}>
+                  {getApplicationStartDate() ? format(getApplicationStartDate()!, 'yyyy年M月d日') : '-'}
+                </Text>
+              </View>
+              <View style={styles.dateRow}>
+                <Text style={styles.dateLabel}>残り日数</Text>
+                <Text style={styles.dateValue}>{getDaysRemaining() ?? 0}日</Text>
+              </View>
+            </View>
+
+            
+            <View style={styles.reminderPreview}>
+              <View style={styles.reminderHeader}>
+                <Ionicons name="notifications-outline" size={16} color={theme.colors.successDark} />
+                <Text style={styles.reminderTitle}>設定される通知</Text>
+              </View>
+              <View style={styles.reminderList}>
+                {[
+                  { label: '4ヶ月前', date: subMonths(new Date(expirationDate), 4) },
+                  { label: '3ヶ月前', date: subMonths(new Date(expirationDate), 3) },
+                  { label: '1ヶ月前', date: subMonths(new Date(expirationDate), 1) },
+                  { label: '2週間前', date: new Date(new Date(expirationDate).getTime() - 14 * 24 * 60 * 60 * 1000) },
+                ].map((reminder, index) => (
+                  <View key={index} style={styles.reminderItem}>
+                    <Ionicons name="checkmark-circle" size={16} color={theme.colors.successDark} />
+                    <Text style={styles.reminderItemText}>
+                      {reminder.label}（{format(reminder.date, 'M月d日')}）
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          </View>
+        )}
+
+        
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Ionicons name="create-outline" size={24} color={theme.colors.primary} />
+            <Text style={styles.sectionTitle}>メモ（任意）</Text>
+          </View>
+
+          <View style={styles.formGroup}>
+            <Text style={styles.label}>メモ</Text>
+            <TextInput
+              style={[styles.input, styles.textArea]}
+              placeholder="必要に応じてメモを入力してください（例：会社名、申請予定日など）"
+              value={memo}
+              onChangeText={setMemo}
+              multiline
+              numberOfLines={4}
+              placeholderTextColor={theme.colors.textTertiary}
+            />
+            <View style={styles.helper}>
+              <Ionicons name="lock-closed-outline" size={14} color={theme.colors.textSecondary} />
+              <Text style={styles.helperText}>個人情報（氏名・在留カード番号等）の入力は避けてください</Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+
+      
+      <View style={styles.bottomActions}>
+        <TouchableOpacity style={styles.primaryButton} onPress={handleSave}>
+          <Ionicons name="checkmark" size={20} color={theme.colors.textWhite} />
+          <Text style={styles.primaryButtonText}>登録する</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.secondaryButton} onPress={() => navigation.goBack()}>
+          <Text style={styles.secondaryButtonText}>キャンセル</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.md,
+    backgroundColor: theme.colors.backgroundWhite,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: theme.fontSize.xl,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.textPrimary,
+  },
+  saveButton: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  saveButtonText: {
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.primary,
+  },
+  content: {
+    flex: 1,
+  },
+  contentContainer: {
+    padding: theme.spacing.lg,
+    paddingBottom: 100, // ボトムアクションのための余白
+  },
+  section: {
+    marginBottom: theme.spacing.xxl,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.lg,
+  },
+  sectionTitle: {
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.textPrimary,
+    marginLeft: theme.spacing.sm,
+  },
+  formGroup: {
+    marginBottom: theme.spacing.lg,
+  },
+  label: {
+    fontSize: theme.fontSize.md,
+    fontWeight: theme.fontWeight.medium,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.sm,
+  },
+  required: {
+    color: theme.colors.error,
+    marginLeft: theme.spacing.xs,
+  },
+  input: {
+    height: 48,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.md,
+    paddingHorizontal: theme.spacing.lg,
+    fontSize: theme.fontSize.lg,
+    color: theme.colors.textPrimary,
+    backgroundColor: theme.colors.backgroundWhite,
+  },
+  textArea: {
+    height: 100,
+    paddingTop: theme.spacing.md,
+    textAlignVertical: 'top',
+  },
+  picker: {
+    height: 48,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.md,
+    paddingHorizontal: theme.spacing.lg,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: theme.colors.backgroundWhite,
+  },
+  pickerText: {
+    fontSize: theme.fontSize.lg,
+    color: theme.colors.textPrimary,
+  },
+  pickerPlaceholder: {
+    color: theme.colors.textTertiary,
+  },
+  pickerOptions: {
+    marginTop: theme.spacing.sm,
+    backgroundColor: theme.colors.backgroundWhite,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.md,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  pickerOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.borderLight,
+  },
+  pickerOptionText: {
+    fontSize: theme.fontSize.lg,
+    color: theme.colors.textPrimary,
+  },
+  helper: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: theme.spacing.xs,
+  },
+  helperText: {
+    flex: 1,
+    fontSize: theme.fontSize.sm,
+    color: theme.colors.textSecondary,
+    marginLeft: theme.spacing.xs,
+  },
+  infoBox: {
+    backgroundColor: theme.colors.primaryLight,
+    borderLeftWidth: 4,
+    borderLeftColor: theme.colors.primary,
+    padding: theme.spacing.md,
+    borderRadius: theme.borderRadius.sm,
+    marginTop: theme.spacing.md,
+  },
+  infoBoxTitle: {
+    fontSize: theme.fontSize.md,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.primaryDark,
+    marginBottom: theme.spacing.xs,
+  },
+  infoBoxText: {
+    fontSize: theme.fontSize.sm,
+    color: theme.colors.primaryDark,
+    lineHeight: 18,
+  },
+  datePreview: {
+    backgroundColor: theme.colors.backgroundGray,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.lg,
+  },
+  dateRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: theme.spacing.md,
+  },
+  dateLabel: {
+    fontSize: theme.fontSize.md,
+    color: theme.colors.textSecondary,
+  },
+  dateValue: {
+    fontSize: theme.fontSize.md,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.textPrimary,
+  },
+  dateValueHighlight: {
+    color: theme.colors.primary,
+  },
+  reminderPreview: {
+    backgroundColor: theme.colors.successLight,
+    borderWidth: 1,
+    borderColor: theme.colors.success,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    marginTop: theme.spacing.md,
+  },
+  reminderHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.sm,
+  },
+  reminderTitle: {
+    fontSize: theme.fontSize.md,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.successDark,
+    marginLeft: theme.spacing.xs,
+  },
+  reminderList: {
+    marginTop: theme.spacing.xs,
+  },
+  reminderItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.xs,
+  },
+  reminderItemText: {
+    fontSize: theme.fontSize.sm,
+    color: theme.colors.successDark,
+    marginLeft: theme.spacing.xs,
+  },
+  bottomActions: {
+    padding: theme.spacing.lg,
+    backgroundColor: theme.colors.backgroundWhite,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.border,
+  },
+  primaryButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 48,
+    backgroundColor: theme.colors.primary,
+    borderRadius: theme.borderRadius.md,
+    marginBottom: theme.spacing.md,
+  },
+  primaryButtonText: {
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.medium,
+    color: theme.colors.textWhite,
+    marginLeft: theme.spacing.xs,
+  },
+  secondaryButton: {
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.md,
+    backgroundColor: 'transparent',
+  },
+  secondaryButtonText: {
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.medium,
+    color: theme.colors.textSecondary,
+  },
+});

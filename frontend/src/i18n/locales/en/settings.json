@@ -1,0 +1,64 @@
+{
+  "headerTitle": "Settings",
+  "profile": {
+    "iconText": "V",
+    "userName": "User"
+  },
+  "testPlanToggle": "Toggle Plan (Test): Current {{plan}}",
+  "section": {
+    "notification": "Notifications",
+    "dataPrivacy": "Data & Privacy",
+    "support": "Support",
+    "other": "Other",
+    "language": "Language"
+  },
+  "notification": {
+    "reminderSettings": "Reminder Settings",
+    "reminderDescription": "Customize notification timing"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "How we handle personal information"
+  },
+  "support": {
+    "contact": "Contact Us",
+    "contactDescription": "Questions and requests",
+    "terms": "Terms of Service",
+    "termsDescription": "Service terms and conditions"
+  },
+  "data": {
+    "clearAll": "Delete All Data",
+    "clearDescription": "Permanently delete all registered data",
+    "clearConfirmTitle": "Confirm",
+    "clearConfirmMessage": "Delete all data?\nThis action cannot be undone.",
+    "clearSuccess": "All data has been deleted",
+    "clearError": "Failed to delete data"
+  },
+  "language": {
+    "title": "Language",
+    "description": "Change display language",
+    "current": "Current: {{language}}"
+  },
+  "version": {
+    "appIconText": "V",
+    "appName": "Visa Renewal Reminder",
+    "versionLabel": "Version {{version}} (Build {{build}})"
+  },
+  "accessibility": {
+    "back": "Go back",
+    "backHint": "Return to home screen",
+    "testPlanToggle": "Toggle plan (test)",
+    "reminderSettings": "Reminder settings",
+    "reminderSettingsHint": "Tap to customize notification timing",
+    "privacyPolicy": "Privacy policy",
+    "privacyPolicyHint": "Tap to view personal information handling",
+    "contact": "Contact us",
+    "contactHint": "Tap to open email app",
+    "terms": "Terms of service",
+    "termsHint": "Tap to view service terms and conditions",
+    "clearAll": "Delete all data",
+    "clearAllHint": "Warning: This action cannot be undone. Tap to show confirmation dialog",
+    "languageSelect": "Select language",
+    "languageSelectHint": "Tap to change the display language"
+  }
+}

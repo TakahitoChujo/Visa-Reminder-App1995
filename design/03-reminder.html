@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リマインダー設定画面 - 在留資格更新リマインダー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+
+        .mobile-frame {
+            max-width: 428px;
+            margin: 24px auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            min-height: 800px;
+        }
+
+        .status-bar {
+            height: 44px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .time {
+            color: #1F2937;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+            color: #1F2937;
+        }
+
+        .nav-bar {
+            height: 56px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .nav-back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 150ms ease;
+        }
+
+        .nav-back:hover {
+            background-color: #F9FAFB;
+        }
+
+        .nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .nav-spacer {
+            width: 40px;
+        }
+
+        .content {
+            padding: 24px 16px;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        /* 通知許可カード */
+        .permission-card {
+            background: linear-gradient(135deg, #2E5BFF 0%, #1E3DB8 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .permission-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .permission-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .permission-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .permission-description {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .permission-button {
+            width: 100%;
+            height: 44px;
+            background-color: white;
+            color: #2E5BFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 150ms ease;
+        }
+
+        .permission-button:hover {
+            transform: scale(1.02);
+        }
+
+        /* セクション */
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-header {
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 4px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        /* スイッチ設定項目 */
+        .setting-item {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .setting-info {
+            flex: 1;
+            margin-right: 16px;
+        }
+
+        .setting-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .setting-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge-recommended {
+            background-color: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .setting-description {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .setting-date {
+            font-size: 12px;
+            color: #2E5BFF;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* スイッチトグル */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #D1D5DB;
+            transition: 300ms;
+            border-radius: 28px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 300ms;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2E5BFF;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        /* 通知プレビュー */
+        .preview-section {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+
+        .preview-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .preview-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .notification-preview {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .notification-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #2E5BFF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .notification-meta {
+            flex: 1;
+        }
+
+        .app-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            color: #6B7280;
+        }
+
+        .notification-content {
+            font-size: 14px;
+            color: #1F2937;
+            line-height: 1.5;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        /* インフォボックス */
+        .info-box {
+            background-color: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 16px;
+        }
+
+        .info-box-content {
+            display: flex;
+            gap: 10px;
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            color: #92400E;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            font-size: 12px;
+            color: #92400E;
+            line-height: 1.5;
+        }
+
+        /* 区切り線 */
+        .divider {
+            height: 1px;
+            background-color: #E5E7EB;
+            margin: 24px 0;
+        }
+
+        /* ボタングループ */
+        .button-group {
+            margin-top: 24px;
+        }
+
+        .btn-link {
+            width: 100%;
+            height: 48px;
+            background-color: transparent;
+            color: #2E5BFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 150ms ease;
+        }
+
+        .btn-link:hover {
+            background-color: #E8EEFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <!-- ステータスバー -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="status-icons">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+            </div>
+        </div>
+
+        <!-- ナビゲーションバー -->
+        <div class="nav-bar">
+            <div class="nav-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </div>
+            <div class="nav-title">リマインダー設定</div>
+            <div class="nav-spacer"></div>
+        </div>
+
+        <!-- コンテンツ -->
+        <div class="content">
+            <!-- ページヘッダー -->
+            <div class="page-header">
+                <h1 class="page-title">通知設定</h1>
+                <p class="page-description">
+                    在留資格の有効期限が近づいたときに、プッシュ通知でお知らせします。
+                    通知のタイミングをカスタマイズできます。
+                </p>
+            </div>
+
+            <!-- 通知許可カード -->
+            <div class="permission-card">
+                <div class="permission-header">
+                    <svg class="permission-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <div class="permission-title">通知を許可する</div>
+                </div>
+                <p class="permission-description">
+                    重要な期限を見逃さないために、デバイスの通知を許可してください。
+                    いつでも設定から変更できます。
+                </p>
+                <button class="permission-button">通知を許可</button>
+            </div>
+
+            <!-- リマインダータイミング -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">通知タイミング</h2>
+                    <p class="section-subtitle">有効期限前の通知タイミングを選択できます</p>
+                </div>
+
+                <!-- 4ヶ月前 -->
+                <div class="setting-item">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <div class="setting-title">
+                                4ヶ月前
+                                <span class="setting-badge badge-recommended">推奨</span>
+                            </div>
+                            <div class="setting-description">申請可能時期の開始日</div>
+                            <div class="setting-date">次回: 2026年8月15日</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 3ヶ月前 -->
+                <div class="setting-item">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <div class="setting-title">
+                                3ヶ月前
+                                <span class="setting-badge badge-recommended">推奨</span>
+                            </div>
+                            <div class="setting-description">余裕を持った準備開始時期</div>
+                            <div class="setting-date">次回: 2026年9月15日</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 1ヶ月前 -->
+                <div class="setting-item">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <div class="setting-title">1ヶ月前</div>
+                            <div class="setting-description">申請期限が迫る時期</div>
+                            <div class="setting-date">次回: 2026年11月15日</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 2週間前 -->
+                <div class="setting-item">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <div class="setting-title">2週間前</div>
+                            <div class="setting-description">最終確認の時期</div>
+                            <div class="setting-date">次回: 2026年12月1日</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-content">
+                        <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div class="info-text">
+                            在留期間更新申請は、有効期限の約4ヶ月前から可能です。
+                            早めの準備をお勧めします。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- 通知プレビュー -->
+            <div class="section">
+                <div class="preview-section">
+                    <div class="preview-title">
+                        <svg class="preview-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        通知プレビュー
+                    </div>
+
+                    <div class="notification-preview">
+                        <div class="notification-header">
+                            <div class="app-icon">在</div>
+                            <div class="notification-meta">
+                                <div class="app-name">在留資格更新リマインダー</div>
+                                <div class="notification-time">4ヶ月前 • 午前9:00</div>
+                            </div>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">在留期間更新の申請が可能になりました</div>
+                            <div>技術・人文知識・国際業務の有効期限まで残り120日です。必要書類の準備を開始してください。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- その他の設定 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">その他の設定</h2>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <div class="setting-title">通知音</div>
+                            <div class="setting-description">通知時にサウンドを再生</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <div class="setting-title">バッジ表示</div>
+                            <div class="setting-description">アプリアイコンに通知数を表示</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- システム設定へのリンク -->
+            <div class="button-group">
+                <button class="btn-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    デバイスの通知設定を開く
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 24px; color: #6B7280; font-size: 14px;">
+        <p><strong>画面説明:</strong> リマインダー設定画面 - 通知タイミングのカスタマイズ</p>
+        <p>各タイミングごとに通知のオン/オフを切り替え可能</p>
+    </div>
+</body>
+</html>

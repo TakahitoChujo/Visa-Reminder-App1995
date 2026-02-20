@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "在留資格更新リマインダー",
+    "slug": "residence-reminder",
+    "owner": "toyland",
+    "version": "1.0.0",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2E5BFF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.residencereminder.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSUserNotificationsUsageDescription": "在留資格の有効期限をリマインドするために通知を送信します。"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2E5BFF"
+      },
+      "package": "com.residencereminder.app",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "residencereminder",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#2E5BFF"
+        }
+      ],
+      "expo-font"
+    ],
+    "updates": {
+      "url": "https://u.expo.dev/aa376df7-b63a-4ef1-9fb9-43dc83cfe78e",
+      "fallbackToCacheTimeout": 0
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aa376df7-b63a-4ef1-9fb9-43dc83cfe78e"
+      }
+    }
+  }
+}

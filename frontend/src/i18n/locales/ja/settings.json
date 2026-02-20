@@ -1,0 +1,64 @@
+{
+  "headerTitle": "設定",
+  "profile": {
+    "iconText": "在",
+    "userName": "ユーザー"
+  },
+  "testPlanToggle": "プラン切り替え（テスト用）: 現在 {{plan}}",
+  "section": {
+    "notification": "通知",
+    "dataPrivacy": "データとプライバシー",
+    "support": "サポート",
+    "other": "その他",
+    "language": "言語"
+  },
+  "notification": {
+    "reminderSettings": "リマインダー設定",
+    "reminderDescription": "通知タイミングのカスタマイズ"
+  },
+  "privacy": {
+    "title": "プライバシーポリシー",
+    "description": "個人情報の取り扱いについて"
+  },
+  "support": {
+    "contact": "お問い合わせ",
+    "contactDescription": "ご質問・ご要望はこちら",
+    "terms": "利用規約",
+    "termsDescription": "サービスの利用規約"
+  },
+  "data": {
+    "clearAll": "すべてのデータを削除",
+    "clearDescription": "登録データを完全に削除",
+    "clearConfirmTitle": "確認",
+    "clearConfirmMessage": "すべてのデータを削除しますか？\nこの操作は取り消せません。",
+    "clearSuccess": "すべてのデータを削除しました",
+    "clearError": "データの削除に失敗しました"
+  },
+  "language": {
+    "title": "言語",
+    "description": "表示言語を変更",
+    "current": "現在: {{language}}"
+  },
+  "version": {
+    "appIconText": "在",
+    "appName": "在留資格更新リマインダー",
+    "versionLabel": "バージョン {{version}} (Build {{build}})"
+  },
+  "accessibility": {
+    "back": "戻る",
+    "backHint": "ホーム画面に戻ります",
+    "testPlanToggle": "プラン切り替え（テスト用）",
+    "reminderSettings": "リマインダー設定",
+    "reminderSettingsHint": "タップして通知タイミングをカスタマイズ",
+    "privacyPolicy": "プライバシーポリシー",
+    "privacyPolicyHint": "タップして個人情報の取り扱いについて開く",
+    "contact": "お問い合わせ",
+    "contactHint": "タップしてメールアプリを開く",
+    "terms": "利用規約",
+    "termsHint": "タップしてサービスの利用規約を開く",
+    "clearAll": "すべてのデータを削除",
+    "clearAllHint": "警告: この操作は取り消せません。タップして確認ダイアログを表示",
+    "languageSelect": "言語を選択",
+    "languageSelectHint": "タップして表示言語を変更"
+  }
+}

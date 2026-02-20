@@ -1,0 +1,36 @@
+{
+  "name": {
+    "free": "Free",
+    "premium": "Premium"
+  },
+  "status": {
+    "freeActive": "Free plan active",
+    "premiumActive": "plan active"
+  },
+  "limit": {
+    "freeMax": "Free plan allows up to {{limit}} registration(s)",
+    "reached": "Registration Limit Reached",
+    "reachedMessage": "The free plan allows up to {{limit}} registration(s). Upgrade to Premium for unlimited registrations."
+  },
+  "premium": {
+    "title": "Premium Plan",
+    "description": "Manage your residence status more smoothly with advanced features",
+    "featureMultiple": "Register multiple residence statuses (manage family members)",
+    "featureExport": "Export checklists as PDF/CSV",
+    "featureHistory": "Unlimited application history storage",
+    "priceButton": "Start at {{price}}/month"
+  },
+  "upgrade": {
+    "button": "Upgrade to Premium",
+    "buttonShort": "Upgrade",
+    "hint": "View premium plan upgrade information"
+  },
+  "downgrade": {
+    "title": "Downgrade Plan",
+    "message": "The free plan allows only {{limit}} registration(s).\nOnly the {{limit}} with the nearest expiration will be kept, and {{count}} other(s) will be deleted.\n\nAre you sure?",
+    "confirmButton": "Downgrade",
+    "successMessage": "Switched to free plan"
+  },
+  "changed": "Plan changed to {{plan}}",
+  "comingSoon": "Premium plan coming soon"
+}

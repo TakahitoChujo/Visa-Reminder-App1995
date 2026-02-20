@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録・編集画面 - 在留資格更新リマインダー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+
+        .mobile-frame {
+            max-width: 428px;
+            margin: 24px auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            min-height: 800px;
+        }
+
+        .status-bar {
+            height: 44px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .time {
+            color: #1F2937;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+            color: #1F2937;
+        }
+
+        /* ナビゲーションバー */
+        .nav-bar {
+            height: 56px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .nav-back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 150ms ease;
+        }
+
+        .nav-back:hover {
+            background-color: #F9FAFB;
+        }
+
+        .nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .nav-action {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2E5BFF;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* フォームコンテンツ */
+        .form-content {
+            padding: 24px 16px;
+        }
+
+        .form-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            color: #2E5BFF;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1F2937;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #EF4444;
+            margin-left: 4px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 0 16px;
+            font-size: 16px;
+            color: #1F2937;
+            transition: all 150ms ease;
+            background-color: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2E5BFF;
+            border-width: 2px;
+            padding: 0 15px;
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        /* 日付入力フィールド */
+        .date-input-wrapper {
+            position: relative;
+        }
+
+        .date-input-wrapper input[type="date"] {
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .date-input-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            right: 12px;
+            cursor: pointer;
+            opacity: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .calendar-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            color: #6B7280;
+            pointer-events: none;
+        }
+
+        .date-input-wrapper input[type="date"]:focus ~ .calendar-icon {
+            color: #2E5BFF;
+        }
+
+        .form-select {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 0 16px;
+            font-size: 16px;
+            color: #1F2937;
+            background-color: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #2E5BFF;
+            border-width: 2px;
+            padding: 0 39px 0 15px;
+        }
+
+        .form-helper {
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .helper-icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .info-box {
+            background-color: #E8EEFF;
+            border-left: 4px solid #2E5BFF;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        .info-box-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E3DB8;
+            margin-bottom: 6px;
+        }
+
+        .info-box-text {
+            font-size: 12px;
+            color: #1E3DB8;
+            line-height: 1.5;
+        }
+
+        /* 日付プレビュー */
+        .date-preview {
+            background-color: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .date-preview-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .date-preview-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .date-preview-label {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .date-preview-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .date-preview-value.highlight {
+            color: #2E5BFF;
+        }
+
+        /* リマインダープレビュー */
+        .reminder-preview {
+            background-color: #F0FDF4;
+            border: 1px solid #10B981;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .reminder-preview-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #065F46;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reminder-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .reminder-item {
+            font-size: 12px;
+            color: #065F46;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reminder-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ボタン */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+            padding: 0 16px 24px;
+        }
+
+        .btn {
+            height: 48px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 150ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #2E5BFF;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1E3DB8;
+        }
+
+        .btn-primary:disabled {
+            background-color: #D1D5DB;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #6B7280;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background-color: #F9FAFB;
+        }
+
+        .btn-danger {
+            background-color: transparent;
+            color: #EF4444;
+            border: 1px solid #EF4444;
+        }
+
+        .btn-danger:hover {
+            background-color: #FEE2E2;
+        }
+
+        /* カード番号入力（オプション） */
+        .card-input-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .card-input-group .form-input {
+            flex: 1;
+        }
+
+        /* 写真アップロード（将来機能） */
+        .upload-area {
+            border: 2px dashed #D1D5DB;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .upload-area:hover {
+            border-color: #2E5BFF;
+            background-color: #E8EEFF;
+        }
+
+        .upload-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            color: #9CA3AF;
+        }
+
+        .upload-text {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .upload-subtext {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-top: 4px;
+        }
+
+        /* 区切り線 */
+        .divider {
+            height: 1px;
+            background-color: #E5E7EB;
+            margin: 24px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <!-- ステータスバー -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="status-icons">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+            </div>
+        </div>
+
+        <!-- ナビゲーションバー -->
+        <div class="nav-bar">
+            <div class="nav-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </div>
+            <div class="nav-title">在留資格の登録</div>
+            <div class="nav-action">保存</div>
+        </div>
+
+        <!-- フォームコンテンツ -->
+        <div class="form-content">
+            <!-- 基本情報セクション -->
+            <div class="form-section">
+                <div class="section-title">
+                    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    基本情報
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        有効期限<span class="required">*</span>
+                    </label>
+                    <div class="date-input-wrapper">
+                        <input type="date" class="form-input" value="2026-12-15">
+                        <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div class="form-helper">
+                        <svg class="helper-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        カレンダーアイコンをクリックして日付を選択してください
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        資格タイプ<span class="required">*</span>
+                    </label>
+                    <select class="form-select">
+                        <option value="">選択してください</option>
+                        <option value="engineer" selected>技術・人文知識・国際業務</option>
+                        <option value="spouse">日本人の配偶者等</option>
+                        <option value="pr-spouse">永住者の配偶者等</option>
+                        <option value="trainee">技能実習</option>
+                        <option value="skilled">特定技能</option>
+                        <option value="student">留学</option>
+                        <option value="other">その他</option>
+                    </select>
+                    <div class="form-helper">
+                        <svg class="helper-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        資格タイプに応じて必要書類が自動で設定されます
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">申請可能時期について</div>
+                    <div class="info-box-text">
+                        在留期間更新申請は、有効期限の約4ヶ月前から可能です。<br>
+                        余裕を持って準備を始めることをお勧めします。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 日付プレビュー -->
+            <div class="form-section">
+                <div class="section-title">
+                    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    期限情報
+                </div>
+
+                <div class="date-preview">
+                    <div class="date-preview-row">
+                        <span class="date-preview-label">有効期限</span>
+                        <span class="date-preview-value highlight">2026年12月15日</span>
+                    </div>
+                    <div class="date-preview-row">
+                        <span class="date-preview-label">申請可能開始日（目安）</span>
+                        <span class="date-preview-value">2026年8月15日</span>
+                    </div>
+                    <div class="date-preview-row">
+                        <span class="date-preview-label">残り日数</span>
+                        <span class="date-preview-value">304日</span>
+                    </div>
+                </div>
+
+                <div class="reminder-preview">
+                    <div class="reminder-preview-title">
+                        <svg class="reminder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                        設定される通知
+                    </div>
+                    <div class="reminder-list">
+                        <div class="reminder-item">
+                            <svg class="reminder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            4ヶ月前（2026年8月15日）
+                        </div>
+                        <div class="reminder-item">
+                            <svg class="reminder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            3ヶ月前（2026年9月15日）
+                        </div>
+                        <div class="reminder-item">
+                            <svg class="reminder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            1ヶ月前（2026年11月15日）
+                        </div>
+                        <div class="reminder-item">
+                            <svg class="reminder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            2週間前（2026年12月1日）
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- 任意情報セクション（将来機能） -->
+            <div class="form-section">
+                <div class="section-title">
+                    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    メモ（任意）
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">メモ</label>
+                    <textarea class="form-input" style="height: 100px; padding: 12px; resize: vertical;" placeholder="必要に応じてメモを入力してください（例：会社名、申請予定日など）"></textarea>
+                    <div class="form-helper">
+                        <svg class="helper-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        個人情報（氏名・在留カード番号等）の入力は避けてください
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ボタングループ -->
+        <div class="button-group">
+            <button class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                登録する
+            </button>
+            <button class="btn btn-secondary">キャンセル</button>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 24px; color: #6B7280; font-size: 14px;">
+        <p><strong>画面説明:</strong> 登録・編集画面 - 在留資格の有効期限と資格タイプを登録</p>
+        <p>自動計算された申請可能日とリマインダー日程を表示</p>
+    </div>
+</body>
+</html>

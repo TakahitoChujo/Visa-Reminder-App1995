@@ -1,0 +1,93 @@
+/**
+ * チェックリスト画面
+ */
+
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import { theme } from '../theme';
+
+export function ChecklistScreen() {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={24} color={theme.colors.textPrimary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>チェックリスト</Text>
+        <View style={styles.placeholder} />
+      </View>
+
+      <ScrollView style={styles.content}>
+        <View style={styles.emptyState}>
+          <Ionicons name="checkmark-circle-outline" size={64} color={theme.colors.gray300} />
+          <Text style={styles.emptyTitle}>チェックリスト機能は準備中です</Text>
+          <Text style={styles.emptyDescription}>
+            在留資格タイプに応じた必要書類のチェックリストを表示します
+          </Text>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.md,
+    backgroundColor: theme.colors.backgroundWhite,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: theme.fontSize.xl,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.textPrimary,
+  },
+  placeholder: {
+    width: 40,
+  },
+  content: {
+    flex: 1,
+  },
+  emptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: theme.spacing.xxl * 2,
+    paddingHorizontal: theme.spacing.xl,
+  },
+  emptyTitle: {
+    fontSize: theme.fontSize.xl,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.textPrimary,
+    marginTop: theme.spacing.lg,
+    marginBottom: theme.spacing.sm,
+  },
+  emptyDescription: {
+    fontSize: theme.fontSize.md,
+    color: theme.colors.textSecondary,
+    textAlign: 'center',
+  },
+});

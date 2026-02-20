@@ -1,0 +1,148 @@
+{
+  "engineer": {
+    "basic": {
+      "title": "基本書類",
+      "items": {
+        "applicationForm": {
+          "title": "在留期間更新許可申請書",
+          "description": "入管のウェブサイトからダウンロード可能"
+        },
+        "photo": {
+          "title": "写真(4cm \u00d7 3cm)",
+          "description": "申請前3ヶ月以内に撮影、無帽・無背景"
+        },
+        "passport": {
+          "title": "パスポート",
+          "description": "原本を提示(返却されます)"
+        },
+        "residenceCard": {
+          "title": "在留カード",
+          "description": "原本を提示(返却されます)"
+        },
+        "fee": {
+          "title": "手数料(収入印紙)",
+          "description": "4,000円分の収入印紙"
+        }
+      }
+    },
+    "employment": {
+      "title": "雇用関連書類",
+      "items": {
+        "employmentCertificate": {
+          "title": "在職証明書または雇用契約書",
+          "description": "勤務先の会社から取得"
+        },
+        "companyRegistration": {
+          "title": "会社の登記事項証明書",
+          "description": "法務局で取得(発行から3ヶ月以内)"
+        },
+        "taxWithholding": {
+          "title": "給与所得の源泉徴収票",
+          "description": "前年分の源泉徴収票(会社から取得)"
+        }
+      }
+    },
+    "tax": {
+      "title": "税金・保険関連",
+      "items": {
+        "taxCertificate": {
+          "title": "住民税の課税(納税)証明書",
+          "description": "市区町村役場で取得(直近1年分)"
+        },
+        "taxPayment": {
+          "title": "住民税の納税証明書",
+          "description": "市区町村役場で取得(直近1年分)"
+        }
+      }
+    }
+  },
+  "student": {
+    "basic": {
+      "title": "基本書類",
+      "items": {
+        "applicationForm": {
+          "title": "在留期間更新許可申請書",
+          "description": "入管のウェブサイトからダウンロード可能"
+        },
+        "photo": {
+          "title": "写真(4cm \u00d7 3cm)",
+          "description": "申請前3ヶ月以内に撮影、無帽・無背景"
+        },
+        "passport": {
+          "title": "パスポート",
+          "description": "原本を提示(返却されます)"
+        },
+        "residenceCard": {
+          "title": "在留カード",
+          "description": "原本を提示(返却されます)"
+        }
+      }
+    },
+    "school": {
+      "title": "学校関連書類",
+      "items": {
+        "enrollmentCertificate": {
+          "title": "在学証明書",
+          "description": "在籍している学校から取得"
+        },
+        "transcript": {
+          "title": "成績証明書",
+          "description": "前学期までの成績証明書"
+        },
+        "attendanceCertificate": {
+          "title": "出席証明書",
+          "description": "出席率を証明する書類"
+        }
+      }
+    },
+    "financial": {
+      "title": "経費支弁関連",
+      "items": {
+        "financialSupport": {
+          "title": "経費支弁能力を証する書類",
+          "description": "預金残高証明書、奨学金証明書等"
+        }
+      }
+    }
+  },
+  "spouseJapanese": {
+    "basic": {
+      "title": "基本書類",
+      "items": {
+        "applicationForm": {
+          "title": "在留期間更新許可申請書",
+          "description": "入管のウェブサイトからダウンロード可能"
+        },
+        "photo": {
+          "title": "写真(4cm \u00d7 3cm)",
+          "description": "申請前3ヶ月以内に撮影、無帽・無背景"
+        },
+        "passport": {
+          "title": "パスポート",
+          "description": "原本を提示(返却されます)"
+        },
+        "residenceCard": {
+          "title": "在留カード",
+          "description": "原本を提示(返却されます)"
+        }
+      }
+    },
+    "family": {
+      "title": "家族関連書類",
+      "items": {
+        "spouseEmployment": {
+          "title": "配偶者の在職証明書",
+          "description": "日本人配偶者の勤務先から取得"
+        },
+        "spouseTax": {
+          "title": "配偶者の住民税の課税証明書",
+          "description": "市区町村役場で取得"
+        },
+        "identityGuarantee": {
+          "title": "身元保証書",
+          "description": "日本人配偶者が身元保証人となる"
+        }
+      }
+    }
+  }
+}

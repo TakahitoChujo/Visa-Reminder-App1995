@@ -1,0 +1,27 @@
+{
+  "title": "Residence Status",
+  "registeredCards": "Registered Residence Cards",
+  "registrationCount": "Registered",
+  "needsAttention": "Needs Attention",
+  "empty": {
+    "title": "No residence cards registered",
+    "description": "Register your residence card expiration date to keep track of renewal deadlines"
+  },
+  "card": {
+    "registerNew": "Register Residence Status",
+    "registerNewLong": "Register New Residence Status",
+    "checklist": "Checklist",
+    "day": "days"
+  },
+  "accessibility": {
+    "registerCard": "Register residence status",
+    "registerCardHint": "Opens the residence status registration screen",
+    "cardDetail": "{{type}} {{days}} days until expiration",
+    "cardDetailHint": "Opens residence status details and edit screen",
+    "openChecklist": "Open checklist",
+    "openChecklistHint": "Opens the required documents checklist",
+    "registerNewCard": "Register new residence status",
+    "registerNewCardHint": "Opens the residence status registration screen",
+    "upgradeHint": "View upgrade information"
+  }
+}

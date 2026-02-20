@@ -1,0 +1,43 @@
+{
+  "screen": {
+    "title": "チェックリスト",
+    "headerSubtitle": "在留期間更新申請に必要な書類と手続き"
+  },
+  "progress": {
+    "label": "完了状況",
+    "status": "{{completed}}/{{total}} 完了 ({{percentage}}%)",
+    "categoryCount": "{{completed}}/{{total}}完了"
+  },
+  "action": {
+    "reset": "リセット",
+    "share": "共有",
+    "markAllComplete": "すべて完了"
+  },
+  "note": {
+    "placeholder": "メモを入力...",
+    "expand": "メモを追加",
+    "collapse": "メモを閉じる"
+  },
+  "link": {
+    "officialPage": "入管の公式ページで最新情報を確認"
+  },
+  "alert": {
+    "resetTitle": "リセット確認",
+    "resetMessage": "チェックリストをリセットしますか？",
+    "resetConfirm": "リセット",
+    "shareNotice": "共有機能は近日実装予定です"
+  },
+  "error": {
+    "cardNotFound": "カードが見つかりません"
+  },
+  "accessibility": {
+    "back": "戻る",
+    "reset": "リセット",
+    "shareChecklist": "チェックリストを共有",
+    "markAllComplete": "すべての項目を完了にする",
+    "officialPageHint": "外部ブラウザで開きます",
+    "noteInput": "メモ入力欄",
+    "itemCompleted": "完了",
+    "itemIncomplete": "未完了"
+  }
+}

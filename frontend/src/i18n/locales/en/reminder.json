@@ -1,0 +1,67 @@
+{
+  "navTitle": "Reminder Settings",
+  "pageTitle": "Notification Settings",
+  "pageDescription": "Get push notifications when your residence status expiration date is approaching. Customize the notification timing below.",
+  "permission": {
+    "title": "Allow Notifications",
+    "description": "Please allow device notifications so you don't miss important deadlines. You can change this anytime in settings.",
+    "button": "Allow Notifications",
+    "processing": "Processing...",
+    "successTitle": "Success",
+    "successMessage": "Notifications have been allowed",
+    "deniedTitle": "Notifications Denied",
+    "deniedMessage": "To enable notifications, please allow them in your device settings.",
+    "openSettings": "Open Settings"
+  },
+  "timing": {
+    "sectionTitle": "Notification Timing",
+    "sectionSubtitle": "Choose when to receive notifications before expiration",
+    "fourMonths": "4 months before",
+    "threeMonths": "3 months before",
+    "oneMonth": "1 month before",
+    "twoWeeks": "2 weeks before",
+    "recommended": "Recommended",
+    "fourMonthsDescription": "Application period start date",
+    "threeMonthsDescription": "Comfortable preparation start",
+    "oneMonthDescription": "Application deadline approaching",
+    "twoWeeksDescription": "Final check timing",
+    "nextDate": "Next: {{date}}",
+    "notSet": "Not set"
+  },
+  "infoBox": "Visa renewal applications can be submitted approximately 4 months before the expiration date. We recommend preparing early.",
+  "preview": {
+    "title": "Notification Preview",
+    "appIconText": "V",
+    "appName": "Visa Renewal Reminder",
+    "notificationTime": "4 months before \u2022 9:00 AM",
+    "notificationTitle": "Your visa renewal application period has started",
+    "notificationBody": "120 days remaining until your residence status expires. Please start preparing the required documents."
+  },
+  "otherSettings": {
+    "sectionTitle": "Other Settings",
+    "sound": "Notification Sound",
+    "soundDescription": "Play sound when notified",
+    "badge": "Badge Display",
+    "badgeDescription": "Show notification count on app icon"
+  },
+  "deviceSettings": "Open Device Notification Settings",
+  "accessibility": {
+    "back": "Go back",
+    "allowNotification": "Allow notifications",
+    "allowNotificationHint": "Tap to request device notification permission",
+    "fourMonthsNotification": "4 months before notification",
+    "fourMonthsHint": "Turn on to receive a notification 4 months before",
+    "threeMonthsNotification": "3 months before notification",
+    "threeMonthsHint": "Turn on to receive a notification 3 months before",
+    "oneMonthNotification": "1 month before notification",
+    "oneMonthHint": "Turn on to receive a notification 1 month before",
+    "twoWeeksNotification": "2 weeks before notification",
+    "twoWeeksHint": "Turn on to receive a notification 2 weeks before",
+    "soundNotification": "Notification sound",
+    "soundHint": "Turn on to play sound when notified",
+    "badgeNotification": "Badge display",
+    "badgeHint": "Turn on to show notification count on app icon",
+    "openDeviceSettings": "Open device notification settings",
+    "openDeviceSettingsHint": "Opens the device settings app"
+  }
+}
