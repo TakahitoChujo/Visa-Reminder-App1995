@@ -4,7 +4,7 @@
     "premium": "プレミアム"
   },
   "status": {
-    "freeActive": "無料プラン利用中",
+    "freeActive": "試用期間中で無料",
     "premiumActive": "プラン利用中"
   },
   "limit": {
@@ -14,11 +14,11 @@
   },
   "premium": {
     "title": "プレミアムプラン",
-    "description": "より便利な機能で、在留資格の管理をさらにスムーズに",
+    "description": "プロトタイプのため無料",
     "featureMultiple": "複数の在留資格を登録（家族分も管理）",
     "featureExport": "チェックリストのPDF/CSV出力",
     "featureHistory": "申請履歴の無制限保存",
-    "priceButton": "月額 {{price}} で始める"
+    "priceButton": "プロトタイプのため無料"
   },
   "upgrade": {
     "button": "プレミアムにアップグレード",

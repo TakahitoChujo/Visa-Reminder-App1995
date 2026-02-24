@@ -16,6 +16,7 @@ export type RootStackParamList = {
   Checklist: { cardId: string };
   ReminderSettings: { cardId: string };
   Settings: undefined;
+  DocumentTemplate: { residenceType: string; residenceLabel: string };
 };
 
 /**
@@ -40,3 +41,6 @@ export type ReminderSettingsScreenNavigationProp = StackNavigationProp<RootStack
 export type ReminderSettingsScreenRouteProp = RouteProp<RootStackParamList, 'ReminderSettings'>;
 
 export type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Settings'>;
+
+export type DocumentTemplateScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DocumentTemplate'>;
+export type DocumentTemplateScreenRouteProp = RouteProp<RootStackParamList, 'DocumentTemplate'>;

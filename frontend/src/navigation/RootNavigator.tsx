@@ -10,6 +10,7 @@ import { EditScreen } from '../screens/EditScreen';
 import { ChecklistScreen } from '../screens/ChecklistScreen';
 import { ReminderSettingsScreen } from '../screens/ReminderSettingsScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
+import { DocumentTemplateScreen } from '../screens/DocumentTemplateScreen';
 import { RootStackParamList } from '../types/navigation';
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -27,6 +28,7 @@ export function RootNavigator() {
       <Stack.Screen name="Checklist" component={ChecklistScreen} />
       <Stack.Screen name="ReminderSettings" component={ReminderSettingsScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="DocumentTemplate" component={DocumentTemplateScreen} />
     </Stack.Navigator>
   );
 }

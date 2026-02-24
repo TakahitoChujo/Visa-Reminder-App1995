@@ -28,6 +28,7 @@ interface ResidenceStore {
   updateReminderSettings: (settings: Partial<ReminderSettings>) => Promise<void>;
 
   updateChecklistItem: (cardId: string, itemId: string, updates: Partial<ChecklistItem>) => Promise<void>;
+  markAllComplete: (cardId: string, itemIds: string[]) => Promise<void>;
   resetChecklist: (cardId: string) => Promise<void>;
 
   loadData: () => Promise<void>;
@@ -205,10 +206,37 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
       }
     }
 
-    checklistItems[cardId] = items.map((item) =>
-      item.id === itemId ? { ...item, ...updatedData } : item
-    );
+    const existingItem = items.find((item) => item.id === itemId);
+    if (existingItem) {
+      // 既存アイテムを更新
+      checklistItems[cardId] = items.map((item) =>
+        item.id === itemId ? { ...item, ...updatedData } : item
+      );
+    } else {
+      // 初回チェック時: アイテムがストアに存在しないので新規追加（upsert）
+      checklistItems[cardId] = [...items, { id: itemId, ...updatedData } as ChecklistItem];
+    }
 
+    set({ checklistItems });
+    await AsyncStorage.setItem(STORAGE_KEYS.CHECKLIST_ITEMS, JSON.stringify(checklistItems));
+  },
+
+  markAllComplete: async (cardId, itemIds) => {
+    const checklistItems = { ...get().checklistItems };
+    const existingItems = checklistItems[cardId] || [];
+    const itemMap = new Map(existingItems.map((item) => [item.id, item]));
+
+    for (const itemId of itemIds) {
+      const existing = itemMap.get(itemId);
+      if (existing) {
+        itemMap.set(itemId, { ...existing, completed: true });
+      } else {
+        // 初回: ストアに存在しない項目は completed のみ設定（他フィールドはテンプレートから補完）
+        itemMap.set(itemId, { id: itemId, completed: true } as ChecklistItem);
+      }
+    }
+
+    checklistItems[cardId] = Array.from(itemMap.values());
     set({ checklistItems });
     await AsyncStorage.setItem(STORAGE_KEYS.CHECKLIST_ITEMS, JSON.stringify(checklistItems));
   },

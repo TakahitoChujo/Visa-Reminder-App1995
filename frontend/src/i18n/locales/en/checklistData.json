@@ -8,7 +8,7 @@
           "description": "Available for download from the Immigration Bureau website"
         },
         "photo": {
-          "title": "Photo (4cm \u00d7 3cm)",
+          "title": "Photo (4cm × 3cm)",
           "description": "Taken within 3 months before application, no hat, plain background"
         },
         "passport": {
@@ -39,6 +39,18 @@
         "taxWithholding": {
           "title": "Withholding Tax Certificate",
           "description": "Previous year's withholding slip (obtain from employer)"
+        },
+        "reasonLetter": {
+          "title": "Reason Letter (Statement of Purpose)",
+          "description": "Optional but recommended. Explain the reason for continued stay (1-2 pages, A4)"
+        },
+        "workHistory": {
+          "title": "Work History / Resume",
+          "description": "Details of your work experience and skills (effective as supplementary explanation)"
+        },
+        "companyBrochure": {
+          "title": "Company Business Description",
+          "description": "Company brochure or business summary (especially important for Category 3 & 4 companies)"
         }
       }
     },
@@ -54,6 +66,19 @@
           "description": "Obtain from municipal office (for the most recent year)"
         }
       }
+    },
+    "categorySpecific": {
+      "title": "Additional Documents (Category 4)",
+      "items": {
+        "financialStatement": {
+          "title": "Financial Statements (last 3 fiscal years)",
+          "description": "Required for non-listed companies (Category 4): income statement and balance sheet"
+        },
+        "corporateTaxPayment": {
+          "title": "Corporate Tax Payment Certificate",
+          "description": "Certificate of corporate tax payment (obtain from tax office)"
+        }
+      }
     }
   },
   "student": {
@@ -65,7 +90,7 @@
           "description": "Available for download from the Immigration Bureau website"
         },
         "photo": {
-          "title": "Photo (4cm \u00d7 3cm)",
+          "title": "Photo (4cm × 3cm)",
           "description": "Taken within 3 months before application, no hat, plain background"
         },
         "passport": {
@@ -101,6 +126,23 @@
         "financialSupport": {
           "title": "Proof of Financial Support",
           "description": "Bank balance certificate, scholarship certificate, etc."
+        },
+        "scholarshipCertificate": {
+          "title": "Scholarship Certificate",
+          "description": "Submit if you receive a scholarship (obtain from scholarship organization)"
+        },
+        "financialSponsorIncome": {
+          "title": "Financial Sponsor's Income Proof",
+          "description": "If a parent or guardian covers expenses (tax certificate, bank statement, etc.)"
+        }
+      }
+    },
+    "optionalDocs": {
+      "title": "Additional Documents (If Applicable)",
+      "items": {
+        "attendanceExplanation": {
+          "title": "Explanation Letter for Low Attendance",
+          "description": "If attendance rate is below 80%, a written explanation may be required"
         }
       }
     }
@@ -114,7 +156,7 @@
           "description": "Available for download from the Immigration Bureau website"
         },
         "photo": {
-          "title": "Photo (4cm \u00d7 3cm)",
+          "title": "Photo (4cm × 3cm)",
           "description": "Taken within 3 months before application, no hat, plain background"
         },
         "passport": {
@@ -141,6 +183,87 @@
         "identityGuarantee": {
           "title": "Letter of Guarantee",
           "description": "Japanese spouse serves as the guarantor"
+        },
+        "familyRegister": {
+          "title": "Family Register (Koseki Tohon)",
+          "description": "Family register proving the marriage (issued within 3 months)"
+        },
+        "relationshipEvidence": {
+          "title": "Evidence of Spousal Relationship",
+          "description": "Wedding photos, proof of cohabitation, communication records (helpful during strict screening)"
+        },
+        "spousePassportCopy": {
+          "title": "Japanese Spouse's Passport Copy",
+          "description": "Copy of the photo page of the Japanese spouse's passport"
+        },
+        "guarantorIncome": {
+          "title": "Guarantor's Income Proof",
+          "description": "Spouse's tax certificate or withholding slip (proof of ability to support financially)"
+        }
+      }
+    }
+  },
+  "spousePermanent": {
+    "basic": {
+      "title": "Basic Documents",
+      "items": {
+        "applicationForm": {
+          "title": "Application for Extension of Period of Stay",
+          "description": "Available for download from the Immigration Bureau website"
+        },
+        "photo": {
+          "title": "Photo (4cm × 3cm)",
+          "description": "Taken within 3 months before application, no hat, plain background"
+        },
+        "passport": {
+          "title": "Passport",
+          "description": "Present the original (will be returned)"
+        },
+        "residenceCard": {
+          "title": "Residence Card",
+          "description": "Present the original (will be returned)"
+        }
+      }
+    },
+    "spouseDocs": {
+      "title": "Spouse (Permanent Resident) Documents",
+      "items": {
+        "spousePermanentCard": {
+          "title": "Spouse's Residence Card (Permanent Resident)",
+          "description": "Residence card of the permanent resident spouse (present original)"
+        },
+        "familyRegister": {
+          "title": "Family Register or Marriage Certificate",
+          "description": "Document proving the marital relationship (translation may be required)"
+        },
+        "residenceCertificate": {
+          "title": "Residence Certificate (All Household Members)",
+          "description": "Residence certificate proving cohabitation with your spouse"
+        },
+        "identityGuarantee": {
+          "title": "Letter of Guarantee",
+          "description": "Permanent resident spouse serves as the guarantor"
+        },
+        "relationshipEvidence": {
+          "title": "Evidence of Genuine Cohabitation",
+          "description": "Documents proving shared life (lease agreement, utility bills, etc.)"
+        },
+        "marriagePhotos": {
+          "title": "Couple's Photos (Optional)",
+          "description": "Wedding or everyday photos (recommended to verify genuine marriage)"
+        }
+      }
+    },
+    "financial": {
+      "title": "Living Situation & Tax Documents",
+      "items": {
+        "taxCertificate": {
+          "title": "Resident Tax Taxation Certificate",
+          "description": "Tax certificate for the permanent resident spouse or applicant (obtain from municipal office)"
+        },
+        "taxPayment": {
+          "title": "Resident Tax Payment Certificate",
+          "description": "Certificate proving no tax delinquency (obtain from municipal office)"
         }
       }
     }

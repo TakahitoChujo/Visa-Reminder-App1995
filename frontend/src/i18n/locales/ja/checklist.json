@@ -19,13 +19,16 @@
     "collapse": "メモを閉じる"
   },
   "link": {
-    "officialPage": "入管の公式ページで最新情報を確認"
+    "officialPage": "入管の公式ページで最新情報を確認",
+    "documentTemplate": "申請理由書テンプレートを作成"
   },
   "alert": {
     "resetTitle": "リセット確認",
     "resetMessage": "チェックリストをリセットしますか？",
     "resetConfirm": "リセット",
-    "shareNotice": "共有機能は近日実装予定です"
+    "shareNotice": "共有機能は近日実装予定です",
+    "allCompleteTitle": "すべて完了しました",
+    "allCompleteMessage": "チェックリストの全{{total}}項目を完了にしました"
   },
   "error": {
     "cardNotFound": "カードが見つかりません"

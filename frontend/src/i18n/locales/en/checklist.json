@@ -19,13 +19,16 @@
     "collapse": "Close note"
   },
   "link": {
-    "officialPage": "Check the latest information on the Immigration Bureau website"
+    "officialPage": "Check the latest information on the Immigration Bureau website",
+    "documentTemplate": "Create Reason Letter Template"
   },
   "alert": {
     "resetTitle": "Confirm Reset",
     "resetMessage": "Reset the checklist?",
     "resetConfirm": "Reset",
-    "shareNotice": "Share feature coming soon"
+    "shareNotice": "Share feature coming soon",
+    "allCompleteTitle": "All Done!",
+    "allCompleteMessage": "All {{total}} checklist items have been marked as complete"
   },
   "error": {
     "cardNotFound": "Card not found"

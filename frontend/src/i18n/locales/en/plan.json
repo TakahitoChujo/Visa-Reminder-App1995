@@ -4,7 +4,7 @@
     "premium": "Premium"
   },
   "status": {
-    "freeActive": "Free plan active",
+    "freeActive": "Free during trial period",
     "premiumActive": "plan active"
   },
   "limit": {
@@ -14,11 +14,11 @@
   },
   "premium": {
     "title": "Premium Plan",
-    "description": "Manage your residence status more smoothly with advanced features",
+    "description": "Free for prototype",
     "featureMultiple": "Register multiple residence statuses (manage family members)",
     "featureExport": "Export checklists as PDF/CSV",
     "featureHistory": "Unlimited application history storage",
-    "priceButton": "Start at {{price}}/month"
+    "priceButton": "Free for prototype"
   },
   "upgrade": {
     "button": "Upgrade to Premium",

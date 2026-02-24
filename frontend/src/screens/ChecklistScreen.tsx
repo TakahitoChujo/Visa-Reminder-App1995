@@ -12,6 +12,7 @@ import {
   TextInput,
   Linking,
   Platform,
+  Share,
 } from 'react-native';
 import { showAlert, showConfirm } from '../utils/platform';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
@@ -31,9 +32,10 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
   const { cardId } = route.params;
   const { t } = useAppTranslation(['checklist', 'checklistData', 'common']);
 
-  const { cards, checklistItems, updateChecklistItem, resetChecklist } = useResidenceStore();
+  const { cards, checklistItems, updateChecklistItem, markAllComplete, resetChecklist } = useResidenceStore();
   const [categories, setCategories] = useState<ChecklistCategory[]>([]);
   const [expandedNotes, setExpandedNotes] = useState<Set<string>>(new Set());
+  const [isMarkingComplete, setIsMarkingComplete] = useState(false);
 
   const card = cards.find((c) => c.id === cardId);
 
@@ -70,11 +72,18 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
     const savedItems = checklistItems[cardId] || [];
 
     // テンプレートと保存済みデータをマージ
+    // savedItem はチェック状態・メモのみを持つ部分オブジェクトの場合があるため
+    // テンプレート項目をベースにして completed / note のみ上書きする
     const mergedCategories = templateCategories.map((category) => ({
       ...category,
       items: category.items.map((templateItem) => {
         const savedItem = savedItems.find((item) => item.id === templateItem.id);
-        return savedItem || templateItem;
+        if (!savedItem) return templateItem;
+        return {
+          ...templateItem,
+          completed: savedItem.completed ?? templateItem.completed,
+          note: savedItem.note ?? templateItem.note,
+        };
       }),
     }));
 
@@ -86,7 +95,7 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
     const typeMapping: Record<ResidenceType, string> = {
       work_visa: 'engineer',
       spouse_japanese: 'spouse-japanese',
-      spouse_permanent: 'spouse-japanese',
+      spouse_permanent: 'spouse-permanent',
       permanent_application: 'engineer',
       student: 'student',
       designated_activities: 'engineer',
@@ -170,18 +179,22 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
   );
 
   // すべて完了
-  const handleMarkAllComplete = useCallback(() => {
-    const updatedCategories = categories.map((category) => ({
-      ...category,
-      items: category.items.map((item) => {
-        if (!item.completed) {
-          updateChecklistItem(cardId, item.id, { completed: true });
-        }
-        return { ...item, completed: true };
-      }),
-    }));
-    setCategories(updatedCategories);
-  }, [categories, cardId, updateChecklistItem]);
+  const handleMarkAllComplete = useCallback(async () => {
+    if (isMarkingComplete) return;
+    const allItems = categories.flatMap((cat) => cat.items);
+    const itemIds = allItems.map((item) => item.id);
+    setIsMarkingComplete(true);
+    try {
+      // 単一のアトミック操作でストアを更新（Race Condition回避）
+      await markAllComplete(cardId, itemIds);
+      showAlert(
+        t('checklist:alert.allCompleteTitle'),
+        t('checklist:alert.allCompleteMessage', { total: itemIds.length })
+      );
+    } finally {
+      setIsMarkingComplete(false);
+    }
+  }, [isMarkingComplete, categories, cardId, markAllComplete, t]);
 
   // リセット
   const handleReset = useCallback(() => {
@@ -206,6 +219,37 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
     Linking.openURL(url);
   }, []);
 
+  // チェックリストを共有
+  const handleShare = useCallback(async () => {
+    const allItems = categories.flatMap((cat) => cat.items);
+    const completed = allItems.filter((item) => item.completed).length;
+    const total = allItems.length;
+    const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+    const checklistText = categories
+      .map((cat) => {
+        const catItems = cat.items
+          .map((item) => `${item.completed ? '✓' : '□'} ${item.title}`)
+          .join('\n');
+        return `【${cat.title}】\n${catItems}`;
+      })
+      .join('\n\n');
+
+    const shareText =
+      `${t(`common:residenceType.${card!.residenceType}`)} ${t('checklist:screen.title')}\n` +
+      `(${completed}/${total} - ${percentage}%)\n\n` +
+      checklistText;
+
+    try {
+      await Share.share({
+        message: shareText,
+        title: t('checklist:screen.title'),
+      });
+    } catch {
+      // キャンセルまたは失敗 - 何もしない
+    }
+  }, [categories, card, t]);
+
   if (!card) {
     return (
       <View style={styles.container}>
@@ -215,15 +259,20 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
   }
 
   const progress = calculateProgress();
+  const allCompleted = progress.total > 0 && progress.completed === progress.total;
+  const markAllDisabled = isMarkingComplete || allCompleted;
+
+  // 就労系在留資格かどうか（申請理由書テンプレート対象）
+  const isEngineerType =
+    card.residenceType === 'work_visa' ||
+    card.residenceType === 'designated_activities' ||
+    card.residenceType === 'skilled_worker';
 
   const actionButtons = (
     <>
       <TouchableOpacity
         style={styles.btnSecondary}
-        onPress={() => {
-          // TODO: 共有機能実装（Phase 2）
-          showAlert(t('common:alert.notice'), t('checklist:alert.shareNotice'));
-        }}
+        onPress={handleShare}
         accessibilityLabel={t('checklist:accessibility.shareChecklist')}
         accessibilityRole="button"
       >
@@ -231,10 +280,12 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
         <Text style={styles.btnSecondaryText}>{t('common:button.share')}</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.btnPrimary}
+        style={[styles.btnPrimary, markAllDisabled && styles.btnPrimaryDisabled]}
         onPress={handleMarkAllComplete}
+        disabled={markAllDisabled}
         accessibilityLabel={t('checklist:accessibility.markAllComplete')}
         accessibilityRole="button"
+        accessibilityState={{ disabled: markAllDisabled }}
       >
         <Ionicons name="checkmark-done" size={20} color={theme.colors.textWhite} />
         <Text style={styles.btnPrimaryText}>{t('common:button.markAllComplete')}</Text>
@@ -301,6 +352,25 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
           <Text style={styles.infoLinkText}>{t('checklist:link.officialPage')}</Text>
           <Ionicons name="chevron-forward" size={16} color={theme.colors.primary} />
         </TouchableOpacity>
+
+        {/* 理由書テンプレートへのリンク（就労系在留資格のみ） */}
+        {isEngineerType && (
+          <TouchableOpacity
+            style={styles.infoLink}
+            onPress={() =>
+              navigation.navigate('DocumentTemplate', {
+                residenceType: card.residenceType,
+                residenceLabel: t(`common:residenceType.${card.residenceType}`),
+              })
+            }
+            accessibilityLabel={t('checklist:link.documentTemplate')}
+            accessibilityRole="button"
+          >
+            <Ionicons name="document-outline" size={20} color={theme.colors.primary} />
+            <Text style={styles.infoLinkText}>{t('checklist:link.documentTemplate')}</Text>
+            <Ionicons name="chevron-forward" size={16} color={theme.colors.primary} />
+          </TouchableOpacity>
+        )}
 
         {/* カテゴリ別チェックリスト */}
         {categories.map((category, categoryIndex) => (
@@ -762,6 +832,9 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.lg,
     fontWeight: theme.fontWeight.medium,
     color: theme.colors.textWhite,
+  },
+  btnPrimaryDisabled: {
+    opacity: 0.5,
   },
   btnSecondary: {
     flex: 1,

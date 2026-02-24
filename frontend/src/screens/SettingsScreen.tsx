@@ -189,25 +189,11 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
                 </View>
               </View>
               <View style={styles.premiumButton}>
-                <Text style={styles.premiumButtonText}>{t('plan:premium.priceButton', { price: '¥400' })}</Text>
+                <Text style={styles.premiumButtonText}>{t('plan:premium.priceButton')}</Text>
               </View>
             </TouchableOpacity>
           </View>
         )}
-
-        {/* テスト用: プラン切り替えボタン */}
-        <View style={styles.testSection}>
-          <TouchableOpacity
-            style={styles.testButton}
-            onPress={handleTogglePlan}
-            accessibilityRole="button"
-            accessibilityLabel={t('settings:accessibility.testPlanToggle')}
-          >
-            <Text style={styles.testButtonText}>
-              {t('settings:testPlanToggle', { plan: isPremium() ? t('plan:name.premium') : t('plan:name.free') })}
-            </Text>
-          </TouchableOpacity>
-        </View>
 
         {/* 言語設定 */}
         <View style={styles.section}>
@@ -486,23 +472,6 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.lg,
     fontWeight: theme.fontWeight.semibold,
     color: theme.colors.premiumDark,
-  },
-  // Test section styles
-  testSection: {
-    paddingHorizontal: theme.spacing.lg,
-    marginBottom: theme.spacing.xl,
-  },
-  testButton: {
-    backgroundColor: theme.colors.infoLight,
-    borderRadius: theme.borderRadius.md,
-    paddingVertical: theme.spacing.md,
-    paddingHorizontal: theme.spacing.lg,
-    alignItems: 'center',
-  },
-  testButtonText: {
-    fontSize: theme.fontSize.md,
-    fontWeight: theme.fontWeight.medium,
-    color: theme.colors.infoDark,
   },
   // Settings sections
   section: {
