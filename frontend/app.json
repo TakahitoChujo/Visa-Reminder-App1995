@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.residencereminder.app",
-      "buildNumber": "13",
+      "buildNumber": "16",
       "infoPlist": {
         "NSUserNotificationsUsageDescription": "在留資格の有効期限をリマインドするために通知を送信します。",
         "ITSAppUsesNonExemptEncryption": false

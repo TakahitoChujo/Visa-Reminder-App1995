@@ -89,8 +89,7 @@
 https://github.com/jyojorian/visa-reminder-support
 
 ## プライバシーポリシーURL
-https://example.com/privacy
-※ 実際の公開URLに差し替えてください
+https://takahitochujo.github.io/Visa-Reminder-App1995/privacy-policy
 
 ---
 

@@ -26,9 +26,9 @@ import { SUPPORTED_LANGUAGES, changeLanguage, SupportedLanguage } from '../i18n'
  * 外部リンクURL
  */
 const EXTERNAL_LINKS = {
-  terms: 'https://example.com/terms',
-  privacy: 'https://example.com/privacy',
-  contact: 'mailto:support@visa-reminder.example.com',
+  terms: 'https://takahitochujo.github.io/Visa-Reminder-App1995/terms-of-service',
+  privacy: 'https://takahitochujo.github.io/Visa-Reminder-App1995/privacy-policy',
+  contact: 'mailto:jyojoappteam@gmail.com',
 };
 
 export const SettingsScreen = React.memo(function SettingsScreen() {

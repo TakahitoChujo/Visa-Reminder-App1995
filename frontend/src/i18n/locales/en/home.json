@@ -13,6 +13,10 @@
     "checklist": "Checklist",
     "day": "days"
   },
+  "disclaimer": {
+    "text": "This app is a supplementary tool for residence procedures. It does not constitute legal advice. Please verify the latest information on the official Immigration Services Agency website.",
+    "link": "Visit official site"
+  },
   "accessibility": {
     "registerCard": "Register residence status",
     "registerCardHint": "Opens the residence status registration screen",

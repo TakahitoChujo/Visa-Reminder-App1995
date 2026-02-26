@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   RefreshControl,
   Platform,
+  Linking,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -194,6 +195,19 @@ export const HomeScreen = React.memo(function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={handleRefresh} />}
       >
+        {/* 免責事項バナー */}
+        <View style={styles.disclaimerBanner}>
+          <Ionicons name="information-circle-outline" size={16} color={theme.colors.textSecondary} />
+          <Text style={styles.disclaimerText}>{t('home:disclaimer.text')}</Text>
+          <TouchableOpacity
+            onPress={() => Linking.openURL('https://www.moj.go.jp/isa/')}
+            accessibilityRole="link"
+            accessibilityLabel={t('home:disclaimer.link')}
+          >
+            <Text style={styles.disclaimerLink}>{t('home:disclaimer.link')}</Text>
+          </TouchableOpacity>
+        </View>
+
         {cards.length === 0 ? renderEmptyState() : cards.map(renderVisaCard)}
         {cards.length > 0 && (
           <>
@@ -299,6 +313,28 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: theme.spacing.xxl,
+  },
+  disclaimerBanner: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    backgroundColor: theme.colors.backgroundGray,
+    borderRadius: theme.borderRadius.md,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.md,
+    gap: theme.spacing.xs,
+  },
+  disclaimerText: {
+    fontSize: theme.fontSize.xs,
+    color: theme.colors.textSecondary,
+    flex: 1,
+    lineHeight: 18,
+  },
+  disclaimerLink: {
+    fontSize: theme.fontSize.xs,
+    color: theme.colors.primary,
+    fontWeight: theme.fontWeight.medium,
+    textDecorationLine: 'underline',
   },
   emptyState: {
     alignItems: 'center',

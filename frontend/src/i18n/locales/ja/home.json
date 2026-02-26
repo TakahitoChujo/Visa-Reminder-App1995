@@ -13,6 +13,10 @@
     "checklist": "チェックリスト",
     "day": "日"
   },
+  "disclaimer": {
+    "text": "本アプリは在留手続きの補助ツールです。法的助言ではありません。最新情報は出入国在留管理庁の公式サイトでご確認ください。",
+    "link": "公式サイトを確認"
+  },
   "accessibility": {
     "registerCard": "在留資格を登録",
     "registerCardHint": "在留資格の登録画面を開きます",
