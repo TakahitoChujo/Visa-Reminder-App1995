@@ -32,6 +32,15 @@ jest.mock('../../services/SecureStorageService', () => ({
   },
 }));
 
+// notificationService をモック（expo-notifications のネイティブ依存を回避）
+jest.mock('../../services/notificationService', () => ({
+  notificationService: {
+    scheduleNotificationsForCard: jest.fn().mockResolvedValue(undefined),
+    cancelNotificationsForCard: jest.fn().mockResolvedValue(undefined),
+    cancelAllNotifications: jest.fn().mockResolvedValue(undefined),
+  },
+}));
+
 // ストアをインポート（モックが設定された後にインポート）
 import { useResidenceStore } from '../useResidenceStore';
 import EncryptionService from '../../services/database/EncryptionService';

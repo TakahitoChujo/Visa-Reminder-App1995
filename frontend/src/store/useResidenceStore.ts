@@ -7,6 +7,7 @@ import { ResidenceCard, ReminderSettings, ChecklistItem } from '../types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import EncryptionService from '../services/database/EncryptionService';
 import SecureStorageService from '../services/SecureStorageService';
+import { notificationService } from '../services/notificationService';
 import i18n from '../i18n';
 
 interface ResidenceStore {
@@ -113,6 +114,13 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
     set({ cards });
 
     await AsyncStorage.setItem(STORAGE_KEYS.CARDS, JSON.stringify(cards));
+
+    // 通知をスケジュール
+    try {
+      await notificationService.scheduleNotificationsForCard(newCard, get().reminderSettings);
+    } catch (error) {
+      console.warn('Failed to schedule notifications for new card:', error);
+    }
   },
 
   updateCard: async (id, updates) => {
@@ -139,9 +147,26 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
 
     set({ cards });
     await AsyncStorage.setItem(STORAGE_KEYS.CARDS, JSON.stringify(cards));
+
+    // 通知を再スケジュール
+    const updatedCard = cards.find((c) => c.id === id);
+    if (updatedCard) {
+      try {
+        await notificationService.scheduleNotificationsForCard(updatedCard, get().reminderSettings);
+      } catch (error) {
+        console.warn('Failed to reschedule notifications for updated card:', error);
+      }
+    }
   },
 
   deleteCard: async (id) => {
+    // 通知をキャンセル（削除前に実行）
+    try {
+      await notificationService.cancelNotificationsForCard(id);
+    } catch (error) {
+      console.warn('Failed to cancel notifications for deleted card:', error);
+    }
+
     const cards = get().cards.filter((card) => card.id !== id);
     const checklistItems = { ...get().checklistItems };
     delete checklistItems[id];
@@ -158,14 +183,23 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
 
   deleteCardsExcept: async (keepCardId) => {
     const allCards = get().cards;
+    const cardsToDelete = allCards.filter((card) => card.id !== keepCardId);
+
+    // 削除対象カードの通知をキャンセル
+    for (const card of cardsToDelete) {
+      try {
+        await notificationService.cancelNotificationsForCard(card.id);
+      } catch (error) {
+        console.warn('Failed to cancel notifications for card:', card.id, error);
+      }
+    }
+
     const cards = allCards.filter((card) => card.id === keepCardId);
     const checklistItems = { ...get().checklistItems };
 
-    allCards
-      .filter((card) => card.id !== keepCardId)
-      .forEach((card) => {
-        delete checklistItems[card.id];
-      });
+    cardsToDelete.forEach((card) => {
+      delete checklistItems[card.id];
+    });
 
     set({
       cards,
@@ -185,6 +219,15 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
     const newSettings = { ...get().reminderSettings, ...settings };
     set({ reminderSettings: newSettings });
     await AsyncStorage.setItem(STORAGE_KEYS.REMINDER_SETTINGS, JSON.stringify(newSettings));
+
+    // 全カードの通知を新しい設定で再スケジュール
+    for (const card of get().cards) {
+      try {
+        await notificationService.scheduleNotificationsForCard(card, newSettings);
+      } catch (error) {
+        console.warn('Failed to reschedule notifications for card:', card.id, error);
+      }
+    }
   },
 
   updateChecklistItem: async (cardId, itemId, updates) => {

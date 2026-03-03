@@ -144,7 +144,7 @@ class NotificationService {
         },
         trigger: {
           date: notification.date,
-          channelId: 'default',
+          channelId: 'visa_reminder_channel',
         },
         identifier: `${card.id}_${notification.type}`,
       });
