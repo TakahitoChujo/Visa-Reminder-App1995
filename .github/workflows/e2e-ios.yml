@@ -1,0 +1,50 @@
+name: E2E Tests (iOS)
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  e2e-ios:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Install Detox CLI
+        run: npm install -g detox-cli
+
+      - name: Install Homebrew packages
+        run: |
+          brew tap wix/brew
+          brew install applesimutils
+
+      - name: Build iOS app
+        working-directory: frontend
+        run: npx expo run:ios --configuration Debug
+
+      - name: Run E2E tests
+        working-directory: frontend
+        run: npx detox test --configuration ios.sim.debug --headless
+
+      - name: Upload E2E artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-artifacts
+          path: |
+            frontend/artifacts/
+            frontend/e2e/**/*.png

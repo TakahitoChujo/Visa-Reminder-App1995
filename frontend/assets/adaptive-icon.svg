@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Transparent background - Android will provide the #2E5BFF background via app.json -->
+
+  <!-- All content within the safe zone (center 72% = 737px, offset ~143px from each edge) -->
+  <!-- Using a slightly padded area: 180 to 844 (664px content area) -->
+
+  <g transform="translate(512, 512)">
+    <!-- Calendar body -->
+    <rect x="-200" y="-135" width="400" height="410" rx="35" ry="35" fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Calendar header -->
+    <rect x="-200" y="-135" width="400" height="100" rx="35" ry="35" fill="#FFFFFF" />
+    <rect x="-200" y="-65" width="400" height="30" fill="#FFFFFF" />
+
+    <!-- Calendar header accent line -->
+    <rect x="-200" y="-38" width="400" height="4" fill="#2E5BFF" opacity="0.15" />
+
+    <!-- Calendar binding rings -->
+    <rect x="-110" y="-160" width="20" height="55" rx="10" ry="10" fill="#FFFFFF" opacity="0.9" />
+    <rect x="-10" y="-160" width="20" height="55" rx="10" ry="10" fill="#FFFFFF" opacity="0.9" />
+    <rect x="90" y="-160" width="20" height="55" rx="10" ry="10" fill="#FFFFFF" opacity="0.9" />
+
+    <!-- Calendar month text placeholder -->
+    <rect x="-148" y="-112" width="110" height="12" rx="6" fill="#2E5BFF" opacity="0.3" />
+
+    <!-- Calendar date grid - row 1 -->
+    <circle cx="-120" cy="10" r="15" fill="#E8EEFF" />
+    <circle cx="-55" cy="10" r="15" fill="#E8EEFF" />
+    <circle cx="10" cy="10" r="15" fill="#E8EEFF" />
+    <circle cx="75" cy="10" r="15" fill="#E8EEFF" />
+    <circle cx="140" cy="10" r="15" fill="#E8EEFF" />
+
+    <!-- Calendar date grid - row 2 -->
+    <circle cx="-120" cy="78" r="15" fill="#E8EEFF" />
+    <circle cx="-55" cy="78" r="15" fill="#E8EEFF" />
+    <!-- Highlighted date -->
+    <circle cx="10" cy="78" r="22" fill="#2E5BFF" />
+    <circle cx="75" cy="78" r="15" fill="#E8EEFF" />
+    <circle cx="140" cy="78" r="15" fill="#E8EEFF" />
+
+    <!-- Calendar date grid - row 3 -->
+    <circle cx="-120" cy="146" r="15" fill="#E8EEFF" />
+    <circle cx="-55" cy="146" r="15" fill="#E8EEFF" />
+    <circle cx="10" cy="146" r="15" fill="#E8EEFF" />
+    <circle cx="75" cy="146" r="15" fill="#E8EEFF" />
+    <circle cx="140" cy="146" r="15" fill="#E8EEFF" />
+
+    <!-- Calendar date grid - row 4 -->
+    <circle cx="-120" cy="214" r="15" fill="#E8EEFF" />
+    <circle cx="-55" cy="214" r="15" fill="#E8EEFF" />
+    <circle cx="10" cy="214" r="15" fill="#E8EEFF" />
+
+    <!-- Checkmark on highlighted date -->
+    <path d="M-3 78 L7 88 L23 70" stroke="#FFFFFF" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Notification bell (positioned top-right, within safe zone) -->
+    <g transform="translate(210, -175)">
+      <!-- Bell body -->
+      <path d="M0 -42 C0 -42, -26 -22, -26 8 C-26 30, -26 38, -38 45 L38 45 C26 38, 26 30, 26 8 C26 -22, 0 -42, 0 -42 Z"
+            fill="#FFFFFF" opacity="0.95" />
+      <!-- Bell top circle -->
+      <circle cx="0" cy="-44" r="8" fill="#FFFFFF" opacity="0.95" />
+      <!-- Bell clapper -->
+      <circle cx="0" cy="55" r="10" fill="#FFFFFF" opacity="0.95" />
+      <!-- Alert dot -->
+      <circle cx="28" cy="-30" r="14" fill="#EF4444" />
+      <circle cx="28" cy="-30" r="11" fill="#FF6B6B" />
+      <!-- Sound waves -->
+      <path d="M43 0 C50 -6, 50 6, 43 0" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.45" />
+      <path d="M-43 0 C-50 -6, -50 6, -43 0" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.45" />
+    </g>
+  </g>
+</svg>

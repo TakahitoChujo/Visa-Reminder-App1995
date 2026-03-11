@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3366FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5BFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.12" />
+      <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)" />
+
+  <!-- Subtle shine overlay for depth -->
+  <rect width="1024" height="1024" fill="url(#shineGrad)" />
+
+  <!-- Calendar body -->
+  <rect x="222" y="270" width="480" height="500" rx="40" ry="40" fill="#FFFFFF" opacity="0.95" />
+
+  <!-- Calendar header bar -->
+  <rect x="222" y="270" width="480" height="120" rx="40" ry="40" fill="#FFFFFF" />
+  <rect x="222" y="350" width="480" height="40" fill="#FFFFFF" />
+
+  <!-- Calendar header accent line -->
+  <rect x="222" y="385" width="480" height="5" fill="#2E5BFF" opacity="0.15" />
+
+  <!-- Calendar binding rings -->
+  <rect x="330" y="240" width="24" height="70" rx="12" ry="12" fill="#FFFFFF" opacity="0.9" />
+  <rect x="462" y="240" width="24" height="70" rx="12" ry="12" fill="#FFFFFF" opacity="0.9" />
+  <rect x="594" y="240" width="24" height="70" rx="12" ry="12" fill="#FFFFFF" opacity="0.9" />
+
+  <!-- Calendar date grid - row 1 -->
+  <circle cx="310" cy="450" r="18" fill="#E8EEFF" />
+  <circle cx="390" cy="450" r="18" fill="#E8EEFF" />
+  <circle cx="470" cy="450" r="18" fill="#E8EEFF" />
+  <circle cx="550" cy="450" r="18" fill="#E8EEFF" />
+  <circle cx="630" cy="450" r="18" fill="#E8EEFF" />
+
+  <!-- Calendar date grid - row 2 -->
+  <circle cx="310" cy="530" r="18" fill="#E8EEFF" />
+  <circle cx="390" cy="530" r="18" fill="#E8EEFF" />
+  <!-- Highlighted date (today/deadline) -->
+  <circle cx="470" cy="530" r="26" fill="#2E5BFF" />
+  <circle cx="550" cy="530" r="18" fill="#E8EEFF" />
+  <circle cx="630" cy="530" r="18" fill="#E8EEFF" />
+
+  <!-- Calendar date grid - row 3 -->
+  <circle cx="310" cy="610" r="18" fill="#E8EEFF" />
+  <circle cx="390" cy="610" r="18" fill="#E8EEFF" />
+  <circle cx="470" cy="610" r="18" fill="#E8EEFF" />
+  <circle cx="550" cy="610" r="18" fill="#E8EEFF" />
+  <circle cx="630" cy="610" r="18" fill="#E8EEFF" />
+
+  <!-- Calendar date grid - row 4 -->
+  <circle cx="310" cy="690" r="18" fill="#E8EEFF" />
+  <circle cx="390" cy="690" r="18" fill="#E8EEFF" />
+  <circle cx="470" cy="690" r="18" fill="#E8EEFF" />
+
+  <!-- Calendar header text placeholders (month) -->
+  <rect x="290" y="305" width="140" height="16" rx="8" fill="#2E5BFF" opacity="0.3" />
+
+  <!-- Notification bell -->
+  <g transform="translate(680, 180)">
+    <!-- Bell shadow -->
+    <ellipse cx="80" cy="200" rx="50" ry="8" fill="#1E3DB8" opacity="0.2" />
+
+    <!-- Bell body -->
+    <path d="M80 40 C80 40, 40 70, 40 120 C40 155, 40 170, 20 180 L140 180 C120 170, 120 155, 120 120 C120 70, 80 40, 80 40 Z"
+          fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Bell top circle -->
+    <circle cx="80" cy="38" r="12" fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Bell clapper -->
+    <circle cx="80" cy="195" r="16" fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Alert dot -->
+    <circle cx="125" cy="55" r="22" fill="#EF4444" />
+    <circle cx="125" cy="55" r="18" fill="#FF6B6B" />
+
+    <!-- Sound waves -->
+    <path d="M148 100 C158 90, 158 110, 148 100" stroke="#FFFFFF" stroke-width="4" fill="none" opacity="0.5" />
+    <path d="M158 85 C175 75, 175 115, 158 105" stroke="#FFFFFF" stroke-width="3.5" fill="none" opacity="0.35" />
+
+    <path d="M12 100 C2 90, 2 110, 12 100" stroke="#FFFFFF" stroke-width="4" fill="none" opacity="0.5" />
+    <path d="M2 85 C-15 75, -15 115, 2 105" stroke="#FFFFFF" stroke-width="3.5" fill="none" opacity="0.35" />
+  </g>
+
+  <!-- Checkmark on the highlighted date -->
+  <path d="M455 530 L466 541 L485 519" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

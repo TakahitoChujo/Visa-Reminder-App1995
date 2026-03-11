@@ -1,0 +1,63 @@
+{
+  "button": {
+    "save": "保存する",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "register": "登録する",
+    "back": "戻る",
+    "reset": "リセット",
+    "upgrade": "アップグレード",
+    "ok": "OK",
+    "share": "共有",
+    "markAllComplete": "すべて完了",
+    "close": "閉じる",
+    "confirm": "確認"
+  },
+  "status": {
+    "safe": "余裕あり",
+    "warning": "要確認",
+    "danger": "至急"
+  },
+  "residenceType": {
+    "work_visa": "技術・人文知識・国際業務",
+    "spouse_japanese": "日本人の配偶者等",
+    "spouse_permanent": "永住者の配偶者等",
+    "permanent_application": "永住申請準備",
+    "student": "留学",
+    "designated_activities": "特定活動",
+    "skilled_worker": "特定技能",
+    "other": "その他"
+  },
+  "error": {
+    "generic": "エラー",
+    "loadFailed": "データの読み込みに失敗しました。アプリを再起動してください。",
+    "saveFailed": "保存に失敗しました",
+    "deleteFailed": "削除に失敗しました",
+    "encryptionFailed": "暗号化の初期化に失敗しました",
+    "memoEncryptionFailed": "メモの暗号化に失敗しました",
+    "linkOpenFailed": "このリンクを開けません",
+    "linkOpenError": "リンクを開く際にエラーが発生しました",
+    "dataLoadError": "データ読み込みエラー"
+  },
+  "date": {
+    "remaining": "残り",
+    "day": "日",
+    "expiration": "有効期限"
+  },
+  "tag": {
+    "required": "必須",
+    "optional": "任意",
+    "applicationDoc": "申請書類",
+    "companyDoc": "会社書類",
+    "schoolDoc": "学校書類"
+  },
+  "accessibility": {
+    "back": "戻る",
+    "backToHome": "ホーム画面に戻ります",
+    "settings": "設定",
+    "openSettings": "設定画面を開きます"
+  },
+  "alert": {
+    "notice": "お知らせ"
+  }
+}

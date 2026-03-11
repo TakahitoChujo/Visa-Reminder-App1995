@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <!-- Android notification icon: transparent background + white silhouette only -->
+  <!-- Simple bell with a small clock/calendar accent -->
+
+  <g transform="translate(48, 46)">
+    <!-- Bell body -->
+    <path d="M0 -32 C0 -32, -24 -14, -24 10 C-24 28, -24 34, -36 40 L36 40 C24 34, 24 28, 24 10 C24 -14, 0 -32, 0 -32 Z"
+          fill="#FFFFFF" />
+
+    <!-- Bell top knob -->
+    <circle cx="0" cy="-34" r="6.5" fill="#FFFFFF" />
+
+    <!-- Bell clapper -->
+    <ellipse cx="0" cy="46" rx="10" ry="7.5" fill="#FFFFFF" />
+  </g>
+</svg>

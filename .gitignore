@@ -1,0 +1,15 @@
+node_modules/
+.expo/
+dist/
+dist2/
+coverage/
+*.bak
+*.bak2
+*.tmp
+*.backup
+.env
+.env.local
+.env.submit
+*.log
+.DS_Store
+Thumbs.db

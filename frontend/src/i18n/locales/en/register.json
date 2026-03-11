@@ -1,0 +1,19 @@
+{
+  "header": {
+    "title": "Register Residence Status"
+  },
+  "confirm": {
+    "title": "Confirm Registration",
+    "message": "Register this residence status information?",
+    "submit": "Register"
+  },
+  "error": {
+    "registerFailed": "Registration failed"
+  },
+  "accessibility": {
+    "register": "Register",
+    "registerHint": "Register and save the residence status",
+    "cancelHint": "Cancel registration and return to previous screen",
+    "backHint": "Return to previous screen"
+  }
+}

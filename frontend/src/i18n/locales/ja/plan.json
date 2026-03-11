@@ -1,0 +1,36 @@
+{
+  "name": {
+    "free": "無料",
+    "premium": "プレミアム"
+  },
+  "status": {
+    "freeActive": "試用期間中で無料",
+    "premiumActive": "プラン利用中"
+  },
+  "limit": {
+    "freeMax": "無料プランは{{limit}}件まで登録可能です",
+    "reached": "登録上限に達しました",
+    "reachedMessage": "無料プランは{{limit}}件まで登録可能です。プレミアムプランにアップグレードすると無制限に登録できます。"
+  },
+  "premium": {
+    "title": "プレミアムプラン",
+    "description": "プロトタイプのため無料",
+    "featureMultiple": "複数の在留資格を登録（家族分も管理）",
+    "featureExport": "チェックリストのPDF/CSV出力",
+    "featureHistory": "申請履歴の無制限保存",
+    "priceButton": "プロトタイプのため無料"
+  },
+  "upgrade": {
+    "button": "プレミアムにアップグレード",
+    "buttonShort": "アップグレード",
+    "hint": "プレミアムプランへのアップグレード情報を確認します"
+  },
+  "downgrade": {
+    "title": "プランのダウングレード",
+    "message": "無料プランでは在留資格を{{limit}}件しか登録できません。\n期限が最も近い{{limit}}件のみ残し、他の{{count}}件を削除します。\n\nよろしいですか？",
+    "confirmButton": "ダウングレード",
+    "successMessage": "無料プランに変更しました"
+  },
+  "changed": "プランを{{plan}}に変更しました",
+  "comingSoon": "プレミアムプランは近日提供予定です"
+}

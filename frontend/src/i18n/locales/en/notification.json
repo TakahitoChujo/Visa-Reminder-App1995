@@ -1,0 +1,58 @@
+{
+  "typeLabel": {
+    "4months": "4 months before",
+    "3months": "3 months before",
+    "1month": "1 month before",
+    "2weeks": "2 weeks before"
+  },
+  "typeDescription": {
+    "4months": "Notification when application period begins",
+    "3months": "Document preparation reminder",
+    "1month": "Final reminder to prevent missed applications",
+    "2weeks": "Urgent alert"
+  },
+  "message": {
+    "4months": {
+      "title": "Time to prepare for your visa renewal",
+      "body": "The application period for {{name}} is approaching. Check your required documents."
+    },
+    "3months": {
+      "title": "Visa renewal document preparation",
+      "body": "3 months until expiration. Please check the status of your required documents."
+    },
+    "1month": {
+      "title": "1 month until visa expiration",
+      "body": "If you haven't applied yet, please complete the procedure as soon as possible."
+    },
+    "2weeks": {
+      "title": "[URGENT] 2 weeks until visa expiration",
+      "body": "Please complete the renewal procedure immediately."
+    }
+  },
+  "schedule": {
+    "4months": {
+      "title": "Your visa renewal application period has started",
+      "body": "{{days}} days remaining until your {{type}} expires. Please start preparing the required documents."
+    },
+    "3months": {
+      "title": "Continue your visa renewal preparations",
+      "body": "{{days}} days remaining until expiration. Please check your required documents."
+    },
+    "1month": {
+      "title": "Your visa expiration is approaching",
+      "body": "{{days}} days remaining until expiration. We recommend applying soon."
+    },
+    "2weeks": {
+      "title": "Final visa renewal reminder",
+      "body": "14 days remaining until expiration. If you haven't applied yet, please complete the procedure immediately."
+    }
+  },
+  "channel": {
+    "name": "Visa Renewal Reminder",
+    "description": "Notifications about residence status expiration"
+  },
+  "test": {
+    "title": "Test Notification",
+    "body": "This is a test notification. The notification feature is working correctly."
+  }
+}

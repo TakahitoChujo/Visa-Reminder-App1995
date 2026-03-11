@@ -1,0 +1,63 @@
+{
+  "button": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "register": "Register",
+    "back": "Back",
+    "reset": "Reset",
+    "upgrade": "Upgrade",
+    "ok": "OK",
+    "share": "Share",
+    "markAllComplete": "Mark All Complete",
+    "close": "Close",
+    "confirm": "Confirm"
+  },
+  "status": {
+    "safe": "On Track",
+    "warning": "Needs Attention",
+    "danger": "Urgent"
+  },
+  "residenceType": {
+    "work_visa": "Engineer / Specialist in Humanities / International Services",
+    "spouse_japanese": "Spouse of Japanese National",
+    "spouse_permanent": "Spouse of Permanent Resident",
+    "permanent_application": "Permanent Residency Application",
+    "student": "Student",
+    "designated_activities": "Designated Activities",
+    "skilled_worker": "Specified Skilled Worker",
+    "other": "Other"
+  },
+  "error": {
+    "generic": "Error",
+    "loadFailed": "Failed to load data. Please restart the app.",
+    "saveFailed": "Failed to save",
+    "deleteFailed": "Failed to delete",
+    "encryptionFailed": "Failed to initialize encryption",
+    "memoEncryptionFailed": "Failed to encrypt memo",
+    "linkOpenFailed": "Unable to open this link",
+    "linkOpenError": "An error occurred while opening the link",
+    "dataLoadError": "Data loading error"
+  },
+  "date": {
+    "remaining": "",
+    "day": "days left",
+    "expiration": "Expiration date"
+  },
+  "tag": {
+    "required": "Required",
+    "optional": "Optional",
+    "applicationDoc": "Application",
+    "companyDoc": "Employer",
+    "schoolDoc": "School"
+  },
+  "accessibility": {
+    "back": "Go back",
+    "backToHome": "Return to home screen",
+    "settings": "Settings",
+    "openSettings": "Open settings screen"
+  },
+  "alert": {
+    "notice": "Notice"
+  }
+}

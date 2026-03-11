@@ -1,0 +1,30 @@
+{
+  "header": {
+    "title": "在留資格の編集"
+  },
+  "error": {
+    "notFound": "在留資格情報が見つかりませんでした",
+    "updateFailed": "更新に失敗しました",
+    "deleteFailed": "削除に失敗しました"
+  },
+  "confirm": {
+    "deleteTitle": "削除の確認",
+    "deleteMessage": "この在留資格情報を削除しますか？この操作は取り消せません。",
+    "deleteButton": "削除"
+  },
+  "delete": {
+    "label": "この在留資格情報を削除",
+    "deleting": "削除中...",
+    "successTitle": "削除しました",
+    "successMessage": "在留資格情報を削除しました"
+  },
+  "button": {
+    "save": "保存する"
+  },
+  "accessibility": {
+    "saveChanges": "変更を保存",
+    "save": "保存",
+    "deleteCard": "在留資格情報を削除",
+    "deleteCardHint": "在留資格情報を削除します"
+  }
+}

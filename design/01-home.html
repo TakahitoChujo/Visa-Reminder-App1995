@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム画面 - 在留資格更新リマインダー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+
+        /* モバイルフレーム */
+        .mobile-frame {
+            max-width: 428px;
+            margin: 24px auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ステータスバー */
+        .status-bar {
+            height: 44px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .time {
+            color: #1F2937;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+            color: #1F2937;
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: white;
+            padding: 16px 16px 12px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1F2937;
+        }
+
+        .notification-icon {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 8px;
+            height: 8px;
+            background-color: #EF4444;
+            border-radius: 50%;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #6B7280;
+            margin-bottom: 8px;
+        }
+
+        .summary-stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background-color: #F9FAFB;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2E5BFF;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            padding: 16px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .see-all {
+            font-size: 14px;
+            color: #2E5BFF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* 在留資格カード */
+        .visa-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        .visa-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .visa-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+        }
+
+        .visa-card.status-safe::before {
+            background-color: #10B981;
+        }
+
+        .visa-card.status-warning::before {
+            background-color: #F59E0B;
+        }
+
+        .visa-card.status-danger::before {
+            background-color: #EF4444;
+        }
+
+        .visa-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .visa-type {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+            flex: 1;
+        }
+
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .badge-safe {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+
+        .badge-warning {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+
+        .badge-danger {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .visa-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .visa-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .visa-label {
+            color: #6B7280;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .visa-value {
+            color: #1F2937;
+            font-weight: 500;
+        }
+
+        .days-remaining {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 12px;
+            padding: 12px;
+            background-color: #F9FAFB;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .days-safe {
+            color: #10B981;
+        }
+
+        .days-warning {
+            color: #F59E0B;
+        }
+
+        .days-danger {
+            color: #EF4444;
+        }
+
+        .card-action {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .card-action-btn {
+            flex: 1;
+            height: 36px;
+            border: 1px solid #E5E7EB;
+            background: white;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2E5BFF;
+            cursor: pointer;
+            transition: background-color 150ms ease;
+        }
+
+        .card-action-btn:hover {
+            background-color: #E8EEFF;
+        }
+
+        /* クイックアクション */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .quick-action-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .quick-action-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            background-color: #E8EEFF;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2E5BFF;
+        }
+
+        .quick-action-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        /* フローティングアクションボタン */
+        .fab {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background-color: #2E5BFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(46, 91, 255, 0.4);
+            cursor: pointer;
+            transition: transform 150ms ease;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        /* ボトムナビゲーション */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 428px;
+            height: 56px;
+            background-color: white;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            cursor: pointer;
+            transition: color 150ms ease;
+        }
+
+        .nav-item.active {
+            color: #2E5BFF;
+        }
+
+        .nav-item:not(.active) {
+            color: #9CA3AF;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        /* アイコンSVG */
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 空状態 */
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            background: white;
+            border-radius: 12px;
+            border: 2px dashed #E5E7EB;
+        }
+
+        .empty-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            color: #D1D5DB;
+        }
+
+        .empty-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 8px;
+        }
+
+        .empty-description {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            height: 48px;
+            background-color: #2E5BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 150ms ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #1E3DB8;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <!-- ステータスバー -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="status-icons">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+            </div>
+        </div>
+
+        <!-- ヘッダー -->
+        <div class="header">
+            <div class="header-top">
+                <h1 class="app-title">ホーム</h1>
+                <div class="notification-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span class="notification-badge"></span>
+                </div>
+            </div>
+
+            <p class="greeting">こんにちは、有効期限を管理しましょう</p>
+
+            <div class="summary-stats">
+                <div class="stat-card">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">登録中の資格</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">304</div>
+                    <div class="stat-label">残り日数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">未完了タスク</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- 登録中の在留資格 -->
+            <div class="section-header">
+                <h2 class="section-title">在留資格</h2>
+                <a href="#" class="see-all">すべて表示</a>
+            </div>
+
+            <!-- 在留資格カード（安全な状態） -->
+            <div class="visa-card status-safe">
+                <div class="visa-card-header">
+                    <div class="visa-type">技術・人文知識・国際業務</div>
+                    <div class="status-badge badge-safe">安全</div>
+                </div>
+                <div class="visa-card-body">
+                    <div class="visa-row">
+                        <span class="visa-label">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            有効期限
+                        </span>
+                        <span class="visa-value">2026年12月15日</span>
+                    </div>
+                    <div class="visa-row">
+                        <span class="visa-label">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            次回リマインド
+                        </span>
+                        <span class="visa-value">2026年8月15日</span>
+                    </div>
+                    <div class="days-remaining days-safe">
+                        残り 304日
+                    </div>
+                </div>
+                <div class="card-action">
+                    <button class="card-action-btn">チェックリスト</button>
+                    <button class="card-action-btn">編集</button>
+                </div>
+            </div>
+
+            <!-- クイックアクション -->
+            <div class="section-header" style="margin-top: 32px;">
+                <h2 class="section-title">クイックアクション</h2>
+            </div>
+
+            <div class="quick-actions">
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">チェックリスト</div>
+                </div>
+
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">新しく登録</div>
+                </div>
+
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">通知設定</div>
+                </div>
+
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">ヘルプ・ガイド</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- フローティングアクションボタン -->
+        <div class="fab">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+        </div>
+
+        <!-- ボトムナビゲーション -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="nav-label">ホーム</span>
+            </div>
+
+            <div class="nav-item">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                <span class="nav-label">チェック</span>
+            </div>
+
+            <div class="nav-item">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span class="nav-label">通知</span>
+            </div>
+
+            <div class="nav-item">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="nav-label">設定</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 24px; color: #6B7280; font-size: 14px;">
+        <p><strong>画面説明:</strong> ホーム画面 - 登録中の在留資格の一覧と期限状況を表示</p>
+        <p>左端のカラーバー（緑/黄/赤）で危険度を視覚的に表現</p>
+    </div>
+</body>
+</html>

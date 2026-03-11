@@ -1,0 +1,52 @@
+{
+  "section": {
+    "basicInfo": "基本情報",
+    "deadlineInfo": "期限情報",
+    "memo": "メモ（任意）"
+  },
+  "label": {
+    "expirationDate": "有効期限",
+    "residenceType": "資格タイプ",
+    "memo": "メモ",
+    "applicationPeriod": "申請可能時期",
+    "daysRemaining": "残り日数"
+  },
+  "placeholder": {
+    "selectDate": "日付を選択してください",
+    "selectType": "選択してください",
+    "memoInput": "必要に応じてメモを入力してください（例：会社名、申請予定日など）"
+  },
+  "helper": {
+    "dateWeb": "カレンダーアイコンをクリックして日付を選択してください",
+    "dateNative": "カレンダーアイコンをタップして日付を選択してください",
+    "typeAutoSet": "資格タイプに応じて必要書類が自動で設定されます",
+    "memoEncrypted": "個人情報（氏名・在留カード番号等）の入力は避けてください。メモは暗号化されて保存されます。"
+  },
+  "info": {
+    "applicationPeriodTitle": "申請可能時期について",
+    "applicationPeriodBody": "在留期間更新申請は、有効期限の約4ヶ月前から可能です。\n余裕を持って準備を始めることをお勧めします。"
+  },
+  "reminder": {
+    "title": "設定される通知",
+    "fourMonths": "4ヶ月前",
+    "threeMonths": "3ヶ月前",
+    "oneMonth": "1ヶ月前",
+    "twoWeeks": "2週間前"
+  },
+  "datePreview": {
+    "expirationDate": "有効期限",
+    "applicationStart": "申請可能時期",
+    "applicationStartSuffix": "頃から",
+    "daysRemaining": "残り日数",
+    "daySuffix": "日"
+  },
+  "accessibility": {
+    "residenceType": "資格タイプ: {{type}}",
+    "residenceTypeUnselected": "未選択",
+    "residenceTypeHint": "タップして資格タイプを選択します",
+    "memoHint": "最大{{max}}文字のメモを入力できます"
+  },
+  "validation": {
+    "pastDate": "過去の日付は選択できません"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "header": {
+    "title": "在留資格の登録"
+  },
+  "confirm": {
+    "title": "登録の確認",
+    "message": "この在留資格情報を登録しますか？",
+    "submit": "登録する"
+  },
+  "error": {
+    "registerFailed": "登録に失敗しました"
+  },
+  "accessibility": {
+    "register": "登録する",
+    "registerHint": "在留資格を登録して保存します",
+    "cancelHint": "登録をキャンセルして前の画面に戻ります",
+    "backHint": "前の画面に戻ります"
+  }
+}

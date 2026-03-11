@@ -1,0 +1,67 @@
+{
+  "navTitle": "リマインダー設定",
+  "pageTitle": "通知設定",
+  "pageDescription": "在留資格の有効期限が近づいたときに、プッシュ通知でお知らせします。通知のタイミングをカスタマイズできます。",
+  "permission": {
+    "title": "通知を許可する",
+    "description": "重要な期限を見逃さないために、デバイスの通知を許可してください。いつでも設定から変更できます。",
+    "button": "通知を許可",
+    "processing": "処理中...",
+    "successTitle": "成功",
+    "successMessage": "通知が許可されました",
+    "deniedTitle": "通知が拒否されました",
+    "deniedMessage": "通知を有効にするには、デバイスの設定から許可してください。",
+    "openSettings": "設定を開く"
+  },
+  "timing": {
+    "sectionTitle": "通知タイミング",
+    "sectionSubtitle": "有効期限前の通知タイミングを選択できます",
+    "fourMonths": "4ヶ月前",
+    "threeMonths": "3ヶ月前",
+    "oneMonth": "1ヶ月前",
+    "twoWeeks": "2週間前",
+    "recommended": "推奨",
+    "fourMonthsDescription": "申請可能時期の開始日",
+    "threeMonthsDescription": "余裕を持った準備開始時期",
+    "oneMonthDescription": "申請期限が迫る時期",
+    "twoWeeksDescription": "最終確認の時期",
+    "nextDate": "次回: {{date}}",
+    "notSet": "未設定"
+  },
+  "infoBox": "在留期間更新申請は、有効期限の約4ヶ月前から可能です。早めの準備をお勧めします。",
+  "preview": {
+    "title": "通知プレビュー",
+    "appIconText": "在",
+    "appName": "在留資格更新リマインダー",
+    "notificationTime": "4ヶ月前 • 午前9:00",
+    "notificationTitle": "在留期間更新の申請が可能になりました",
+    "notificationBody": "在留資格の有効期限まで残り120日です。必要書類の準備を開始してください。"
+  },
+  "otherSettings": {
+    "sectionTitle": "その他の設定",
+    "sound": "通知音",
+    "soundDescription": "通知時にサウンドを再生",
+    "badge": "バッジ表示",
+    "badgeDescription": "アプリアイコンに通知数を表示"
+  },
+  "deviceSettings": "デバイスの通知設定を開く",
+  "accessibility": {
+    "back": "戻る",
+    "allowNotification": "通知を許可",
+    "allowNotificationHint": "タップしてデバイスの通知許可をリクエストします",
+    "fourMonthsNotification": "4ヶ月前の通知",
+    "fourMonthsHint": "4ヶ月前に通知を受け取る場合はオンにします",
+    "threeMonthsNotification": "3ヶ月前の通知",
+    "threeMonthsHint": "3ヶ月前に通知を受け取る場合はオンにします",
+    "oneMonthNotification": "1ヶ月前の通知",
+    "oneMonthHint": "1ヶ月前に通知を受け取る場合はオンにします",
+    "twoWeeksNotification": "2週間前の通知",
+    "twoWeeksHint": "2週間前に通知を受け取る場合はオンにします",
+    "soundNotification": "通知音",
+    "soundHint": "通知時にサウンドを再生する場合はオンにします",
+    "badgeNotification": "バッジ表示",
+    "badgeHint": "アプリアイコンに通知数を表示する場合はオンにします",
+    "openDeviceSettings": "デバイスの通知設定を開く",
+    "openDeviceSettingsHint": "デバイスの設定アプリを開きます"
+  }
+}

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チェックリスト画面 - 在留資格更新リマインダー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+
+        .mobile-frame {
+            max-width: 428px;
+            margin: 24px auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            min-height: 900px;
+        }
+
+        .status-bar {
+            height: 44px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .time {
+            color: #1F2937;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+            color: #1F2937;
+        }
+
+        .nav-bar {
+            height: 56px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .nav-back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 150ms ease;
+        }
+
+        .nav-back:hover {
+            background-color: #F9FAFB;
+        }
+
+        .nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .nav-action {
+            color: #2E5BFF;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ヘッダーセクション */
+        .header-section {
+            background: linear-gradient(135deg, #2E5BFF 0%, #1E3DB8 100%);
+            padding: 24px 16px;
+            color: white;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        /* プログレスバー */
+        .progress-section {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .progress-percentage {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: white;
+            border-radius: 4px;
+            transition: width 300ms ease;
+        }
+
+        /* コンテンツ */
+        .content {
+            padding: 16px;
+        }
+
+        /* カテゴリセクション */
+        .category-section {
+            margin-bottom: 24px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+
+        .category-icon {
+            width: 24px;
+            height: 24px;
+            color: #2E5BFF;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1F2937;
+            flex: 1;
+        }
+
+        .category-count {
+            font-size: 12px;
+            color: #6B7280;
+            background-color: #F3F4F6;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        /* チェックリスト項目 */
+        .checklist-item {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .checklist-item:hover {
+            background-color: #F9FAFB;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .checklist-item.completed {
+            background-color: #F0FDF4;
+            border-color: #10B981;
+        }
+
+        .item-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            border: 2px solid #D1D5DB;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 150ms ease;
+            margin-top: 2px;
+        }
+
+        .checklist-item.completed .checkbox {
+            background-color: #10B981;
+            border-color: #10B981;
+        }
+
+        .checkbox-icon {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            display: none;
+        }
+
+        .checklist-item.completed .checkbox-icon {
+            display: block;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1F2937;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .checklist-item.completed .item-title {
+            color: #6B7280;
+            text-decoration: line-through;
+        }
+
+        .item-description {
+            font-size: 13px;
+            color: #6B7280;
+            line-height: 1.4;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .item-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .tag-required {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .tag-optional {
+            background-color: #E0E7FF;
+            color: #3730A3;
+        }
+
+        .tag-document {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+
+        /* メモエリア */
+        .item-note {
+            margin-top: 8px;
+            padding: 8px;
+            background-color: #F9FAFB;
+            border-radius: 6px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .note-toggle {
+            font-size: 12px;
+            color: #2E5BFF;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .note-input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            color: #1F2937;
+            padding: 4px 0;
+            outline: none;
+            resize: vertical;
+            min-height: 40px;
+            font-family: inherit;
+        }
+
+        .note-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        /* アクションボタン */
+        .item-action {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #6B7280;
+        }
+
+        /* 空状態 */
+        .empty-section {
+            text-align: center;
+            padding: 32px 16px;
+            color: #6B7280;
+        }
+
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            color: #D1D5DB;
+        }
+
+        .empty-text {
+            font-size: 14px;
+        }
+
+        /* ボトムアクション */
+        .bottom-action {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 428px;
+            background-color: white;
+            border-top: 1px solid #E5E7EB;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            height: 48px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 150ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #2E5BFF;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1E3DB8;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #6B7280;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            background-color: #F9FAFB;
+        }
+
+        /* 区切り線 */
+        .divider {
+            height: 1px;
+            background-color: #E5E7EB;
+            margin: 16px 0;
+        }
+
+        /* リンク */
+        .info-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background-color: #E8EEFF;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: background-color 150ms ease;
+        }
+
+        .info-link:hover {
+            background-color: #D4E4FF;
+        }
+
+        .info-link-icon {
+            width: 20px;
+            height: 20px;
+            color: #2E5BFF;
+        }
+
+        .info-link-text {
+            flex: 1;
+            font-size: 14px;
+            color: #1E3DB8;
+            font-weight: 500;
+        }
+
+        .info-link-arrow {
+            width: 16px;
+            height: 16px;
+            color: #2E5BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <!-- ステータスバー -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="status-icons">
+                <span>📶</span>
+                <span>📡</span>
+                <span>🔋</span>
+            </div>
+        </div>
+
+        <!-- ナビゲーションバー -->
+        <div class="nav-bar">
+            <div class="nav-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </div>
+            <div class="nav-title">チェックリスト</div>
+            <div class="nav-action">リセット</div>
+        </div>
+
+        <!-- ヘッダーセクション -->
+        <div class="header-section">
+            <div class="header-title">技術・人文知識・国際業務</div>
+            <div class="header-subtitle">在留期間更新申請に必要な書類と手続き</div>
+
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span class="progress-label">完了状況</span>
+                    <span class="progress-percentage">3/10 完了 (30%)</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- コンテンツ -->
+        <div class="content" style="padding-bottom: 100px;">
+            <!-- 入管へのリンク -->
+            <div class="info-link">
+                <svg class="info-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="info-link-text">入管の公式ページで最新情報を確認</span>
+                <svg class="info-link-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </div>
+
+            <!-- カテゴリ1: 基本書類 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <h2 class="category-title">基本書類</h2>
+                    <span class="category-count">2/5完了</span>
+                </div>
+
+                <div class="checklist-item completed">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">在留期間更新許可申請書</div>
+                            <div class="item-description">入管のウェブサイトからダウンロード可能</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                                <span class="item-tag tag-document">申請書類</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item completed">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">写真（4cm × 3cm）</div>
+                            <div class="item-description">申請前3ヶ月以内に撮影、無帽・無背景</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                            <div class="item-note">
+                                <textarea class="note-input" placeholder="メモを入力...">駅前の写真館で撮影済み（2026/2/10）</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">パスポート</div>
+                            <div class="item-description">原本を提示（返却されます）</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">在留カード</div>
+                            <div class="item-description">原本を提示（返却されます）</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">手数料（収入印紙）</div>
+                            <div class="item-description">4,000円分の収入印紙</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- カテゴリ2: 雇用関連書類 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <h2 class="category-title">雇用関連書類</h2>
+                    <span class="category-count">1/3完了</span>
+                </div>
+
+                <div class="checklist-item completed">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">在職証明書または雇用契約書</div>
+                            <div class="item-description">勤務先の会社から取得</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                                <span class="item-tag tag-document">会社書類</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">会社の登記事項証明書</div>
+                            <div class="item-description">法務局で取得（発行から3ヶ月以内）</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                                <span class="item-tag tag-document">会社書類</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">給与所得の源泉徴収票</div>
+                            <div class="item-description">前年分の源泉徴収票（会社から取得）</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- カテゴリ3: 税金・保険 -->
+            <div class="category-section">
+                <div class="category-header">
+                    <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <h2 class="category-title">税金・保険関連</h2>
+                    <span class="category-count">0/2完了</span>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">住民税の課税（納税）証明書</div>
+                            <div class="item-description">市区町村役場で取得（直近1年分）</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="item-main">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">住民税の納税証明書</div>
+                            <div class="item-description">市区町村役場で取得（直近1年分）</div>
+                            <div class="item-tags">
+                                <span class="item-tag tag-required">必須</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ボトムアクション -->
+        <div class="bottom-action">
+            <button class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+                共有
+            </button>
+            <button class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                すべて完了
+            </button>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 24px; color: #6B7280; font-size: 14px;">
+        <p><strong>画面説明:</strong> チェックリスト画面 - 資格タイプに応じた必要書類の確認</p>
+        <p>カテゴリ別に整理され、進捗状況を一目で把握可能</p>
+    </div>
+</body>
+</html>

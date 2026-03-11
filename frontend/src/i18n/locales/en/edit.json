@@ -1,0 +1,30 @@
+{
+  "header": {
+    "title": "Edit Residence Status"
+  },
+  "error": {
+    "notFound": "Residence status information not found",
+    "updateFailed": "Update failed",
+    "deleteFailed": "Deletion failed"
+  },
+  "confirm": {
+    "deleteTitle": "Confirm Deletion",
+    "deleteMessage": "Delete this residence status information? This action cannot be undone.",
+    "deleteButton": "Delete"
+  },
+  "delete": {
+    "label": "Delete this residence status",
+    "deleting": "Deleting...",
+    "successTitle": "Deleted",
+    "successMessage": "Residence status information has been deleted"
+  },
+  "button": {
+    "save": "Save"
+  },
+  "accessibility": {
+    "saveChanges": "Save changes",
+    "save": "Save",
+    "deleteCard": "Delete residence status",
+    "deleteCardHint": "Delete residence status information"
+  }
+}
