@@ -3,8 +3,8 @@
     "name": "在留資格更新リマインダー",
     "slug": "residence-reminder",
     "owner": "toyland",
-    "version": "1.1.0",
-    "runtimeVersion": "1.1.0",
+    "version": "1.2.0",
+    "runtimeVersion": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.residencereminder.app",
-      "buildNumber": "19",
+      "buildNumber": "20",
       "infoPlist": {
         "NSUserNotificationsUsageDescription": "在留資格の有効期限をリマインドするために通知を送信します。",
         "ITSAppUsesNonExemptEncryption": false
