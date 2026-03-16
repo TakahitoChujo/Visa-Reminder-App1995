@@ -44,6 +44,10 @@ yarn-error.log
 dist/
 web-build/
 
+# Prebuild generated native directories
+ios/
+android/
+
 # Temporary files created by Metro
 .metro-health-check*
 
