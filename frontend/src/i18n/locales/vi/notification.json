@@ -1,0 +1,58 @@
+{
+  "typeLabel": {
+    "4months": "Trước 4 tháng",
+    "3months": "Trước 3 tháng",
+    "1month": "Trước 1 tháng",
+    "2weeks": "Trước 2 tuần"
+  },
+  "typeDescription": {
+    "4months": "Thông báo khi bắt đầu thời hạn nộp đơn",
+    "3months": "Nhắc nhở chuẩn bị tài liệu",
+    "1month": "Nhắc nhở cuối cùng để tránh bỏ lỡ",
+    "2weeks": "Cảnh báo khẩn cấp"
+  },
+  "message": {
+    "4months": {
+      "title": "Đã đến lúc chuẩn bị gia hạn tư cách lưu trú",
+      "body": "Thời hạn nộp đơn của {{name}} đang đến gần. Hãy kiểm tra tài liệu cần thiết."
+    },
+    "3months": {
+      "title": "Chuẩn bị tài liệu gia hạn tư cách lưu trú",
+      "body": "Còn 3 tháng đến hết hạn. Vui lòng kiểm tra tài liệu cần thiết."
+    },
+    "1month": {
+      "title": "Còn 1 tháng đến hết hạn tư cách lưu trú",
+      "body": "Nếu chưa nộp đơn, hãy hoàn tất thủ tục sớm nhất có thể."
+    },
+    "2weeks": {
+      "title": "[KHẨN CẤP] Còn 2 tuần đến hết hạn tư cách lưu trú",
+      "body": "Vui lòng hoàn tất thủ tục gia hạn ngay lập tức."
+    }
+  },
+  "schedule": {
+    "4months": {
+      "title": "Thời hạn nộp đơn gia hạn đã bắt đầu",
+      "body": "Còn {{days}} ngày đến khi {{type}} hết hạn. Hãy bắt đầu chuẩn bị tài liệu."
+    },
+    "3months": {
+      "title": "Tiếp tục chuẩn bị gia hạn tư cách lưu trú",
+      "body": "Còn {{days}} ngày đến hết hạn. Vui lòng kiểm tra tài liệu cần thiết."
+    },
+    "1month": {
+      "title": "Tư cách lưu trú sắp hết hạn",
+      "body": "Còn {{days}} ngày đến hết hạn. Khuyến nghị nộp đơn sớm."
+    },
+    "2weeks": {
+      "title": "Nhắc nhở gia hạn tư cách lưu trú cuối cùng",
+      "body": "Còn 14 ngày đến hết hạn. Nếu chưa nộp đơn, hãy hoàn tất thủ tục ngay."
+    }
+  },
+  "channel": {
+    "name": "Nhắc nhở gia hạn tư cách lưu trú",
+    "description": "Thông báo về ngày hết hạn tư cách lưu trú"
+  },
+  "test": {
+    "title": "Thông báo thử nghiệm",
+    "body": "Đây là thông báo thử nghiệm. Tính năng thông báo đang hoạt động bình thường."
+  }
+}

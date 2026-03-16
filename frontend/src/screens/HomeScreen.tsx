@@ -12,6 +12,7 @@ import {
   Platform,
   Linking,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useResidenceStore } from '../store/useResidenceStore';
@@ -24,6 +25,7 @@ import { HomeScreenNavigationProp } from '../types/navigation';
 import { useAppTranslation } from '../i18n/useAppTranslation';
 
 export const HomeScreen = React.memo(function HomeScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { cards, loadData, isLoading, loadError } = useResidenceStore();
   const { isPremium, getMaxCards, canAddCard, loadUserPlan } = useUserStore();
@@ -149,7 +151,7 @@ export const HomeScreen = React.memo(function HomeScreen() {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top + theme.spacing.lg }]}>
         <View style={styles.headerTop}>
           <Text style={styles.appTitle}>{t('home:title')}</Text>
           <View style={styles.headerActions}>
@@ -192,7 +194,7 @@ export const HomeScreen = React.memo(function HomeScreen() {
       </View>
       <ScrollView
         style={styles.mainContent}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: theme.spacing.xxl + insets.bottom }]}
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={handleRefresh} />}
       >
         {/* 免責事項バナー */}

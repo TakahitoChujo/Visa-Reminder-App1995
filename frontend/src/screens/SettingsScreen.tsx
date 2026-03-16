@@ -11,6 +11,7 @@ import {
   Platform,
   Linking,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
@@ -32,6 +33,7 @@ const EXTERNAL_LINKS = {
 };
 
 export const SettingsScreen = React.memo(function SettingsScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<SettingsScreenNavigationProp>();
   const { t, currentLanguage } = useAppTranslation(['settings', 'common', 'plan']);
   const { clearAllData, cards, deleteCardsExcept } = useResidenceStore();
@@ -125,7 +127,7 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top + theme.spacing.md, height: 56 + insets.top }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home')}
@@ -139,7 +141,7 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
         <View style={styles.headerPlaceholder} />
       </View>
 
-      <ScrollView style={styles.content}>
+      <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: insets.bottom }}>
         {/* プロフィールセクション */}
         <View style={styles.profileSection}>
           <View style={styles.profileIcon}>

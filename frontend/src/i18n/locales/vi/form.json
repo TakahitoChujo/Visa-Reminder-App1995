@@ -1,0 +1,52 @@
+{
+  "section": {
+    "basicInfo": "Thông tin cơ bản",
+    "deadlineInfo": "Thông tin thời hạn",
+    "memo": "Ghi chú (Tùy chọn)"
+  },
+  "label": {
+    "expirationDate": "Ngày hết hạn",
+    "residenceType": "Loại tư cách lưu trú",
+    "memo": "Ghi chú",
+    "applicationPeriod": "Thời hạn nộp đơn",
+    "daysRemaining": "Số ngày còn lại"
+  },
+  "placeholder": {
+    "selectDate": "Chọn ngày",
+    "selectType": "Chọn loại",
+    "memoInput": "Nhập ghi chú nếu cần (ví dụ: tên công ty, ngày dự kiến nộp đơn)"
+  },
+  "helper": {
+    "dateWeb": "Nhấp vào biểu tượng lịch để chọn ngày",
+    "dateNative": "Nhấn vào biểu tượng lịch để chọn ngày",
+    "typeAutoSet": "Tài liệu cần thiết được tự động cài đặt theo loại tư cách lưu trú",
+    "memoEncrypted": "Không nhập thông tin cá nhân (họ tên, số thẻ lưu trú, v.v.). Ghi chú được lưu trữ dưới dạng mã hóa."
+  },
+  "info": {
+    "applicationPeriodTitle": "Về thời hạn nộp đơn",
+    "applicationPeriodBody": "Đơn gia hạn tư cách lưu trú có thể được nộp khoảng 4 tháng trước khi hết hạn.\nKhuyến nghị chuẩn bị sớm."
+  },
+  "reminder": {
+    "title": "Thông báo đã lên lịch",
+    "fourMonths": "Trước 4 tháng",
+    "threeMonths": "Trước 3 tháng",
+    "oneMonth": "Trước 1 tháng",
+    "twoWeeks": "Trước 2 tuần"
+  },
+  "datePreview": {
+    "expirationDate": "Ngày hết hạn",
+    "applicationStart": "Thời hạn nộp đơn",
+    "applicationStartSuffix": " trở đi",
+    "daysRemaining": "Số ngày còn lại",
+    "daySuffix": " ngày"
+  },
+  "accessibility": {
+    "residenceType": "Loại tư cách lưu trú: {{type}}",
+    "residenceTypeUnselected": "Chưa chọn",
+    "residenceTypeHint": "Nhấn để chọn loại tư cách lưu trú",
+    "memoHint": "Nhập ghi chú tối đa {{max}} ký tự"
+  },
+  "validation": {
+    "pastDate": "Không thể chọn ngày trong quá khứ"
+  }
+}

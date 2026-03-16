@@ -1,0 +1,75 @@
+{
+  "navTitle": "Cài đặt nhắc nhở",
+  "pageTitle": "Cài đặt thông báo",
+  "pageDescription": "Nhận thông báo đẩy khi ngày hết hạn tư cách lưu trú đang đến gần. Tùy chỉnh thời gian thông báo bên dưới.",
+  "permission": {
+    "title": "Cho phép thông báo",
+    "description": "Vui lòng cho phép thông báo thiết bị để không bỏ lỡ thời hạn quan trọng. Bạn có thể thay đổi điều này bất cứ lúc nào trong cài đặt.",
+    "button": "Cho phép thông báo",
+    "processing": "Đang xử lý...",
+    "successTitle": "Thành công",
+    "successMessage": "Đã cho phép thông báo",
+    "deniedTitle": "Thông báo bị từ chối",
+    "deniedMessage": "Để bật thông báo, vui lòng cho phép trong cài đặt thiết bị.",
+    "openSettings": "Mở cài đặt"
+  },
+  "timing": {
+    "sectionTitle": "Thời gian thông báo",
+    "sectionSubtitle": "Chọn thời điểm nhận thông báo trước khi hết hạn",
+    "fourMonths": "Trước 4 tháng",
+    "threeMonths": "Trước 3 tháng",
+    "oneMonth": "Trước 1 tháng",
+    "twoWeeks": "Trước 2 tuần",
+    "recommended": "Khuyến nghị",
+    "fourMonthsDescription": "Ngày bắt đầu thời hạn nộp đơn",
+    "threeMonthsDescription": "Bắt đầu chuẩn bị thoải mái",
+    "oneMonthDescription": "Thời hạn nộp đơn đang đến gần",
+    "twoWeeksDescription": "Thời điểm kiểm tra cuối cùng",
+    "nextDate": "Tiếp theo: {{date}}",
+    "notSet": "Chưa cài đặt"
+  },
+  "infoBox": "Đơn gia hạn tư cách lưu trú có thể được nộp khoảng 4 tháng trước khi hết hạn. Khuyến nghị chuẩn bị sớm.",
+  "preview": {
+    "title": "Xem trước thông báo",
+    "appIconText": "V",
+    "appName": "Nhắc nhở gia hạn tư cách lưu trú",
+    "notificationTime": "Trước 4 tháng • 9:00 SA",
+    "notificationTitle": "Thời hạn nộp đơn gia hạn của bạn đã bắt đầu",
+    "notificationBody": "Còn 120 ngày đến khi tư cách lưu trú hết hạn. Hãy bắt đầu chuẩn bị tài liệu cần thiết."
+  },
+  "otherSettings": {
+    "sectionTitle": "Cài đặt khác",
+    "sound": "Âm thanh thông báo",
+    "soundDescription": "Phát âm thanh khi nhận thông báo",
+    "badge": "Hiển thị huy hiệu",
+    "badgeDescription": "Hiện số thông báo trên biểu tượng ứng dụng"
+  },
+  "test": {
+    "button": "Gửi thông báo thử nghiệm",
+    "buttonHint": "Thông báo thử nghiệm sẽ đến sau 2 giây",
+    "sentTitle": "Đã gửi",
+    "sentMessage": "Thông báo thử nghiệm sẽ đến sau 2 giây",
+    "errorTitle": "Thất bại",
+    "errorMessage": "Gửi thông báo thử nghiệm thất bại"
+  },
+  "deviceSettings": "Mở cài đặt thông báo thiết bị",
+  "accessibility": {
+    "back": "Quay lại",
+    "allowNotification": "Cho phép thông báo",
+    "allowNotificationHint": "Nhấn để yêu cầu quyền thông báo thiết bị",
+    "fourMonthsNotification": "Thông báo trước 4 tháng",
+    "fourMonthsHint": "Bật để nhận thông báo trước 4 tháng",
+    "threeMonthsNotification": "Thông báo trước 3 tháng",
+    "threeMonthsHint": "Bật để nhận thông báo trước 3 tháng",
+    "oneMonthNotification": "Thông báo trước 1 tháng",
+    "oneMonthHint": "Bật để nhận thông báo trước 1 tháng",
+    "twoWeeksNotification": "Thông báo trước 2 tuần",
+    "twoWeeksHint": "Bật để nhận thông báo trước 2 tuần",
+    "soundNotification": "Âm thanh thông báo",
+    "soundHint": "Bật để phát âm thanh khi nhận thông báo",
+    "badgeNotification": "Hiển thị huy hiệu",
+    "badgeHint": "Bật để hiển thị số thông báo trên biểu tượng ứng dụng",
+    "openDeviceSettings": "Mở cài đặt thông báo thiết bị",
+    "openDeviceSettingsHint": "Mở ứng dụng cài đặt thiết bị"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "screen": {
+    "title": "Danh sách kiểm tra",
+    "headerSubtitle": "Tài liệu và thủ tục cần thiết để gia hạn tư cách lưu trú"
+  },
+  "progress": {
+    "label": "Tiến độ",
+    "status": "{{completed}}/{{total}} hoàn thành ({{percentage}}%)",
+    "categoryCount": "{{completed}}/{{total}} xong"
+  },
+  "action": {
+    "reset": "Đặt lại",
+    "share": "Chia sẻ",
+    "markAllComplete": "Đánh dấu tất cả"
+  },
+  "note": {
+    "placeholder": "Nhập ghi chú...",
+    "expand": "Thêm ghi chú",
+    "collapse": "Đóng ghi chú"
+  },
+  "link": {
+    "officialPage": "Kiểm tra thông tin mới nhất trên trang web Cục Xuất nhập cảnh",
+    "documentTemplate": "Tạo mẫu lý do xin cấp phép"
+  },
+  "alert": {
+    "resetTitle": "Xác nhận đặt lại",
+    "resetMessage": "Đặt lại danh sách kiểm tra?",
+    "resetConfirm": "Đặt lại",
+    "shareNotice": "Tính năng chia sẻ sắp ra mắt",
+    "allCompleteTitle": "Hoàn tất!",
+    "allCompleteMessage": "Tất cả {{total}} mục trong danh sách đã được đánh dấu hoàn thành"
+  },
+  "error": {
+    "cardNotFound": "Không tìm thấy thẻ"
+  },
+  "accessibility": {
+    "back": "Quay lại",
+    "reset": "Đặt lại",
+    "shareChecklist": "Chia sẻ danh sách kiểm tra",
+    "markAllComplete": "Đánh dấu tất cả các mục là hoàn thành",
+    "officialPageHint": "Mở trong trình duyệt ngoài",
+    "noteInput": "Trường nhập ghi chú",
+    "itemCompleted": "Đã hoàn thành",
+    "itemIncomplete": "Chưa hoàn thành"
+  }
+}

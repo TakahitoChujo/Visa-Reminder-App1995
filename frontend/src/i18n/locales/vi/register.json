@@ -1,0 +1,19 @@
+{
+  "header": {
+    "title": "Đăng ký tư cách lưu trú"
+  },
+  "confirm": {
+    "title": "Xác nhận đăng ký",
+    "message": "Đăng ký thông tin tư cách lưu trú này?",
+    "submit": "Đăng ký"
+  },
+  "error": {
+    "registerFailed": "Đăng ký thất bại"
+  },
+  "accessibility": {
+    "register": "Đăng ký",
+    "registerHint": "Đăng ký và lưu tư cách lưu trú",
+    "cancelHint": "Hủy đăng ký và quay lại màn hình trước",
+    "backHint": "Quay lại màn hình trước"
+  }
+}

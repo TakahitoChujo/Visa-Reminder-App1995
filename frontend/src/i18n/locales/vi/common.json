@@ -1,0 +1,63 @@
+{
+  "button": {
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "register": "Đăng ký",
+    "back": "Quay lại",
+    "reset": "Đặt lại",
+    "upgrade": "Nâng cấp",
+    "ok": "OK",
+    "share": "Chia sẻ",
+    "markAllComplete": "Đánh dấu tất cả",
+    "close": "Đóng",
+    "confirm": "Xác nhận"
+  },
+  "status": {
+    "safe": "Còn thời gian",
+    "warning": "Cần chú ý",
+    "danger": "Khẩn cấp"
+  },
+  "residenceType": {
+    "work_visa": "Kỹ thuật / Nhân văn / Nghiệp vụ quốc tế",
+    "spouse_japanese": "Vợ/chồng công dân Nhật Bản",
+    "spouse_permanent": "Vợ/chồng thường trú nhân",
+    "permanent_application": "Chuẩn bị xin thường trú",
+    "student": "Du học",
+    "designated_activities": "Hoạt động chỉ định",
+    "skilled_worker": "Lao động kỹ năng đặc định",
+    "other": "Khác"
+  },
+  "error": {
+    "generic": "Lỗi",
+    "loadFailed": "Không thể tải dữ liệu. Vui lòng khởi động lại ứng dụng.",
+    "saveFailed": "Lưu thất bại",
+    "deleteFailed": "Xóa thất bại",
+    "encryptionFailed": "Không thể khởi tạo mã hóa",
+    "memoEncryptionFailed": "Không thể mã hóa ghi chú",
+    "linkOpenFailed": "Không thể mở liên kết này",
+    "linkOpenError": "Đã xảy ra lỗi khi mở liên kết",
+    "dataLoadError": "Lỗi tải dữ liệu"
+  },
+  "date": {
+    "remaining": "Còn",
+    "day": "ngày",
+    "expiration": "Ngày hết hạn"
+  },
+  "tag": {
+    "required": "Bắt buộc",
+    "optional": "Tùy chọn",
+    "applicationDoc": "Hồ sơ xin cấp",
+    "companyDoc": "Tài liệu công ty",
+    "schoolDoc": "Tài liệu trường học"
+  },
+  "accessibility": {
+    "back": "Quay lại",
+    "backToHome": "Trở về màn hình chính",
+    "settings": "Cài đặt",
+    "openSettings": "Mở màn hình cài đặt"
+  },
+  "alert": {
+    "notice": "Thông báo"
+  }
+}

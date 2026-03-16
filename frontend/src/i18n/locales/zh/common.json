@@ -1,0 +1,63 @@
+{
+  "button": {
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "register": "注册",
+    "back": "返回",
+    "reset": "重置",
+    "upgrade": "升级",
+    "ok": "确认",
+    "share": "分享",
+    "markAllComplete": "全部完成",
+    "close": "关闭",
+    "confirm": "确认"
+  },
+  "status": {
+    "safe": "时间充裕",
+    "warning": "需要注意",
+    "danger": "紧急"
+  },
+  "residenceType": {
+    "work_visa": "技术/人文/国际业务",
+    "spouse_japanese": "日本人配偶者等",
+    "spouse_permanent": "永久居民配偶者等",
+    "permanent_application": "准备申请永久居留",
+    "student": "留学",
+    "designated_activities": "特定活动",
+    "skilled_worker": "特定技能",
+    "other": "其他"
+  },
+  "error": {
+    "generic": "错误",
+    "loadFailed": "数据加载失败，请重启应用。",
+    "saveFailed": "保存失败",
+    "deleteFailed": "删除失败",
+    "encryptionFailed": "加密初始化失败",
+    "memoEncryptionFailed": "备注加密失败",
+    "linkOpenFailed": "无法打开此链接",
+    "linkOpenError": "打开链接时发生错误",
+    "dataLoadError": "数据加载错误"
+  },
+  "date": {
+    "remaining": "还剩",
+    "day": "天",
+    "expiration": "有效期"
+  },
+  "tag": {
+    "required": "必须",
+    "optional": "可选",
+    "applicationDoc": "申请材料",
+    "companyDoc": "公司材料",
+    "schoolDoc": "学校材料"
+  },
+  "accessibility": {
+    "back": "返回",
+    "backToHome": "返回主屏幕",
+    "settings": "设置",
+    "openSettings": "打开设置屏幕"
+  },
+  "alert": {
+    "notice": "通知"
+  }
+}

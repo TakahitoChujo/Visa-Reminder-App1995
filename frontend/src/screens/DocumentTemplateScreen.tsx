@@ -15,6 +15,7 @@ import {
   TextInput,
   Share,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
@@ -75,6 +76,7 @@ ${jobDescription}
 }
 
 export const DocumentTemplateScreen = React.memo(function DocumentTemplateScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<DocumentTemplateScreenNavigationProp>();
   const route = useRoute<DocumentTemplateScreenRouteProp>();
   const { residenceLabel } = route.params;
@@ -125,7 +127,7 @@ export const DocumentTemplateScreen = React.memo(function DocumentTemplateScreen
   return (
     <View style={styles.container}>
       {/* ナビゲーションバー */}
-      <View style={styles.navBar}>
+      <View style={[styles.navBar, { paddingTop: insets.top, height: 56 + insets.top }]}>
         <TouchableOpacity
           style={styles.navBack}
           onPress={handleGoBack}
@@ -279,7 +281,7 @@ export const DocumentTemplateScreen = React.memo(function DocumentTemplateScreen
       </ScrollView>
 
       {/* 固定フッター：共有ボタン */}
-      <View style={styles.bottomAction}>
+      <View style={[styles.bottomAction, { paddingBottom: theme.spacing.lg + insets.bottom }]}>
         <TouchableOpacity
           style={styles.shareButton}
           onPress={handleShare}

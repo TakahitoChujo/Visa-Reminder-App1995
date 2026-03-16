@@ -44,6 +44,14 @@
     "badge": "Badge Display",
     "badgeDescription": "Show notification count on app icon"
   },
+  "test": {
+    "button": "Send Test Notification",
+    "buttonHint": "A test notification will arrive in 2 seconds",
+    "sentTitle": "Sent",
+    "sentMessage": "A test notification will arrive in 2 seconds",
+    "errorTitle": "Failed",
+    "errorMessage": "Failed to send test notification"
+  },
   "deviceSettings": "Open Device Notification Settings",
   "accessibility": {
     "back": "Go back",

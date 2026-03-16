@@ -1,0 +1,75 @@
+{
+  "navTitle": "提醒设置",
+  "pageTitle": "通知设置",
+  "pageDescription": "在在留资格到期日临近时收到推送通知。在下方自定义通知时间。",
+  "permission": {
+    "title": "允许通知",
+    "description": "请允许设备通知，以免错过重要期限。您可以随时在设置中更改。",
+    "button": "允许通知",
+    "processing": "处理中...",
+    "successTitle": "成功",
+    "successMessage": "已允许通知",
+    "deniedTitle": "通知被拒绝",
+    "deniedMessage": "要启用通知，请在设备设置中允许。",
+    "openSettings": "打开设置"
+  },
+  "timing": {
+    "sectionTitle": "通知时间",
+    "sectionSubtitle": "选择在到期前何时收到通知",
+    "fourMonths": "4个月前",
+    "threeMonths": "3个月前",
+    "oneMonth": "1个月前",
+    "twoWeeks": "2周前",
+    "recommended": "推荐",
+    "fourMonthsDescription": "申请期间开始日",
+    "threeMonthsDescription": "从容开始准备",
+    "oneMonthDescription": "申请截止日临近",
+    "twoWeeksDescription": "最终确认时机",
+    "nextDate": "下次：{{date}}",
+    "notSet": "未设置"
+  },
+  "infoBox": "在留资格更新申请可在到期日约4个月前提交。建议尽早准备。",
+  "preview": {
+    "title": "通知预览",
+    "appIconText": "在",
+    "appName": "在留资格更新提醒",
+    "notificationTime": "4个月前 • 上午9:00",
+    "notificationTitle": "在留资格更新申请期间已开始",
+    "notificationBody": "距在留资格到期还有120天。请开始准备所需文件。"
+  },
+  "otherSettings": {
+    "sectionTitle": "其他设置",
+    "sound": "通知声音",
+    "soundDescription": "收到通知时播放声音",
+    "badge": "图标角标",
+    "badgeDescription": "在应用图标上显示通知数量"
+  },
+  "test": {
+    "button": "发送测试通知",
+    "buttonHint": "测试通知将在2秒后到达",
+    "sentTitle": "已发送",
+    "sentMessage": "测试通知将在2秒后到达",
+    "errorTitle": "失败",
+    "errorMessage": "发送测试通知失败"
+  },
+  "deviceSettings": "打开设备通知设置",
+  "accessibility": {
+    "back": "返回",
+    "allowNotification": "允许通知",
+    "allowNotificationHint": "点击请求设备通知权限",
+    "fourMonthsNotification": "4个月前通知",
+    "fourMonthsHint": "开启以在4个月前收到通知",
+    "threeMonthsNotification": "3个月前通知",
+    "threeMonthsHint": "开启以在3个月前收到通知",
+    "oneMonthNotification": "1个月前通知",
+    "oneMonthHint": "开启以在1个月前收到通知",
+    "twoWeeksNotification": "2周前通知",
+    "twoWeeksHint": "开启以在2周前收到通知",
+    "soundNotification": "通知声音",
+    "soundHint": "开启以在收到通知时播放声音",
+    "badgeNotification": "图标角标",
+    "badgeHint": "开启以在应用图标上显示通知数量",
+    "openDeviceSettings": "打开设备通知设置",
+    "openDeviceSettingsHint": "打开设备设置应用"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "headerTitle": "Cài đặt",
+  "profile": {
+    "iconText": "V",
+    "userName": "Người dùng"
+  },
+  "testPlanToggle": "Chuyển đổi gói (Thử nghiệm): Hiện tại {{plan}}",
+  "section": {
+    "notification": "Thông báo",
+    "dataPrivacy": "Dữ liệu và Quyền riêng tư",
+    "support": "Hỗ trợ",
+    "other": "Khác",
+    "language": "Ngôn ngữ"
+  },
+  "notification": {
+    "reminderSettings": "Cài đặt nhắc nhở",
+    "reminderDescription": "Tùy chỉnh thời gian thông báo"
+  },
+  "privacy": {
+    "title": "Chính sách bảo mật",
+    "description": "Cách chúng tôi xử lý thông tin cá nhân"
+  },
+  "support": {
+    "contact": "Liên hệ",
+    "contactDescription": "Câu hỏi và yêu cầu",
+    "terms": "Điều khoản dịch vụ",
+    "termsDescription": "Các điều khoản và điều kiện dịch vụ"
+  },
+  "data": {
+    "clearAll": "Xóa tất cả dữ liệu",
+    "clearDescription": "Xóa vĩnh viễn tất cả dữ liệu đã đăng ký",
+    "clearConfirmTitle": "Xác nhận",
+    "clearConfirmMessage": "Xóa tất cả dữ liệu?\nThao tác này không thể hoàn tác.",
+    "clearSuccess": "Đã xóa tất cả dữ liệu",
+    "clearError": "Xóa dữ liệu thất bại"
+  },
+  "language": {
+    "title": "Ngôn ngữ",
+    "description": "Thay đổi ngôn ngữ hiển thị",
+    "current": "Hiện tại: {{language}}"
+  },
+  "version": {
+    "appIconText": "V",
+    "appName": "Nhắc nhở gia hạn tư cách lưu trú",
+    "versionLabel": "Phiên bản {{version}} (Build {{build}})"
+  },
+  "accessibility": {
+    "back": "Quay lại",
+    "backHint": "Trở về màn hình chính",
+    "testPlanToggle": "Chuyển đổi gói (thử nghiệm)",
+    "reminderSettings": "Cài đặt nhắc nhở",
+    "reminderSettingsHint": "Nhấn để tùy chỉnh thời gian thông báo",
+    "privacyPolicy": "Chính sách bảo mật",
+    "privacyPolicyHint": "Nhấn để xem cách xử lý thông tin cá nhân",
+    "contact": "Liên hệ",
+    "contactHint": "Nhấn để mở ứng dụng email",
+    "terms": "Điều khoản dịch vụ",
+    "termsHint": "Nhấn để xem các điều khoản và điều kiện dịch vụ",
+    "clearAll": "Xóa tất cả dữ liệu",
+    "clearAllHint": "Cảnh báo: Thao tác này không thể hoàn tác. Nhấn để hiển thị hộp thoại xác nhận",
+    "languageSelect": "Chọn ngôn ngữ",
+    "languageSelectHint": "Nhấn để thay đổi ngôn ngữ hiển thị"
+  }
+}

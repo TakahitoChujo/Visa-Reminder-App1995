@@ -19,6 +19,7 @@ interface UserStore {
   userPlan: UserPlanType;
   premiumExpiresAt: string | null;
   isLoading: boolean;
+  hasCompletedOnboarding: boolean;
 
   // Computed getters
   isPremium: () => boolean;
@@ -29,9 +30,11 @@ interface UserStore {
   // Actions
   loadUserPlan: () => Promise<void>;
   updateUserPlan: (plan: UserPlanType, expiresAt?: string) => Promise<void>;
+  completeOnboarding: () => Promise<void>;
 }
 
 const STORAGE_KEY = '@user_plan';
+const ONBOARDING_KEY = '@onboarding_completed';
 
 // プラン別の機能制限定義
 const PLAN_FEATURES: Record<UserPlanType, PlanLimits> = {
@@ -54,6 +57,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
   userPlan: 'free',
   premiumExpiresAt: null,
   isLoading: false,
+  hasCompletedOnboarding: false,
 
   // プレミアムユーザーかどうか判定
   isPremium: () => {
@@ -99,12 +103,17 @@ export const useUserStore = create<UserStore>((set, get) => ({
     set({ isLoading: true });
 
     try {
-      const data = await AsyncStorage.getItem(STORAGE_KEY);
+      const [planData, onboardingData] = await Promise.all([
+        AsyncStorage.getItem(STORAGE_KEY),
+        AsyncStorage.getItem(ONBOARDING_KEY),
+      ]);
 
-      if (data) {
-        const { userPlan, premiumExpiresAt } = JSON.parse(data);
+      if (planData) {
+        const { userPlan, premiumExpiresAt } = JSON.parse(planData);
         set({ userPlan, premiumExpiresAt });
       }
+
+      set({ hasCompletedOnboarding: onboardingData === 'true' });
     } catch (error) {
       console.error('Failed to load user plan:', error);
     } finally {
@@ -125,6 +134,16 @@ export const useUserStore = create<UserStore>((set, get) => ({
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (error) {
       console.error('Failed to save user plan:', error);
+    }
+  },
+
+  // オンボーディング完了を記録
+  completeOnboarding: async () => {
+    set({ hasCompletedOnboarding: true });
+    try {
+      await AsyncStorage.setItem(ONBOARDING_KEY, 'true');
+    } catch (error) {
+      console.error('Failed to save onboarding state:', error);
     }
   },
 }));

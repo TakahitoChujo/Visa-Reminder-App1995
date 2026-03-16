@@ -1,0 +1,30 @@
+{
+  "slide1": {
+    "title": "Không bao giờ bỏ lỡ\nGia hạn tư cách lưu trú",
+    "description": "Đăng ký ngày hết hạn vào ứng dụng và nhận thông báo tự động trước khi quá muộn"
+  },
+  "slide2": {
+    "title": "Đăng ký đơn giản",
+    "description": "Chỉ cần nhập loại tư cách lưu trú và ngày hết hạn. Không lưu thông tin cá nhân (họ tên, số thẻ)"
+  },
+  "slide3": {
+    "title": "Thông báo đẩy\nTrước khi hết hạn",
+    "description": "Nhận thông báo 4 tháng, 3 tháng, 1 tháng và 2 tuần trước khi hết hạn. Đủ thời gian để chuẩn bị"
+  },
+  "slide4": {
+    "title": "Kèm danh sách\nKiểm tra tài liệu",
+    "description": "Danh sách tài liệu cần thiết theo từng loại tư cách lưu trú, cộng với mẫu thư lý do"
+  },
+  "slide5": {
+    "title": "Chọn ngôn ngữ",
+    "description": "Sử dụng ứng dụng bằng ngôn ngữ bạn thích"
+  },
+  "button": {
+    "next": "Tiếp theo",
+    "start": "Bắt đầu",
+    "skip": "Bỏ qua"
+  },
+  "language": {
+    "selectLabel": "Chọn ngôn ngữ"
+  }
+}

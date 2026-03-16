@@ -1,0 +1,19 @@
+{
+  "header": {
+    "title": "登记在留资格"
+  },
+  "confirm": {
+    "title": "确认登记",
+    "message": "登记此在留资格信息？",
+    "submit": "登记"
+  },
+  "error": {
+    "registerFailed": "登记失败"
+  },
+  "accessibility": {
+    "register": "登记",
+    "registerHint": "登记并保存在留资格",
+    "cancelHint": "取消登记并返回上一屏幕",
+    "backHint": "返回上一屏幕"
+  }
+}

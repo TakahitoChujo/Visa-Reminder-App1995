@@ -321,13 +321,13 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
         cards.map(async (card: ResidenceCard) => {
           if (card.memo && card.memo.trim() !== '') {
             try {
-              // 暗号化されているかチェック（iv:ciphertext形式）
-              if (card.memo.includes(':')) {
+              // detectEncryptionVersionで正確に暗号化済みかチェック（v1/v2両対応）
+              // includes(':')だとプレーンテキストの':'を誤検知するためこちらを使用
+              if (EncryptionService.detectEncryptionVersion(card.memo) !== 'invalid') {
                 const decryptedMemo = await EncryptionService.decrypt(card.memo);
                 return { ...card, memo: decryptedMemo };
               } else {
-                // 既存の暗号化されていないデータの場合はそのまま返す
-                // 次回更新時に暗号化される
+                // 暗号化されていない既存データはそのまま返す（次回更新時に暗号化）
                 return card;
               }
             } catch (error) {
@@ -347,12 +347,12 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
           (items as ChecklistItem[]).map(async (item: ChecklistItem) => {
             if (item.note && item.note.trim() !== '') {
               try {
-                // 暗号化されているかチェック（iv:ciphertext形式）
-                if (item.note.includes(':')) {
+                // detectEncryptionVersionで正確に暗号化済みかチェック
+                if (EncryptionService.detectEncryptionVersion(item.note) !== 'invalid') {
                   const decryptedNote = await EncryptionService.decrypt(item.note);
                   return { ...item, note: decryptedNote };
                 } else {
-                  // 既存の暗号化されていないデータの場合はそのまま返す
+                  // 暗号化されていない既存データはそのまま返す
                   return item;
                 }
               } catch (error) {
@@ -367,6 +367,15 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
       }
 
       set({ cards, reminderSettings, checklistItems: decryptedChecklistItems });
+
+      // アプリ起動時に既存カードの通知を再スケジュール（再インストール・通知クリア後の復元）
+      for (const card of cards) {
+        try {
+          await notificationService.scheduleNotificationsForCard(card, reminderSettings);
+        } catch (error) {
+          console.warn('Failed to reschedule notifications on startup for card:', card.id, error);
+        }
+      }
     } catch (error) {
       console.error('Failed to load data:', error);
       // ユーザーに通知（Alertはストアでは使えないため、エラーフラグを設定）
@@ -377,6 +386,13 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
   },
 
   clearAllData: async () => {
+    // スケジュール済み通知を全てキャンセル（データ削除後に通知が届かないように）
+    try {
+      await notificationService.cancelAllNotifications();
+    } catch (error) {
+      console.warn('Failed to cancel all notifications on clearAllData:', error);
+    }
+
     set({
       cards: [],
       currentCardId: null,

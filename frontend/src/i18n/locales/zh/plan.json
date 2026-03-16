@@ -1,0 +1,36 @@
+{
+  "name": {
+    "free": "免费",
+    "premium": "高级版"
+  },
+  "status": {
+    "freeActive": "试用期间免费",
+    "premiumActive": "套餐已激活"
+  },
+  "limit": {
+    "freeMax": "免费套餐最多允许{{limit}}个登记",
+    "reached": "已达到登记上限",
+    "reachedMessage": "免费套餐最多允许{{limit}}个登记。升级至高级版可无限登记。"
+  },
+  "premium": {
+    "title": "高级套餐",
+    "description": "原型版本免费",
+    "featureMultiple": "登记多个在留资格（管理家庭成员）",
+    "featureExport": "将检查清单导出为PDF/CSV",
+    "featureHistory": "无限申请历史记录存储",
+    "priceButton": "原型版本免费"
+  },
+  "upgrade": {
+    "button": "升级至高级版",
+    "buttonShort": "升级",
+    "hint": "查看高级套餐升级信息"
+  },
+  "downgrade": {
+    "title": "降级套餐",
+    "message": "免费套餐只允许{{limit}}个登记。\n仅保留{{limit}}个最近到期的登记，其他{{count}}个将被删除。\n\n确定吗？",
+    "confirmButton": "降级",
+    "successMessage": "已切换至免费套餐"
+  },
+  "changed": "套餐已更改为{{plan}}",
+  "comingSoon": "高级套餐即将推出"
+}

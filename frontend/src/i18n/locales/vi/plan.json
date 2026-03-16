@@ -1,0 +1,36 @@
+{
+  "name": {
+    "free": "Miễn phí",
+    "premium": "Premium"
+  },
+  "status": {
+    "freeActive": "Miễn phí trong thời gian dùng thử",
+    "premiumActive": "gói đang hoạt động"
+  },
+  "limit": {
+    "freeMax": "Gói miễn phí cho phép tối đa {{limit}} đăng ký",
+    "reached": "Đã đạt giới hạn đăng ký",
+    "reachedMessage": "Gói miễn phí cho phép tối đa {{limit}} đăng ký. Nâng cấp lên Premium để đăng ký không giới hạn."
+  },
+  "premium": {
+    "title": "Gói Premium",
+    "description": "Miễn phí cho phiên bản thử nghiệm",
+    "featureMultiple": "Đăng ký nhiều tư cách lưu trú (quản lý thành viên gia đình)",
+    "featureExport": "Xuất danh sách kiểm tra dưới dạng PDF/CSV",
+    "featureHistory": "Lưu trữ lịch sử đơn xin không giới hạn",
+    "priceButton": "Miễn phí cho phiên bản thử nghiệm"
+  },
+  "upgrade": {
+    "button": "Nâng cấp lên Premium",
+    "buttonShort": "Nâng cấp",
+    "hint": "Xem thông tin nâng cấp gói Premium"
+  },
+  "downgrade": {
+    "title": "Hạ cấp gói",
+    "message": "Gói miễn phí chỉ cho phép {{limit}} đăng ký.\nChỉ giữ lại {{limit}} đăng ký gần hết hạn nhất, {{count}} đăng ký khác sẽ bị xóa.\n\nBạn có chắc không?",
+    "confirmButton": "Hạ cấp",
+    "successMessage": "Đã chuyển sang gói miễn phí"
+  },
+  "changed": "Đã đổi gói thành {{plan}}",
+  "comingSoon": "Gói Premium sắp ra mắt"
+}

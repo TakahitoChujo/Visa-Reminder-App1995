@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { useResidenceStore } from './src/store/useResidenceStore';
+import { useUserStore } from './src/store/useUserStore';
 import { initI18n } from './src/i18n';
 
 // Web用のグローバルスタイルを設定（ScrollView対応）
@@ -112,10 +113,11 @@ const linking = {
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   const { loadData } = useResidenceStore();
+  const { loadUserPlan } = useUserStore();
 
   useEffect(() => {
-    Promise.all([initI18n(), loadData()]).then(() => setIsReady(true));
-  }, [loadData]);
+    Promise.all([initI18n(), loadData(), loadUserPlan()]).then(() => setIsReady(true));
+  }, [loadData, loadUserPlan]);
 
   if (!isReady) return null;
 

@@ -1,0 +1,46 @@
+{
+  "screen": {
+    "title": "检查清单",
+    "headerSubtitle": "在留资格更新所需的文件和手续"
+  },
+  "progress": {
+    "label": "进度",
+    "status": "{{completed}}/{{total}} 已完成 ({{percentage}}%)",
+    "categoryCount": "{{completed}}/{{total}} 完成"
+  },
+  "action": {
+    "reset": "重置",
+    "share": "分享",
+    "markAllComplete": "全部完成"
+  },
+  "note": {
+    "placeholder": "输入备注...",
+    "expand": "添加备注",
+    "collapse": "关闭备注"
+  },
+  "link": {
+    "officialPage": "在出入国在留管理厅网站查看最新信息",
+    "documentTemplate": "创建申请理由书模板"
+  },
+  "alert": {
+    "resetTitle": "确认重置",
+    "resetMessage": "重置检查清单？",
+    "resetConfirm": "重置",
+    "shareNotice": "分享功能即将推出",
+    "allCompleteTitle": "全部完成！",
+    "allCompleteMessage": "所有{{total}}项已标记为完成"
+  },
+  "error": {
+    "cardNotFound": "未找到卡片"
+  },
+  "accessibility": {
+    "back": "返回",
+    "reset": "重置",
+    "shareChecklist": "分享检查清单",
+    "markAllComplete": "将所有项目标记为完成",
+    "officialPageHint": "在外部浏览器中打开",
+    "noteInput": "备注输入框",
+    "itemCompleted": "已完成",
+    "itemIncomplete": "未完成"
+  }
+}

@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useResidenceStore } from '../store/useResidenceStore';
@@ -22,6 +23,7 @@ import { showAlert, showConfirm } from '../utils/platform';
 import { useAppTranslation } from '../i18n/useAppTranslation';
 
 export const EditScreen = React.memo(function EditScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<EditScreenNavigationProp>();
   const route = useRoute<EditScreenRouteProp>();
   const { cards, updateCard, deleteCard } = useResidenceStore();
@@ -128,7 +130,7 @@ export const EditScreen = React.memo(function EditScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top + theme.spacing.md }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home')}
@@ -198,7 +200,7 @@ export const EditScreen = React.memo(function EditScreen() {
       </ScrollView>
 
       {Platform.OS !== 'web' && (
-        <View style={styles.bottomActions}>{formButtons}</View>
+        <View style={[styles.bottomActions, { paddingBottom: theme.spacing.lg + insets.bottom }]}>{formButtons}</View>
       )}
     </View>
   );

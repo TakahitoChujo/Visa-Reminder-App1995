@@ -1,0 +1,31 @@
+{
+  "title": "在留资格",
+  "registeredCards": "已登记的在留卡",
+  "registrationCount": "登记数量",
+  "needsAttention": "需要注意",
+  "empty": {
+    "title": "尚未登记在留卡",
+    "description": "登记在留卡有效期，以免错过更新时间"
+  },
+  "card": {
+    "registerNew": "登记在留资格",
+    "registerNewLong": "登记新的在留资格",
+    "checklist": "检查清单",
+    "day": "天"
+  },
+  "disclaimer": {
+    "text": "本应用仅为在留手续辅助工具，不构成法律建议。请在出入国在留管理厅官方网站确认最新信息。",
+    "link": "查看官方网站"
+  },
+  "accessibility": {
+    "registerCard": "登记在留资格",
+    "registerCardHint": "打开在留资格登记屏幕",
+    "cardDetail": "{{type}} 距到期还有{{days}}天",
+    "cardDetailHint": "打开在留资格详情和编辑屏幕",
+    "openChecklist": "打开检查清单",
+    "openChecklistHint": "打开所需文件检查清单",
+    "registerNewCard": "登记新的在留资格",
+    "registerNewCardHint": "打开登记屏幕",
+    "upgradeHint": "查看升级信息"
+  }
+}

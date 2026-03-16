@@ -14,6 +14,13 @@ jest.mock('../../services/database/EncryptionService', () => ({
     decrypt: jest.fn().mockImplementation((text: string) =>
       Promise.resolve(text.startsWith('encrypted:') ? text.replace('encrypted:', '') : text)
     ),
+    detectEncryptionVersion: jest.fn().mockImplementation((data: string): 'v2' | 'v1' | 'invalid' => {
+      if (!data || typeof data !== 'string') return 'invalid';
+      const parts = data.split(':');
+      if (parts.length === 3 && parts[0] === 'v2') return 'v2';
+      if (parts.length === 2 && parts[0].length === 32 && /^[0-9a-f]+$/i.test(parts[0])) return 'v1';
+      return 'invalid';
+    }),
     getEncryptionKey: jest.fn().mockReturnValue('mock-hex-key-32bytes-xxxxxxxxxxxx'),
     clearKey: jest.fn(),
   },

@@ -44,6 +44,14 @@
     "badge": "バッジ表示",
     "badgeDescription": "アプリアイコンに通知数を表示"
   },
+  "test": {
+    "button": "テスト通知を送信",
+    "buttonHint": "2秒後にテスト通知が届きます",
+    "sentTitle": "送信完了",
+    "sentMessage": "2秒後にテスト通知が届きます",
+    "errorTitle": "送信失敗",
+    "errorMessage": "テスト通知の送信に失敗しました"
+  },
   "deviceSettings": "デバイスの通知設定を開く",
   "accessibility": {
     "back": "戻る",

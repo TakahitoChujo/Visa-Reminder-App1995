@@ -10,6 +10,7 @@ import { RouteProp } from '@react-navigation/native';
  * 各画面の名前とパラメータを定義
  */
 export type RootStackParamList = {
+  Onboarding: undefined;
   Home: undefined;
   Register: undefined;
   Edit: { cardId: string };
@@ -27,6 +28,8 @@ export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
 /**
  * 各画面のナビゲーションプロップとルートプロップの型定義
  */
+export type OnboardingScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Onboarding'>;
+
 export type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Register'>;

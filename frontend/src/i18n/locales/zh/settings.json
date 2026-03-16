@@ -1,0 +1,64 @@
+{
+  "headerTitle": "设置",
+  "profile": {
+    "iconText": "在",
+    "userName": "用户"
+  },
+  "testPlanToggle": "切换套餐（测试用）：当前 {{plan}}",
+  "section": {
+    "notification": "通知",
+    "dataPrivacy": "数据与隐私",
+    "support": "支持",
+    "other": "其他",
+    "language": "语言"
+  },
+  "notification": {
+    "reminderSettings": "提醒设置",
+    "reminderDescription": "自定义通知时间"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "description": "关于个人信息的处理方式"
+  },
+  "support": {
+    "contact": "联系我们",
+    "contactDescription": "问题与建议",
+    "terms": "服务条款",
+    "termsDescription": "服务条款与条件"
+  },
+  "data": {
+    "clearAll": "删除所有数据",
+    "clearDescription": "永久删除所有已登记的数据",
+    "clearConfirmTitle": "确认",
+    "clearConfirmMessage": "删除所有数据？\n此操作无法撤销。",
+    "clearSuccess": "所有数据已删除",
+    "clearError": "删除数据失败"
+  },
+  "language": {
+    "title": "语言",
+    "description": "更改显示语言",
+    "current": "当前：{{language}}"
+  },
+  "version": {
+    "appIconText": "在",
+    "appName": "在留资格更新提醒",
+    "versionLabel": "版本 {{version}}（Build {{build}}）"
+  },
+  "accessibility": {
+    "back": "返回",
+    "backHint": "返回主屏幕",
+    "testPlanToggle": "切换套餐（测试用）",
+    "reminderSettings": "提醒设置",
+    "reminderSettingsHint": "点击自定义通知时间",
+    "privacyPolicy": "隐私政策",
+    "privacyPolicyHint": "点击查看个人信息处理方式",
+    "contact": "联系我们",
+    "contactHint": "点击打开邮件应用",
+    "terms": "服务条款",
+    "termsHint": "点击查看服务条款与条件",
+    "clearAll": "删除所有数据",
+    "clearAllHint": "警告：此操作无法撤销。点击显示确认对话框",
+    "languageSelect": "选择语言",
+    "languageSelectHint": "点击更改显示语言"
+  }
+}

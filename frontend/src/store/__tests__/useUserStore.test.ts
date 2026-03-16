@@ -14,6 +14,7 @@ function resetStore() {
     userPlan: 'free',
     premiumExpiresAt: null,
     isLoading: false,
+    hasCompletedOnboarding: false,
   });
 }
 
@@ -28,7 +29,10 @@ describe('useUserStore', () => {
   describe('loadUserPlan()', () => {
     it('TC-US-001: AsyncStorage から正しく premium プランを読み込む', async () => {
       const stored = JSON.stringify({ userPlan: 'premium', premiumExpiresAt: '2099-12-31T00:00:00.000Z' });
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(stored);
+      // Promise.all で planData と onboardingData を同時に取得するため2回モック
+      (AsyncStorage.getItem as jest.Mock)
+        .mockResolvedValueOnce(stored)
+        .mockResolvedValueOnce(null);
 
       await useUserStore.getState().loadUserPlan();
 
@@ -38,7 +42,9 @@ describe('useUserStore', () => {
 
     it('TC-US-002: AsyncStorage から正しく free プランを読み込む', async () => {
       const stored = JSON.stringify({ userPlan: 'free', premiumExpiresAt: null });
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(stored);
+      (AsyncStorage.getItem as jest.Mock)
+        .mockResolvedValueOnce(stored)
+        .mockResolvedValueOnce(null);
 
       await useUserStore.getState().loadUserPlan();
 
@@ -47,7 +53,9 @@ describe('useUserStore', () => {
     });
 
     it('TC-US-003: AsyncStorage にデータがない場合は free プランになる', async () => {
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(null);
+      (AsyncStorage.getItem as jest.Mock)
+        .mockResolvedValueOnce(null)
+        .mockResolvedValueOnce(null);
 
       await useUserStore.getState().loadUserPlan();
 
@@ -64,11 +72,33 @@ describe('useUserStore', () => {
     });
 
     it('TC-US-005: 読み込み完了後に isLoading が false になる', async () => {
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(null);
+      (AsyncStorage.getItem as jest.Mock)
+        .mockResolvedValueOnce(null)
+        .mockResolvedValueOnce(null);
 
       await useUserStore.getState().loadUserPlan();
 
       expect(useUserStore.getState().isLoading).toBe(false);
+    });
+
+    it('TC-US-005b: オンボーディング完了済みの場合 hasCompletedOnboarding が true になる', async () => {
+      (AsyncStorage.getItem as jest.Mock)
+        .mockResolvedValueOnce(null)
+        .mockResolvedValueOnce('true');
+
+      await useUserStore.getState().loadUserPlan();
+
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(true);
+    });
+
+    it('TC-US-005c: オンボーディング未完了の場合 hasCompletedOnboarding が false になる', async () => {
+      (AsyncStorage.getItem as jest.Mock)
+        .mockResolvedValueOnce(null)
+        .mockResolvedValueOnce(null);
+
+      await useUserStore.getState().loadUserPlan();
+
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(false);
     });
   });
 
@@ -200,6 +230,43 @@ describe('useUserStore', () => {
       useUserStore.setState({ userPlan: 'premium', premiumExpiresAt: '2020-01-01T00:00:00.000Z' });
 
       expect(useUserStore.getState().getMaxCards()).toBe(1);
+    });
+  });
+
+  // ===== completeOnboarding() =====
+
+  describe('completeOnboarding()', () => {
+    it('TC-US-OB-001: completeOnboarding() 呼び出し後 hasCompletedOnboarding が true になる', async () => {
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(false);
+
+      await useUserStore.getState().completeOnboarding();
+
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(true);
+    });
+
+    it('TC-US-OB-002: AsyncStorage に "@onboarding_completed" キーで "true" が保存される', async () => {
+      await useUserStore.getState().completeOnboarding();
+
+      expect(AsyncStorage.setItem).toHaveBeenCalledWith('@onboarding_completed', 'true');
+    });
+
+    it('TC-US-OB-003: AsyncStorage エラー時も hasCompletedOnboarding は true のまま', async () => {
+      (AsyncStorage.setItem as jest.Mock).mockRejectedValueOnce(new Error('Storage error'));
+
+      await useUserStore.getState().completeOnboarding();
+
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(true);
+    });
+
+    it('TC-US-OB-004: 初期状態では hasCompletedOnboarding は false', () => {
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(false);
+    });
+
+    it('TC-US-OB-005: completeOnboarding() を複数回呼んでも hasCompletedOnboarding は true のまま', async () => {
+      await useUserStore.getState().completeOnboarding();
+      await useUserStore.getState().completeOnboarding();
+
+      expect(useUserStore.getState().hasCompletedOnboarding).toBe(true);
     });
   });
 

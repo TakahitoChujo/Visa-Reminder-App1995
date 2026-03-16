@@ -14,6 +14,7 @@ import {
   Platform,
   Share,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { showAlert, showConfirm } from '../utils/platform';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,6 +28,7 @@ import { RootStackParamList, ChecklistScreenNavigationProp } from '../types/navi
 type ChecklistScreenRouteProp = RouteProp<RootStackParamList, 'Checklist'>;
 
 export const ChecklistScreen = React.memo(function ChecklistScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<ChecklistScreenNavigationProp>();
   const route = useRoute<ChecklistScreenRouteProp>();
   const { cardId } = route.params;
@@ -296,7 +298,7 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
   return (
     <View style={styles.container}>
       {/* ナビゲーションバー */}
-      <View style={styles.navBar}>
+      <View style={[styles.navBar, { paddingTop: insets.top, height: 56 + insets.top }]}>
         <TouchableOpacity
           style={styles.navBack}
           onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home')}
@@ -416,7 +418,7 @@ export const ChecklistScreen = React.memo(function ChecklistScreen() {
 
       {/* ボトムアクション（ネイティブのみ固定フッター） */}
       {Platform.OS !== 'web' && (
-        <View style={styles.bottomAction}>{actionButtons}</View>
+        <View style={[styles.bottomAction, { paddingBottom: theme.spacing.lg + insets.bottom }]}>{actionButtons}</View>
       )}
     </View>
   );

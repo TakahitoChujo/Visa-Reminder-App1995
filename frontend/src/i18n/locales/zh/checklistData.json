@@ -1,0 +1,271 @@
+{
+  "engineer": {
+    "basic": {
+      "title": "基本文件",
+      "items": {
+        "applicationForm": {
+          "title": "在留期间更新许可申请书",
+          "description": "可从出入国在留管理厅网站下载"
+        },
+        "photo": {
+          "title": "照片（4cm × 3cm）",
+          "description": "申请前3个月内拍摄，不戴帽子，纯色背景"
+        },
+        "passport": {
+          "title": "护照",
+          "description": "出示原件（将归还）"
+        },
+        "residenceCard": {
+          "title": "在留卡",
+          "description": "出示原件（将归还）"
+        },
+        "fee": {
+          "title": "费用（收入印花税）",
+          "description": "价值4,000日元的收入印花税"
+        }
+      }
+    },
+    "employment": {
+      "title": "就业文件",
+      "items": {
+        "employmentCertificate": {
+          "title": "在职证明或劳动合同",
+          "description": "从您的公司获取"
+        },
+        "companyRegistration": {
+          "title": "公司登记证明",
+          "description": "从法务局获取（3个月内签发）"
+        },
+        "taxWithholding": {
+          "title": "源泉徵收票",
+          "description": "上一年度源泉徵收票（从公司获取）"
+        },
+        "reasonLetter": {
+          "title": "理由书（目的说明书）",
+          "description": "可选但推荐。说明继续在留的理由（1-2页，A4）"
+        },
+        "workHistory": {
+          "title": "工作履历/简历",
+          "description": "您的工作经历和技能详情"
+        },
+        "companyBrochure": {
+          "title": "公司业务说明",
+          "description": "公司手册或业务摘要（对第3类和第4类公司尤为重要）"
+        }
+      }
+    },
+    "tax": {
+      "title": "税务与保险",
+      "items": {
+        "taxCertificate": {
+          "title": "住民税课税证明书",
+          "description": "从市区町村获取（最近年度）"
+        },
+        "taxPayment": {
+          "title": "住民税纳税证明书",
+          "description": "从市区町村获取（最近年度）"
+        }
+      }
+    },
+    "categorySpecific": {
+      "title": "补充文件（第4类）",
+      "items": {
+        "financialStatement": {
+          "title": "财务报表（最近3个财政年度）",
+          "description": "非上市公司（第4类）必须提供：损益表和资产负债表"
+        },
+        "corporateTaxPayment": {
+          "title": "法人税纳税证明书",
+          "description": "法人税纳税证明书（从税务署获取）"
+        }
+      }
+    }
+  },
+  "student": {
+    "basic": {
+      "title": "基本文件",
+      "items": {
+        "applicationForm": {
+          "title": "在留期间更新许可申请书",
+          "description": "可从出入国在留管理厅网站下载"
+        },
+        "photo": {
+          "title": "照片（4cm × 3cm）",
+          "description": "申请前3个月内拍摄，不戴帽子，纯色背景"
+        },
+        "passport": {
+          "title": "护照",
+          "description": "出示原件（将归还）"
+        },
+        "residenceCard": {
+          "title": "在留卡",
+          "description": "出示原件（将归还）"
+        }
+      }
+    },
+    "school": {
+      "title": "学校文件",
+      "items": {
+        "enrollmentCertificate": {
+          "title": "在学证明书",
+          "description": "从您的学校获取"
+        },
+        "transcript": {
+          "title": "成绩单",
+          "description": "上学期为止的成绩单"
+        },
+        "attendanceCertificate": {
+          "title": "出勤证明书",
+          "description": "证明您出勤率的文件"
+        }
+      }
+    },
+    "financial": {
+      "title": "经济支持",
+      "items": {
+        "financialSupport": {
+          "title": "经济支持证明",
+          "description": "银行存款余额证明、奖学金证明等"
+        },
+        "scholarshipCertificate": {
+          "title": "奖学金证明书",
+          "description": "如获得奖学金请提交（从奖学金机构获取）"
+        },
+        "financialSponsorIncome": {
+          "title": "经费支辩人收入证明",
+          "description": "如由父母或监护人承担费用（税务证明、银行账单等）"
+        }
+      }
+    },
+    "optionalDocs": {
+      "title": "补充文件（如适用）",
+      "items": {
+        "attendanceExplanation": {
+          "title": "出勤率低的说明书",
+          "description": "若出勤率低于80%，可能需要书面说明"
+        }
+      }
+    }
+  },
+  "spouseJapanese": {
+    "basic": {
+      "title": "基本文件",
+      "items": {
+        "applicationForm": {
+          "title": "在留期间更新许可申请书",
+          "description": "可从出入国在留管理厅网站下载"
+        },
+        "photo": {
+          "title": "照片（4cm × 3cm）",
+          "description": "申请前3个月内拍摄，不戴帽子，纯色背景"
+        },
+        "passport": {
+          "title": "护照",
+          "description": "出示原件（将归还）"
+        },
+        "residenceCard": {
+          "title": "在留卡",
+          "description": "出示原件（将归还）"
+        }
+      }
+    },
+    "family": {
+      "title": "家庭文件",
+      "items": {
+        "spouseEmployment": {
+          "title": "配偶者的在职证明",
+          "description": "从日本人配偶者的公司获取"
+        },
+        "spouseTax": {
+          "title": "配偶者的住民税课税证明书",
+          "description": "从市区町村获取"
+        },
+        "identityGuarantee": {
+          "title": "身元保证书",
+          "description": "日本人配偶者担任保证人"
+        },
+        "familyRegister": {
+          "title": "戸籍謄本",
+          "description": "证明婚姻关系的户籍谱（3个月内签发）"
+        },
+        "relationshipEvidence": {
+          "title": "夫妻关系证明",
+          "description": "婚礼照片、共同生活证明、通讯记录"
+        },
+        "spousePassportCopy": {
+          "title": "日本人配偶者护照复印件",
+          "description": "日本人配偶者护照照片页的复印件"
+        },
+        "guarantorIncome": {
+          "title": "保证人收入证明",
+          "description": "配偶者的税务证明或源泉徵收票"
+        }
+      }
+    }
+  },
+  "spousePermanent": {
+    "basic": {
+      "title": "基本文件",
+      "items": {
+        "applicationForm": {
+          "title": "在留期间更新许可申请书",
+          "description": "可从出入国在留管理厅网站下载"
+        },
+        "photo": {
+          "title": "照片（4cm × 3cm）",
+          "description": "申请前3个月内拍摄，不戴帽子，纯色背景"
+        },
+        "passport": {
+          "title": "护照",
+          "description": "出示原件（将归还）"
+        },
+        "residenceCard": {
+          "title": "在留卡",
+          "description": "出示原件（将归还）"
+        }
+      }
+    },
+    "spouseDocs": {
+      "title": "配偶者（永久居民）文件",
+      "items": {
+        "spousePermanentCard": {
+          "title": "配偶者的在留卡（永久居民）",
+          "description": "永久居民配偶者的在留卡（出示原件）"
+        },
+        "familyRegister": {
+          "title": "户籍谱或婚姻证明",
+          "description": "证明婚姻关系的文件（可能需要翻译）"
+        },
+        "residenceCertificate": {
+          "title": "住民票（全体家庭成员）",
+          "description": "证明与配偶者共同居住的住民票"
+        },
+        "identityGuarantee": {
+          "title": "身元保证书",
+          "description": "永久居民配偶者担任保证人"
+        },
+        "relationshipEvidence": {
+          "title": "真实共同生活的证明",
+          "description": "证明共同生活的文件（租赁合同、水电费账单等）"
+        },
+        "marriagePhotos": {
+          "title": "夫妻照片（可选）",
+          "description": "婚礼或日常照片（推荐用于验证真实婚姻）"
+        }
+      }
+    },
+    "financial": {
+      "title": "生活状况及税务文件",
+      "items": {
+        "taxCertificate": {
+          "title": "住民税课税证明书",
+          "description": "永久居民配偶者或申请人的税务证明（从市区町村获取）"
+        },
+        "taxPayment": {
+          "title": "住民税纳税证明书",
+          "description": "证明无欠税的证明书（从市区町村获取）"
+        }
+      }
+    }
+  }
+}

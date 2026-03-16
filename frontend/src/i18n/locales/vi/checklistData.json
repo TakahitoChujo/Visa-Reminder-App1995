@@ -1,0 +1,271 @@
+{
+  "engineer": {
+    "basic": {
+      "title": "Tài liệu cơ bản",
+      "items": {
+        "applicationForm": {
+          "title": "Đơn xin gia hạn tư cách lưu trú",
+          "description": "Có thể tải xuống từ trang web Cục Xuất nhập cảnh"
+        },
+        "photo": {
+          "title": "Ảnh (4cm × 3cm)",
+          "description": "Chụp trong vòng 3 tháng trước khi nộp đơn, không đội mũ, nền đơn giản"
+        },
+        "passport": {
+          "title": "Hộ chiếu",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        },
+        "residenceCard": {
+          "title": "Thẻ lưu trú",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        },
+        "fee": {
+          "title": "Phí (Tem doanh thu)",
+          "description": "Tem doanh thu trị giá 4.000 yên"
+        }
+      }
+    },
+    "employment": {
+      "title": "Tài liệu việc làm",
+      "items": {
+        "employmentCertificate": {
+          "title": "Giấy xác nhận việc làm hoặc hợp đồng lao động",
+          "description": "Xin từ công ty của bạn"
+        },
+        "companyRegistration": {
+          "title": "Giấy đăng ký công ty",
+          "description": "Xin từ Cục pháp lý (cấp trong vòng 3 tháng)"
+        },
+        "taxWithholding": {
+          "title": "Giấy xác nhận khấu trừ thuế",
+          "description": "Phiếu khấu trừ thuế năm trước (xin từ công ty)"
+        },
+        "reasonLetter": {
+          "title": "Thư lý do (Tuyên bố mục đích)",
+          "description": "Tùy chọn nhưng được khuyến nghị. Giải thích lý do tiếp tục lưu trú (1-2 trang, A4)"
+        },
+        "workHistory": {
+          "title": "Lịch sử công việc / Sơ yếu lý lịch",
+          "description": "Chi tiết về kinh nghiệm và kỹ năng làm việc của bạn"
+        },
+        "companyBrochure": {
+          "title": "Mô tả hoạt động kinh doanh của công ty",
+          "description": "Tập sách giới thiệu hoặc tóm tắt kinh doanh (đặc biệt quan trọng với Loại 3 và 4)"
+        }
+      }
+    },
+    "tax": {
+      "title": "Thuế và Bảo hiểm",
+      "items": {
+        "taxCertificate": {
+          "title": "Giấy xác nhận thuế cư trú",
+          "description": "Xin từ văn phòng thành phố (cho năm gần nhất)"
+        },
+        "taxPayment": {
+          "title": "Giấy xác nhận nộp thuế cư trú",
+          "description": "Xin từ văn phòng thành phố (cho năm gần nhất)"
+        }
+      }
+    },
+    "categorySpecific": {
+      "title": "Tài liệu bổ sung (Loại 4)",
+      "items": {
+        "financialStatement": {
+          "title": "Báo cáo tài chính (3 năm tài chính gần nhất)",
+          "description": "Bắt buộc với công ty không niêm yết (Loại 4): báo cáo thu nhập và bảng cân đối"
+        },
+        "corporateTaxPayment": {
+          "title": "Giấy xác nhận nộp thuế doanh nghiệp",
+          "description": "Giấy xác nhận nộp thuế doanh nghiệp (xin từ cơ quan thuế)"
+        }
+      }
+    }
+  },
+  "student": {
+    "basic": {
+      "title": "Tài liệu cơ bản",
+      "items": {
+        "applicationForm": {
+          "title": "Đơn xin gia hạn tư cách lưu trú",
+          "description": "Có thể tải xuống từ trang web Cục Xuất nhập cảnh"
+        },
+        "photo": {
+          "title": "Ảnh (4cm × 3cm)",
+          "description": "Chụp trong vòng 3 tháng trước khi nộp đơn, không đội mũ, nền đơn giản"
+        },
+        "passport": {
+          "title": "Hộ chiếu",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        },
+        "residenceCard": {
+          "title": "Thẻ lưu trú",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        }
+      }
+    },
+    "school": {
+      "title": "Tài liệu trường học",
+      "items": {
+        "enrollmentCertificate": {
+          "title": "Giấy xác nhận đang học",
+          "description": "Xin từ trường của bạn"
+        },
+        "transcript": {
+          "title": "Bảng điểm",
+          "description": "Bảng điểm đến học kỳ trước"
+        },
+        "attendanceCertificate": {
+          "title": "Giấy xác nhận tỷ lệ điểm danh",
+          "description": "Tài liệu xác nhận tỷ lệ điểm danh của bạn"
+        }
+      }
+    },
+    "financial": {
+      "title": "Hỗ trợ tài chính",
+      "items": {
+        "financialSupport": {
+          "title": "Bằng chứng hỗ trợ tài chính",
+          "description": "Giấy xác nhận số dư ngân hàng, giấy học bổng, v.v."
+        },
+        "scholarshipCertificate": {
+          "title": "Giấy chứng nhận học bổng",
+          "description": "Nộp nếu bạn nhận học bổng (xin từ tổ chức học bổng)"
+        },
+        "financialSponsorIncome": {
+          "title": "Bằng chứng thu nhập của người bảo lãnh tài chính",
+          "description": "Nếu cha mẹ hoặc người giám hộ chi trả (giấy xác nhận thuế, sao kê ngân hàng, v.v.)"
+        }
+      }
+    },
+    "optionalDocs": {
+      "title": "Tài liệu bổ sung (Nếu có)",
+      "items": {
+        "attendanceExplanation": {
+          "title": "Thư giải thích tỷ lệ điểm danh thấp",
+          "description": "Nếu tỷ lệ điểm danh dưới 80%, có thể cần giải thích bằng văn bản"
+        }
+      }
+    }
+  },
+  "spouseJapanese": {
+    "basic": {
+      "title": "Tài liệu cơ bản",
+      "items": {
+        "applicationForm": {
+          "title": "Đơn xin gia hạn tư cách lưu trú",
+          "description": "Có thể tải xuống từ trang web Cục Xuất nhập cảnh"
+        },
+        "photo": {
+          "title": "Ảnh (4cm × 3cm)",
+          "description": "Chụp trong vòng 3 tháng trước khi nộp đơn, không đội mũ, nền đơn giản"
+        },
+        "passport": {
+          "title": "Hộ chiếu",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        },
+        "residenceCard": {
+          "title": "Thẻ lưu trú",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        }
+      }
+    },
+    "family": {
+      "title": "Tài liệu gia đình",
+      "items": {
+        "spouseEmployment": {
+          "title": "Giấy xác nhận việc làm của vợ/chồng",
+          "description": "Xin từ công ty của vợ/chồng người Nhật"
+        },
+        "spouseTax": {
+          "title": "Giấy xác nhận thuế cư trú của vợ/chồng",
+          "description": "Xin từ văn phòng thành phố"
+        },
+        "identityGuarantee": {
+          "title": "Thư bảo lãnh",
+          "description": "Vợ/chồng người Nhật đóng vai trò là người bảo lãnh"
+        },
+        "familyRegister": {
+          "title": "Hộ khẩu gia đình (Koseki Tohon)",
+          "description": "Hộ khẩu chứng minh hôn nhân (cấp trong vòng 3 tháng)"
+        },
+        "relationshipEvidence": {
+          "title": "Bằng chứng quan hệ vợ chồng",
+          "description": "Ảnh đám cưới, bằng chứng sống chung, hồ sơ liên lạc"
+        },
+        "spousePassportCopy": {
+          "title": "Bản sao hộ chiếu của vợ/chồng người Nhật",
+          "description": "Bản sao trang ảnh trong hộ chiếu của vợ/chồng người Nhật"
+        },
+        "guarantorIncome": {
+          "title": "Bằng chứng thu nhập của người bảo lãnh",
+          "description": "Giấy xác nhận thuế hoặc phiếu khấu trừ thuế của vợ/chồng"
+        }
+      }
+    }
+  },
+  "spousePermanent": {
+    "basic": {
+      "title": "Tài liệu cơ bản",
+      "items": {
+        "applicationForm": {
+          "title": "Đơn xin gia hạn tư cách lưu trú",
+          "description": "Có thể tải xuống từ trang web Cục Xuất nhập cảnh"
+        },
+        "photo": {
+          "title": "Ảnh (4cm × 3cm)",
+          "description": "Chụp trong vòng 3 tháng trước khi nộp đơn, không đội mũ, nền đơn giản"
+        },
+        "passport": {
+          "title": "Hộ chiếu",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        },
+        "residenceCard": {
+          "title": "Thẻ lưu trú",
+          "description": "Xuất trình bản gốc (sẽ được trả lại)"
+        }
+      }
+    },
+    "spouseDocs": {
+      "title": "Tài liệu vợ/chồng (Thường trú nhân)",
+      "items": {
+        "spousePermanentCard": {
+          "title": "Thẻ lưu trú của vợ/chồng (Thường trú nhân)",
+          "description": "Thẻ lưu trú của vợ/chồng thường trú (xuất trình bản gốc)"
+        },
+        "familyRegister": {
+          "title": "Hộ khẩu hoặc Giấy chứng nhận kết hôn",
+          "description": "Tài liệu chứng minh quan hệ hôn nhân (có thể cần bản dịch)"
+        },
+        "residenceCertificate": {
+          "title": "Giấy xác nhận cư trú (Tất cả thành viên hộ gia đình)",
+          "description": "Giấy xác nhận cư trú chứng minh sống chung với vợ/chồng"
+        },
+        "identityGuarantee": {
+          "title": "Thư bảo lãnh",
+          "description": "Vợ/chồng thường trú đóng vai trò là người bảo lãnh"
+        },
+        "relationshipEvidence": {
+          "title": "Bằng chứng sống chung thực sự",
+          "description": "Tài liệu chứng minh cuộc sống chung (hợp đồng thuê nhà, hóa đơn điện nước, v.v.)"
+        },
+        "marriagePhotos": {
+          "title": "Ảnh của cặp đôi (Tùy chọn)",
+          "description": "Ảnh đám cưới hoặc hàng ngày (khuyến nghị để xác minh hôn nhân thực sự)"
+        }
+      }
+    },
+    "financial": {
+      "title": "Tình hình sinh sống và Tài liệu thuế",
+      "items": {
+        "taxCertificate": {
+          "title": "Giấy xác nhận thuế cư trú",
+          "description": "Giấy xác nhận thuế của vợ/chồng thường trú hoặc người nộp đơn (xin từ văn phòng thành phố)"
+        },
+        "taxPayment": {
+          "title": "Giấy xác nhận nộp thuế cư trú",
+          "description": "Giấy xác nhận không nợ thuế (xin từ văn phòng thành phố)"
+        }
+      }
+    }
+  }
+}

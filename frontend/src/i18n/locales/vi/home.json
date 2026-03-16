@@ -1,0 +1,31 @@
+{
+  "title": "Tư cách lưu trú",
+  "registeredCards": "Thẻ lưu trú đã đăng ký",
+  "registrationCount": "Số đã đăng ký",
+  "needsAttention": "Cần chú ý",
+  "empty": {
+    "title": "Chưa có thẻ lưu trú nào",
+    "description": "Đăng ký ngày hết hạn thẻ lưu trú để không bỏ lỡ thời hạn gia hạn"
+  },
+  "card": {
+    "registerNew": "Đăng ký tư cách lưu trú",
+    "registerNewLong": "Đăng ký tư cách lưu trú mới",
+    "checklist": "Danh sách kiểm tra",
+    "day": "ngày"
+  },
+  "disclaimer": {
+    "text": "Ứng dụng này là công cụ hỗ trợ thủ tục lưu trú. Đây không phải là tư vấn pháp lý. Vui lòng kiểm tra thông tin mới nhất trên trang web chính thức của Cục Xuất nhập cảnh.",
+    "link": "Xem trang chính thức"
+  },
+  "accessibility": {
+    "registerCard": "Đăng ký tư cách lưu trú",
+    "registerCardHint": "Mở màn hình đăng ký tư cách lưu trú",
+    "cardDetail": "{{type}} còn {{days}} ngày đến hết hạn",
+    "cardDetailHint": "Mở màn hình chi tiết và chỉnh sửa",
+    "openChecklist": "Mở danh sách kiểm tra",
+    "openChecklistHint": "Mở danh sách tài liệu cần thiết",
+    "registerNewCard": "Đăng ký tư cách lưu trú mới",
+    "registerNewCardHint": "Mở màn hình đăng ký",
+    "upgradeHint": "Xem thông tin nâng cấp"
+  }
+}

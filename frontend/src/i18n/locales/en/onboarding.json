@@ -1,0 +1,30 @@
+{
+  "slide1": {
+    "title": "Never Miss Your\nVisa Renewal",
+    "description": "Register your visa expiration date and get automatic reminders before it's too late"
+  },
+  "slide2": {
+    "title": "Easy Registration",
+    "description": "Just enter your visa type and expiration date. No personal info (name, card number) is ever stored"
+  },
+  "slide3": {
+    "title": "Push Notifications\nBefore Expiry",
+    "description": "Get notified 4 months, 3 months, 1 month, and 2 weeks before expiration. Plenty of time to prepare"
+  },
+  "slide4": {
+    "title": "Document Checklist\nIncluded",
+    "description": "Required document lists by visa type, plus application letter templates to get you started"
+  },
+  "slide5": {
+    "title": "Choose Your Language",
+    "description": "Use the app in your preferred language"
+  },
+  "button": {
+    "next": "Next",
+    "start": "Get Started",
+    "skip": "Skip"
+  },
+  "language": {
+    "selectLabel": "Select a language"
+  }
+}

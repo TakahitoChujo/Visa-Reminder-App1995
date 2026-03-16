@@ -8,9 +8,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView,
   Platform,
   Alert,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useResidenceStore } from '../store/useResidenceStore';
@@ -25,6 +27,7 @@ import { useAppTranslation } from '../i18n/useAppTranslation';
 import { notificationService } from '../services/notificationService';
 
 export const RegisterScreen = React.memo(function RegisterScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<RegisterScreenNavigationProp>();
   const { addCard, cards } = useResidenceStore();
   const { canAddCard, getMaxCards } = useUserStore();
@@ -132,8 +135,11 @@ export const RegisterScreen = React.memo(function RegisterScreen() {
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={[styles.header, { paddingTop: insets.top + theme.spacing.md }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home')}
@@ -171,8 +177,8 @@ export const RegisterScreen = React.memo(function RegisterScreen() {
         />
       </ScrollView>
 
-      <View style={styles.bottomActions}>{formButtons}</View>
-    </View>
+      <View style={[styles.bottomActions, { paddingBottom: insets.bottom + theme.spacing.lg }]}>{formButtons}</View>
+    </KeyboardAvoidingView>
   );
 });
 

@@ -1,0 +1,30 @@
+{
+  "header": {
+    "title": "Chỉnh sửa tư cách lưu trú"
+  },
+  "error": {
+    "notFound": "Không tìm thấy thông tin tư cách lưu trú",
+    "updateFailed": "Cập nhật thất bại",
+    "deleteFailed": "Xóa thất bại"
+  },
+  "confirm": {
+    "deleteTitle": "Xác nhận xóa",
+    "deleteMessage": "Xóa thông tin tư cách lưu trú này? Thao tác này không thể hoàn tác.",
+    "deleteButton": "Xóa"
+  },
+  "delete": {
+    "label": "Xóa tư cách lưu trú này",
+    "deleting": "Đang xóa...",
+    "successTitle": "Đã xóa",
+    "successMessage": "Đã xóa thông tin tư cách lưu trú"
+  },
+  "button": {
+    "save": "Lưu"
+  },
+  "accessibility": {
+    "saveChanges": "Lưu thay đổi",
+    "save": "Lưu",
+    "deleteCard": "Xóa tư cách lưu trú",
+    "deleteCardHint": "Xóa thông tin tư cách lưu trú"
+  }
+}

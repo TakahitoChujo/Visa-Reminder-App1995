@@ -1,0 +1,52 @@
+{
+  "section": {
+    "basicInfo": "基本信息",
+    "deadlineInfo": "期限信息",
+    "memo": "备注（可选）"
+  },
+  "label": {
+    "expirationDate": "有效期",
+    "residenceType": "在留资格类型",
+    "memo": "备注",
+    "applicationPeriod": "申请期间",
+    "daysRemaining": "剩余天数"
+  },
+  "placeholder": {
+    "selectDate": "选择日期",
+    "selectType": "选择类型",
+    "memoInput": "根据需要输入备注（例如：公司名称、预计申请日期）"
+  },
+  "helper": {
+    "dateWeb": "点击日历图标选择日期",
+    "dateNative": "点击日历图标选择日期",
+    "typeAutoSet": "所需文件根据在留资格类型自动设置",
+    "memoEncrypted": "请勿输入个人信息（姓名、在留卡号等）。备注以加密方式存储。"
+  },
+  "info": {
+    "applicationPeriodTitle": "关于申请期间",
+    "applicationPeriodBody": "在留资格更新申请可在到期日约4个月前提交。\n建议尽早开始准备。"
+  },
+  "reminder": {
+    "title": "已计划通知",
+    "fourMonths": "4个月前",
+    "threeMonths": "3个月前",
+    "oneMonth": "1个月前",
+    "twoWeeks": "2周前"
+  },
+  "datePreview": {
+    "expirationDate": "有效期",
+    "applicationStart": "申请期间",
+    "applicationStartSuffix": "起",
+    "daysRemaining": "剩余天数",
+    "daySuffix": "天"
+  },
+  "accessibility": {
+    "residenceType": "在留资格类型：{{type}}",
+    "residenceTypeUnselected": "未选择",
+    "residenceTypeHint": "点击选择在留资格类型",
+    "memoHint": "输入最多{{max}}字的备注"
+  },
+  "validation": {
+    "pastDate": "不能选择过去的日期"
+  }
+}

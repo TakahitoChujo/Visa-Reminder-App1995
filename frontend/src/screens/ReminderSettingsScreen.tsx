@@ -12,11 +12,13 @@ import {
   Platform,
   Linking,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { showAlert, showConfirm } from '../utils/platform';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Notifications from 'expo-notifications';
 import { useResidenceStore } from '../store/useResidenceStore';
+import { notificationService } from '../services/notificationService';
 import { theme } from '../theme';
 import { addMonths, addDays } from 'date-fns';
 import { ReminderSettingsScreenNavigationProp } from '../types/navigation';
@@ -24,6 +26,7 @@ import type { NotificationPermissionStatus } from '../types';
 import { useAppTranslation } from '../i18n/useAppTranslation';
 
 export const ReminderSettingsScreen = React.memo(function ReminderSettingsScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation<ReminderSettingsScreenNavigationProp>();
   const { t, formatDisplayDate } = useAppTranslation(['reminder', 'common']);
   const { cards, reminderSettings, updateReminderSettings } = useResidenceStore();
@@ -74,6 +77,23 @@ export const ReminderSettingsScreen = React.memo(function ReminderSettingsScreen
     Linking.openSettings();
   }, []);
 
+  // テスト通知を送信
+  const handleSendTestNotification = useCallback(async () => {
+    if (permissionStatus !== 'granted') {
+      showAlert(
+        t('reminder:permission.deniedTitle'),
+        t('reminder:permission.deniedMessage')
+      );
+      return;
+    }
+    try {
+      await notificationService.sendTestNotification();
+      showAlert(t('reminder:test.sentTitle'), t('reminder:test.sentMessage'));
+    } catch (error) {
+      showAlert(t('reminder:test.errorTitle'), t('reminder:test.errorMessage'));
+    }
+  }, [permissionStatus, t]);
+
   // リマインダー設定の更新
   const handleToggle = useCallback(
     async (key: keyof typeof reminderSettings, value: boolean) => {
@@ -118,7 +138,7 @@ export const ReminderSettingsScreen = React.memo(function ReminderSettingsScreen
   return (
     <View style={styles.container}>
       {/* ナビゲーションバー */}
-      <View style={styles.navBar}>
+      <View style={[styles.navBar, { paddingTop: insets.top, height: 56 + insets.top }]}>
         <TouchableOpacity
           style={styles.navBack}
           onPress={() => navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home')}
@@ -131,7 +151,7 @@ export const ReminderSettingsScreen = React.memo(function ReminderSettingsScreen
         <View style={styles.navSpacer} />
       </View>
 
-      <ScrollView style={styles.content} contentContainerStyle={styles.scrollContent}>
+      <ScrollView style={styles.content} contentContainerStyle={[styles.scrollContent, { paddingBottom: theme.spacing.xxl * 2 + insets.bottom }]}>
         {/* ページヘッダー */}
         <View style={styles.pageHeader}>
           <Text style={styles.pageTitle}>{t('reminder:pageTitle')}</Text>
@@ -395,8 +415,20 @@ export const ReminderSettingsScreen = React.memo(function ReminderSettingsScreen
           </View>
         </View>
 
-        {/* システム設定へのリンク */}
+        {/* システム設定へのリンク / テスト通知 */}
         <View style={styles.buttonGroup}>
+          {permissionStatus === 'granted' && (
+            <TouchableOpacity
+              style={[styles.btnLink, styles.btnTestNotification]}
+              onPress={handleSendTestNotification}
+              accessibilityRole="button"
+              accessibilityLabel={t('reminder:test.button')}
+              accessibilityHint={t('reminder:test.buttonHint')}
+            >
+              <Ionicons name="notifications-outline" size={20} color={theme.colors.primary} />
+              <Text style={styles.btnLinkText}>{t('reminder:test.button')}</Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             style={styles.btnLink}
             onPress={openNotificationSettings}
@@ -684,5 +716,8 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.lg,
     fontWeight: theme.fontWeight.medium,
     color: theme.colors.primary,
+  },
+  btnTestNotification: {
+    marginBottom: theme.spacing.md,
   },
 });
