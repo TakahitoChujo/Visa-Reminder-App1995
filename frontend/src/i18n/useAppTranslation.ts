@@ -5,17 +5,21 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
 import { format, type Locale } from 'date-fns';
-import { ja, enUS } from 'date-fns/locale';
+import { ja, enUS, vi, zhCN } from 'date-fns/locale';
 import type { SupportedLanguage } from './index';
 
 const DATE_FNS_LOCALES: Record<SupportedLanguage, Locale> = {
   ja,
   en: enUS,
+  vi,
+  zh: zhCN,
 };
 
 const DATE_DISPLAY_FORMATS: Record<SupportedLanguage, string> = {
   ja: 'yyyy年M月d日',
   en: 'MMM d, yyyy',
+  vi: 'd/M/yyyy',
+  zh: 'yyyy年M月d日',
 };
 
 export function useAppTranslation(ns?: string | string[]) {
