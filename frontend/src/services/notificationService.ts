@@ -4,14 +4,12 @@
  */
 
 import * as Notifications from 'expo-notifications';
-import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ResidenceCard,
   NotificationPermissionStatus,
   ReminderSettings,
-  NotificationType,
   NotificationPayload,
   DeviceToken,
 } from '../types';
@@ -37,15 +35,32 @@ Notifications.setNotificationHandler({
 
 class NotificationService {
   /**
+   * アプリ起動時の初期化 - Androidチャンネル作成
+   * requestPermissions() とは独立して毎回起動時に呼ぶ
+   */
+  async initialize(): Promise<void> {
+    if (Platform.OS === 'android') {
+      try {
+        await Notifications.setNotificationChannelAsync('visa_reminder_channel', {
+          name: i18n.t('notification:channel.name'),
+          description: i18n.t('notification:channel.description'),
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: '#FF231F7C',
+          sound: 'default',
+        });
+      } catch (error) {
+        console.error('Android通知チャンネル初期化エラー:', error);
+      }
+    }
+  }
+
+  /**
    * 通知パーミッションをリクエスト
+   * ローカル通知のためDevice.isDeviceチェックは行わない
    */
   async requestPermissions(): Promise<NotificationPermissionStatus> {
     try {
-      if (!Device.isDevice) {
-        console.log('Must use physical device for Push Notifications');
-        return 'denied';
-      }
-
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
@@ -58,17 +73,8 @@ class NotificationService {
         return 'denied';
       }
 
-      // Android用のチャンネル設定
-      if (Platform.OS === 'android') {
-        await Notifications.setNotificationChannelAsync('visa_reminder_channel', {
-          name: i18n.t('notification:channel.name'),
-          description: i18n.t('notification:channel.description'),
-          importance: Notifications.AndroidImportance.MAX,
-          vibrationPattern: [0, 250, 250, 250],
-          lightColor: '#FF231F7C',
-          sound: 'default',
-        });
-      }
+      // Android用のチャンネル設定（権限取得時にも確実に作成）
+      await this.initialize();
 
       return 'granted';
     } catch (error) {
@@ -95,6 +101,13 @@ class NotificationService {
     card: ResidenceCard,
     settings: ReminderSettings
   ): Promise<void> {
+    // 権限チェック: 権限がない場合はスキップ（エラーにしない）
+    const { status } = await Notifications.getPermissionsAsync();
+    if (status !== 'granted') {
+      console.warn('通知パーミッションがないためスケジュールをスキップ:', card.id);
+      return;
+    }
+
     // 既存の通知をキャンセル
     await this.cancelNotificationsForCard(card.id);
 

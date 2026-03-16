@@ -55,8 +55,17 @@ export const useNotifications = () => {
    * 初期化処理
    */
   useEffect(() => {
-    // 通知設定をロード
-    loadSettings();
+    // Androidチャンネル初期化 + 設定ロード + 権限確認
+    (async () => {
+      await notificationService.initialize();
+      await loadSettings();
+
+      // 未決定状態なら初回起動として自動リクエスト
+      const status = await notificationService.getPermissionStatus();
+      if (status === 'undetermined') {
+        await requestPermissions();
+      }
+    })();
 
     // 通知リスナーを登録
     const responseSubscription = notificationService.addNotificationResponseListener(
