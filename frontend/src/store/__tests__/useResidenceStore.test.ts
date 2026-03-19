@@ -111,13 +111,17 @@ describe('useResidenceStore', () => {
       expect(cards[0].createdAt).toBeDefined();
     });
 
-    it('TC-RS-002: メモが暗号化されて保存される', async () => {
+    it('TC-RS-002: メモが暗号化されてストレージに保存され、ストアには平文が保持される', async () => {
       const store = useResidenceStore.getState();
       await store.addCard({ expirationDate: '2027-01-01', residenceType: 'work_visa', memo: 'テストメモ' });
 
       expect(mockEncrypt).toHaveBeenCalledWith('テストメモ');
+      // ストアには平文メモが保持される（表示用）
       const { cards } = useResidenceStore.getState();
-      expect(cards[0].memo).toBe('encrypted:テストメモ');
+      expect(cards[0].memo).toBe('テストメモ');
+      // AsyncStorage には暗号化メモが保存される
+      const saved = JSON.parse((mockAsyncStorage.setItem as jest.Mock).mock.calls[0][1]);
+      expect(saved[0].memo).toBe('encrypted:テストメモ');
     });
 
     it('TC-RS-003: AsyncStorage にカードデータが保存される', async () => {
@@ -183,7 +187,7 @@ describe('useResidenceStore', () => {
       expect(updated[0].expirationDate).toBe('2028-12-31');
     });
 
-    it('TC-RS-009: メモが更新時に再暗号化される', async () => {
+    it('TC-RS-009: メモが更新時に再暗号化されてストレージに保存され、ストアには平文が保持される', async () => {
       const store = useResidenceStore.getState();
       await store.addCard({ expirationDate: '2027-01-01', residenceType: 'student' });
       jest.clearAllMocks();
@@ -193,7 +197,12 @@ describe('useResidenceStore', () => {
       await store.updateCard(cards[0].id, { memo: '新しいメモ' });
 
       expect(mockEncrypt).toHaveBeenCalledWith('新しいメモ');
-      expect(useResidenceStore.getState().cards[0].memo).toBe('encrypted:新しいメモ');
+      // ストアには平文メモが保持される（表示用）
+      expect(useResidenceStore.getState().cards[0].memo).toBe('新しいメモ');
+      // AsyncStorage には暗号化メモが保存される
+      const lastCall = (mockAsyncStorage.setItem as jest.Mock).mock.calls.at(-1);
+      const saved = JSON.parse(lastCall[1]);
+      expect(saved[0].memo).toBe('encrypted:新しいメモ');
     });
 
     it('TC-RS-010: メモを空文字に更新した場合、暗号化されない', async () => {
@@ -369,13 +378,18 @@ describe('useResidenceStore', () => {
       expect(useResidenceStore.getState().checklistItems['card-1'][0].completed).toBe(true);
     });
 
-    it('TC-RS-023: ノートが暗号化されて保存される', async () => {
+    it('TC-RS-023: ノートが暗号化されてストレージに保存され、ストアには平文が保持される', async () => {
       mockEncrypt.mockResolvedValueOnce('encrypted:メモ内容');
       const store = useResidenceStore.getState();
       await store.updateChecklistItem('card-1', 'item-1', { note: 'メモ内容' });
 
       expect(mockEncrypt).toHaveBeenCalledWith('メモ内容');
-      expect(useResidenceStore.getState().checklistItems['card-1'][0].note).toBe('encrypted:メモ内容');
+      // ストアには平文ノートが保持される（表示用）
+      expect(useResidenceStore.getState().checklistItems['card-1'][0].note).toBe('メモ内容');
+      // AsyncStorage には暗号化ノートが保存される
+      const lastCall = (mockAsyncStorage.setItem as jest.Mock).mock.calls.at(-1);
+      const saved = JSON.parse(lastCall[1]);
+      expect(saved['card-1'][0].note).toBe('encrypted:メモ内容');
     });
 
     it('TC-RS-024: ノートが空文字の場合は暗号化されない', async () => {

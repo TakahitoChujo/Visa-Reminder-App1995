@@ -16,7 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useResidenceStore } from '../store/useResidenceStore';
-import { useUserStore } from '../store/useUserStore';
+
 import { theme } from '../theme';
 import { differenceInDays } from 'date-fns';
 import { showAlert } from '../utils/platform';
@@ -28,16 +28,10 @@ export const HomeScreen = React.memo(function HomeScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { cards, loadData, isLoading, loadError } = useResidenceStore();
-  const { isPremium, getMaxCards, canAddCard, loadUserPlan } = useUserStore();
   const { t, formatDisplayDate } = useAppTranslation(['home', 'common', 'plan']);
-
-  const maxCards = getMaxCards();
-  const canAdd = canAddCard(cards.length);
-  const isPremiumUser = isPremium();
 
   useEffect(() => {
     loadData();
-    loadUserPlan();
   }, []);
 
   useEffect(() => {
@@ -155,12 +149,6 @@ export const HomeScreen = React.memo(function HomeScreen() {
         <View style={styles.headerTop}>
           <Text style={styles.appTitle}>{t('home:title')}</Text>
           <View style={styles.headerActions}>
-            {isPremiumUser && (
-              <View style={styles.premiumBadge}>
-                <Ionicons name="star" size={14} color={theme.colors.premium} />
-                <Text style={styles.premiumBadgeText}>Premium</Text>
-              </View>
-            )}
             <TouchableOpacity
               onPress={() => navigation.navigate('Settings')}
               accessibilityRole="button"
@@ -175,12 +163,7 @@ export const HomeScreen = React.memo(function HomeScreen() {
         {cards.length > 0 && (
           <View style={styles.summaryStats}>
             <View style={[styles.statCard, { marginRight: theme.spacing.md }]}>
-              <View style={styles.statValueRow}>
-                <Text style={styles.statValue}>{cards.length}</Text>
-                {!isPremiumUser && (
-                  <Text style={styles.statLimit}> / {maxCards}</Text>
-                )}
-              </View>
+              <Text style={styles.statValue}>{cards.length}</Text>
               <Text style={styles.statLabel}>{t('home:registrationCount')}</Text>
             </View>
             <View style={styles.statCard}>
@@ -212,42 +195,16 @@ export const HomeScreen = React.memo(function HomeScreen() {
 
         {cards.length === 0 ? renderEmptyState() : cards.map(renderVisaCard)}
         {cards.length > 0 && (
-          <>
-            {canAdd ? (
-              <TouchableOpacity
-                style={styles.addCardButton}
-                onPress={() => navigation.navigate('Register')}
-                accessibilityRole="button"
-                accessibilityLabel={t('home:accessibility.registerNewCard')}
-                accessibilityHint={t('home:accessibility.registerNewCardHint')}
-              >
-                <Ionicons name="add-circle-outline" size={24} color={theme.colors.primary} />
-                <Text style={styles.addCardButtonText}>{t('home:card.registerNewLong')}</Text>
-              </TouchableOpacity>
-            ) : (
-              <View style={styles.limitReachedBanner}>
-                <View style={styles.limitReachedContent}>
-                  <Ionicons name="lock-closed-outline" size={20} color={theme.colors.warning} />
-                  <Text style={styles.limitReachedText}>
-                    {t('plan:limit.freeMax', { limit: maxCards })}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.upgradeBadge}
-                  accessibilityRole="button"
-                  accessibilityLabel={t('plan:upgrade.button')}
-                  accessibilityHint={t('home:accessibility.upgradeHint')}
-                  onPress={() => {
-                    // TODO: アップグレード画面への遷移（Phase 3で実装）
-                    showAlert(t('common:alert.notice'), t('plan:comingSoon'));
-                  }}
-                >
-                  <Ionicons name="star" size={16} color={theme.colors.textWhite} />
-                  <Text style={styles.upgradeText}>{t('plan:upgrade.button')}</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </>
+          <TouchableOpacity
+            style={styles.addCardButton}
+            onPress={() => navigation.navigate('Register')}
+            accessibilityRole="button"
+            accessibilityLabel={t('home:accessibility.registerNewCard')}
+            accessibilityHint={t('home:accessibility.registerNewCardHint')}
+          >
+            <Ionicons name="add-circle-outline" size={24} color={theme.colors.primary} />
+            <Text style={styles.addCardButtonText}>{t('home:card.registerNewLong')}</Text>
+          </TouchableOpacity>
         )}
       </ScrollView>
     </View>

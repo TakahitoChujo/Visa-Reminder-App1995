@@ -1,7 +1,7 @@
 /**
  * 在留資格登録画面 - RegisterScreen
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -10,13 +10,11 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Alert,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useResidenceStore } from '../store/useResidenceStore';
-import { useUserStore } from '../store/useUserStore';
 import { ResidenceType } from '../types';
 import { theme } from '../theme';
 import { RegisterScreenNavigationProp } from '../types/navigation';
@@ -29,8 +27,7 @@ import { notificationService } from '../services/notificationService';
 export const RegisterScreen = React.memo(function RegisterScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<RegisterScreenNavigationProp>();
-  const { addCard, cards } = useResidenceStore();
-  const { canAddCard, getMaxCards } = useUserStore();
+  const { addCard } = useResidenceStore();
   const { t } = useAppTranslation(['register', 'common', 'plan']);
 
   const {
@@ -49,43 +46,9 @@ export const RegisterScreen = React.memo(function RegisterScreen() {
     getDaysRemaining,
   } = useResidenceCardForm();
 
-  // プラン制限チェック（画面ロード時）
-  useEffect(() => {
-    const canAdd = canAddCard(cards.length);
-    if (!canAdd) {
-      const message = t('plan:limit.reachedMessage', { limit: getMaxCards() });
-      if (Platform.OS === 'web') {
-        showAlert(t('plan:limit.reached'), message);
-        navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home');
-      } else {
-        Alert.alert(
-          t('plan:limit.reached'),
-          message,
-          [
-            { text: t('common:button.cancel'), onPress: () => navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home'), style: 'cancel' },
-            {
-              text: t('plan:upgrade.buttonShort'),
-              onPress: () => {
-                // TODO: アップグレード画面への遷移（Phase 3で実装）
-                navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Home');
-              },
-            },
-          ]
-        );
-      }
-    }
-  }, [cards.length, canAddCard, navigation]);
-
   // 保存処理（確認ダイアログあり）
   const handleSave = () => {
     if (!isFormValid()) return;
-
-    // プラン制限チェック（二重チェック）
-    const canAdd = canAddCard(cards.length);
-    if (!canAdd) {
-      showAlert(t('common:error.generic'), t('plan:limit.freeMax', { limit: getMaxCards() }));
-      return;
-    }
 
     showConfirm(
       t('register:confirm.title'),

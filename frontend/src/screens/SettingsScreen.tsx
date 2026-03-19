@@ -16,7 +16,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { useResidenceStore } from '../store/useResidenceStore';
-import { useUserStore } from '../store/useUserStore';
 import { theme } from '../theme';
 import { SettingsScreenNavigationProp } from '../types/navigation';
 import { showAlert, showConfirm } from '../utils/platform';
@@ -36,8 +35,7 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<SettingsScreenNavigationProp>();
   const { t, currentLanguage } = useAppTranslation(['settings', 'common', 'plan']);
-  const { clearAllData, cards, deleteCardsExcept } = useResidenceStore();
-  const { userPlan, isPremium, updateUserPlan, getMaxCards } = useUserStore();
+  const { clearAllData } = useResidenceStore();
 
   // アプリバージョン情報を取得
   const appVersion = Constants.expoConfig?.version || '1.0.0';
@@ -59,40 +57,6 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
       showAlert(t('common:error.generic'), t('common:error.linkOpenError'));
     }
   }, []);
-
-  /**
-   * プラン切り替え（テスト用）
-   */
-  const handleTogglePlan = useCallback(() => {
-    const newPlan = userPlan === 'free' ? 'premium' : 'free';
-
-    // プレミアム→無料ダウングレード時にデータが2件以上ある場合は確認ダイアログを表示
-    if (newPlan === 'free' && cards.length > 1) {
-      const sorted = [...cards].sort(
-        (a, b) => new Date(a.expirationDate).getTime() - new Date(b.expirationDate).getTime()
-      );
-      const keepCard = sorted[0];
-      const deleteCount = cards.length - 1;
-
-      const maxCards = getMaxCards?.() ?? 1;
-      showConfirm(
-        t('plan:downgrade.title'),
-        t('plan:downgrade.message', { limit: maxCards, count: deleteCount }),
-        async () => {
-          await deleteCardsExcept(keepCard.id);
-          await updateUserPlan('free');
-          showAlert('', t('plan:downgrade.successMessage'));
-        },
-        { confirmText: t('plan:downgrade.confirmButton'), cancelText: t('common:button.cancel'), destructive: true }
-      );
-      return;
-    }
-
-    // データが1件以下、またはプレミアムへのアップグレードはそのまま切り替え
-    updateUserPlan(newPlan).then(() => {
-      showAlert('', t('plan:changed', { plan: newPlan === 'premium' ? t('plan:name.premium') : t('plan:name.free') }));
-    });
-  }, [userPlan, updateUserPlan, cards, deleteCardsExcept]);
 
   /**
    * 言語切り替え
@@ -148,54 +112,8 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
             <Text style={styles.profileIconText}>{t('settings:profile.iconText')}</Text>
           </View>
           <Text style={styles.profileName}>{t('settings:profile.userName')}</Text>
-          <Text style={styles.profileStatus}>
-            {isPremium() ? (
-              <>
-                <Text style={styles.premiumBadge}>{t('plan:name.premium')}</Text>{t('plan:status.premiumActive')}
-              </>
-            ) : (
-              t('plan:status.freeActive')
-            )}
-          </Text>
+          <Text style={styles.profileStatus}>{t('plan:status.freeActive')}</Text>
         </View>
-
-        {/* プレミアムカード（無料プランの場合のみ表示） */}
-        {!isPremium() && (
-          <View style={styles.premiumCardWrapper}>
-            <TouchableOpacity
-              style={styles.premiumCard}
-              onPress={handleTogglePlan}
-              accessibilityRole="button"
-              accessibilityLabel={t('plan:upgrade.button')}
-              accessibilityHint={t('plan:upgrade.hint')}
-            >
-              <View style={styles.premiumHeader}>
-                <Ionicons name="star" size={32} color={theme.colors.textWhite} />
-                <Text style={styles.premiumTitle}>{t('plan:premium.title')}</Text>
-              </View>
-              <Text style={styles.premiumDescription}>
-                {t('plan:premium.description')}
-              </Text>
-              <View style={styles.premiumFeatures}>
-                <View style={styles.premiumFeature}>
-                  <Ionicons name="checkmark" size={16} color={theme.colors.textWhite} />
-                  <Text style={styles.premiumFeatureText}>{t('plan:premium.featureMultiple')}</Text>
-                </View>
-                <View style={styles.premiumFeature}>
-                  <Ionicons name="checkmark" size={16} color={theme.colors.textWhite} />
-                  <Text style={styles.premiumFeatureText}>{t('plan:premium.featureExport')}</Text>
-                </View>
-                <View style={styles.premiumFeature}>
-                  <Ionicons name="checkmark" size={16} color={theme.colors.textWhite} />
-                  <Text style={styles.premiumFeatureText}>{t('plan:premium.featureHistory')}</Text>
-                </View>
-              </View>
-              <View style={styles.premiumButton}>
-                <Text style={styles.premiumButtonText}>{t('plan:premium.priceButton')}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
 
         {/* 言語設定 */}
         <View style={styles.section}>

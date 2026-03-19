@@ -91,7 +91,7 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
   loadError: null,
 
   addCard: async (cardData) => {
-    // メモフィールドを暗号化
+    // メモフィールドを暗号化（ストレージ用）
     let encryptedMemo = cardData.memo;
     if (cardData.memo && cardData.memo.trim() !== '') {
       try {
@@ -104,16 +104,20 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
 
     const newCard: ResidenceCard = {
       ...cardData,
-      memo: encryptedMemo,
+      // ストアには平文メモを保持（表示用）
       id: Date.now().toString(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
 
     const cards = [...get().cards, newCard];
-    set({ cards });
+    set({ cards }); // 平文メモをストアにセット
 
-    await AsyncStorage.setItem(STORAGE_KEYS.CARDS, JSON.stringify(cards));
+    // AsyncStorage には暗号化メモを保存
+    const cardsForStorage = cards.map((c) =>
+      c.id === newCard.id ? { ...c, memo: encryptedMemo } : c
+    );
+    await AsyncStorage.setItem(STORAGE_KEYS.CARDS, JSON.stringify(cardsForStorage));
 
     // 通知をスケジュール
     try {
@@ -124,29 +128,37 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
   },
 
   updateCard: async (id, updates) => {
-    // メモフィールドが更新される場合は暗号化
-    let updatedData = { ...updates };
+    // メモフィールドが更新される場合は暗号化（ストレージ用）
+    let encryptedMemo: string | undefined;
     if (updates.memo !== undefined) {
       if (updates.memo && updates.memo.trim() !== '') {
         try {
-          updatedData.memo = await EncryptionService.encrypt(updates.memo);
+          encryptedMemo = await EncryptionService.encrypt(updates.memo);
         } catch (error) {
           console.error('Failed to encrypt memo:', error);
           throw new Error(i18n.t('common:error.memoEncryptionFailed'));
         }
       } else {
-        updatedData.memo = '';
+        encryptedMemo = '';
       }
     }
 
+    // ストアには平文メモを保持（表示用）
     const cards = get().cards.map((card) =>
       card.id === id
-        ? { ...card, ...updatedData, updatedAt: new Date().toISOString() }
+        ? { ...card, ...updates, updatedAt: new Date().toISOString() }
         : card
     );
-
     set({ cards });
-    await AsyncStorage.setItem(STORAGE_KEYS.CARDS, JSON.stringify(cards));
+
+    // AsyncStorage には暗号化メモを保存
+    const cardsForStorage = cards.map((card) => {
+      if (card.id === id && encryptedMemo !== undefined) {
+        return { ...card, memo: encryptedMemo };
+      }
+      return card;
+    });
+    await AsyncStorage.setItem(STORAGE_KEYS.CARDS, JSON.stringify(cardsForStorage));
 
     // 通知を再スケジュール
     const updatedCard = cards.find((c) => c.id === id);
@@ -234,34 +246,40 @@ export const useResidenceStore = create<ResidenceStore>((set, get) => ({
     const checklistItems = { ...get().checklistItems };
     const items = checklistItems[cardId] || [];
 
-    // メモフィールドが更新される場合は暗号化
-    let updatedData = { ...updates };
+    // ノートが更新される場合は暗号化（ストレージ用）
+    let encryptedNote: string | undefined;
     if (updates.note !== undefined) {
       if (updates.note && updates.note.trim() !== '') {
         try {
-          updatedData.note = await EncryptionService.encrypt(updates.note);
+          encryptedNote = await EncryptionService.encrypt(updates.note);
         } catch (error) {
           console.error('Failed to encrypt checklist note:', error);
           throw new Error(i18n.t('common:error.memoEncryptionFailed'));
         }
       } else {
-        updatedData.note = '';
+        encryptedNote = '';
       }
     }
 
+    // ストアには平文ノートを保持（表示用）
     const existingItem = items.find((item) => item.id === itemId);
     if (existingItem) {
-      // 既存アイテムを更新
       checklistItems[cardId] = items.map((item) =>
-        item.id === itemId ? { ...item, ...updatedData } : item
+        item.id === itemId ? { ...item, ...updates } : item
       );
     } else {
-      // 初回チェック時: アイテムがストアに存在しないので新規追加（upsert）
-      checklistItems[cardId] = [...items, { id: itemId, ...updatedData } as ChecklistItem];
+      checklistItems[cardId] = [...items, { id: itemId, ...updates } as ChecklistItem];
     }
-
     set({ checklistItems });
-    await AsyncStorage.setItem(STORAGE_KEYS.CHECKLIST_ITEMS, JSON.stringify(checklistItems));
+
+    // AsyncStorage には暗号化ノートを保存
+    const checklistForStorage = { ...checklistItems };
+    if (encryptedNote !== undefined) {
+      checklistForStorage[cardId] = checklistItems[cardId].map((item) =>
+        item.id === itemId ? { ...item, note: encryptedNote } : item
+      );
+    }
+    await AsyncStorage.setItem(STORAGE_KEYS.CHECKLIST_ITEMS, JSON.stringify(checklistForStorage));
   },
 
   markAllComplete: async (cardId, itemIds) => {
