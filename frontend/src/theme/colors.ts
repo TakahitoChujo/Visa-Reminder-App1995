@@ -52,9 +52,6 @@ export const colors = {
   gray800: '#1F2937',
   gray900: '#111827',
 
-  // Special colors
-  premium: '#F59E0B',
-  premiumDark: '#D97706',
 };
 
 export type ColorName = keyof typeof colors;

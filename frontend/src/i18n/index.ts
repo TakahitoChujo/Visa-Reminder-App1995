@@ -17,7 +17,7 @@ import jaChecklist from './locales/ja/checklist.json';
 import jaChecklistData from './locales/ja/checklistData.json';
 import jaReminder from './locales/ja/reminder.json';
 import jaSettings from './locales/ja/settings.json';
-import jaPlan from './locales/ja/plan.json';
+
 import jaOnboarding from './locales/ja/onboarding.json';
 
 // 英語ロケール
@@ -31,7 +31,7 @@ import enChecklist from './locales/en/checklist.json';
 import enChecklistData from './locales/en/checklistData.json';
 import enReminder from './locales/en/reminder.json';
 import enSettings from './locales/en/settings.json';
-import enPlan from './locales/en/plan.json';
+
 import enOnboarding from './locales/en/onboarding.json';
 
 // ベトナム語ロケール
@@ -45,7 +45,7 @@ import viChecklist from './locales/vi/checklist.json';
 import viChecklistData from './locales/vi/checklistData.json';
 import viReminder from './locales/vi/reminder.json';
 import viSettings from './locales/vi/settings.json';
-import viPlan from './locales/vi/plan.json';
+
 import viOnboarding from './locales/vi/onboarding.json';
 
 // 中国語（簡体字）ロケール
@@ -59,7 +59,7 @@ import zhChecklist from './locales/zh/checklist.json';
 import zhChecklistData from './locales/zh/checklistData.json';
 import zhReminder from './locales/zh/reminder.json';
 import zhSettings from './locales/zh/settings.json';
-import zhPlan from './locales/zh/plan.json';
+
 import zhOnboarding from './locales/zh/onboarding.json';
 
 const LANGUAGE_STORAGE_KEY = '@app_language';
@@ -87,7 +87,7 @@ const resources = {
     checklistData: jaChecklistData,
     reminder: jaReminder,
     settings: jaSettings,
-    plan: jaPlan,
+
     onboarding: jaOnboarding,
   },
   en: {
@@ -101,7 +101,7 @@ const resources = {
     checklistData: enChecklistData,
     reminder: enReminder,
     settings: enSettings,
-    plan: enPlan,
+
     onboarding: enOnboarding,
   },
   vi: {
@@ -115,7 +115,7 @@ const resources = {
     checklistData: viChecklistData,
     reminder: viReminder,
     settings: viSettings,
-    plan: viPlan,
+
     onboarding: viOnboarding,
   },
   zh: {
@@ -129,7 +129,7 @@ const resources = {
     checklistData: zhChecklistData,
     reminder: zhReminder,
     settings: zhSettings,
-    plan: zhPlan,
+
     onboarding: zhOnboarding,
   },
 } as const;
@@ -167,7 +167,7 @@ export async function initI18n(): Promise<void> {
     lng,
     fallbackLng: 'ja',
     defaultNS: 'common',
-    ns: ['common', 'home', 'form', 'register', 'edit', 'notification', 'checklist', 'checklistData', 'reminder', 'settings', 'plan', 'onboarding'],
+    ns: ['common', 'home', 'form', 'register', 'edit', 'notification', 'checklist', 'checklistData', 'reminder', 'settings', 'onboarding'],
     interpolation: {
       escapeValue: false,
     },

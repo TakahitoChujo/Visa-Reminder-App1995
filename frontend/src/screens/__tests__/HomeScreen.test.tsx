@@ -28,8 +28,6 @@ describe('HomeScreen アクセシビリティラベル定数', () => {
     addCardHint: '在留資格の登録画面を開きます',
     checklistButton: 'チェックリストを開く',
     checklistHint: '必要書類のチェックリストを開きます',
-    upgradeButton: 'プレミアムにアップグレード',
-    upgradeHint: 'プレミアムプランへのアップグレード情報を確認します',
   } as const;
 
   it('TC-HS-001: 設定ボタンのラベルが "設定" である', () => {
@@ -52,9 +50,6 @@ describe('HomeScreen アクセシビリティラベル定数', () => {
     expect(ACCESSIBILITY_LABELS.checklistButton).toBe('チェックリストを開く');
   });
 
-  it('TC-HS-006: アップグレードボタンのラベルが "プレミアムにアップグレード" である', () => {
-    expect(ACCESSIBILITY_LABELS.upgradeButton).toBe('プレミアムにアップグレード');
-  });
 });
 
 // === 在留資格タイプラベルマッピングテスト ===

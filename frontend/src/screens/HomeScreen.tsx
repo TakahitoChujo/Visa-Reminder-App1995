@@ -28,7 +28,7 @@ export const HomeScreen = React.memo(function HomeScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { cards, loadData, isLoading, loadError } = useResidenceStore();
-  const { t, formatDisplayDate } = useAppTranslation(['home', 'common', 'plan']);
+  const { t, formatDisplayDate } = useAppTranslation(['home', 'common']);
 
   useEffect(() => {
     loadData();
@@ -488,69 +488,9 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeight.medium,
     marginLeft: theme.spacing.sm,
   },
-  // プラン機能関連のスタイル
   headerActions: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.md,
-  },
-  premiumBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: theme.colors.warningLight,
-    paddingHorizontal: theme.spacing.sm,
-    paddingVertical: theme.spacing.xs,
-    borderRadius: theme.borderRadius.md,
-    gap: theme.spacing.xs,
-  },
-  premiumBadgeText: {
-    fontSize: theme.fontSize.xs,
-    fontWeight: theme.fontWeight.semibold,
-    color: theme.colors.warningDark,
-  },
-  statValueRow: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-  },
-  statLimit: {
-    fontSize: theme.fontSize.lg,
-    fontWeight: theme.fontWeight.medium,
-    color: theme.colors.textSecondary,
-  },
-  limitReachedBanner: {
-    backgroundColor: theme.colors.warningLight,
-    borderWidth: 1,
-    borderColor: theme.colors.warning,
-    borderRadius: theme.borderRadius.md,
-    padding: theme.spacing.lg,
-    marginTop: theme.spacing.lg,
-    marginBottom: theme.spacing.lg,
-  },
-  limitReachedContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.md,
-    gap: theme.spacing.sm,
-  },
-  limitReachedText: {
-    fontSize: theme.fontSize.md,
-    color: theme.colors.warningDark,
-    fontWeight: theme.fontWeight.medium,
-    flex: 1,
-  },
-  upgradeBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.premium,
-    paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.md,
-    borderRadius: theme.borderRadius.md,
-    gap: theme.spacing.xs,
-  },
-  upgradeText: {
-    fontSize: theme.fontSize.md,
-    fontWeight: theme.fontWeight.semibold,
-    color: theme.colors.textWhite,
   },
 });

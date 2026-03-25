@@ -2,9 +2,9 @@
   "headerTitle": "Settings",
   "profile": {
     "iconText": "V",
-    "userName": "User"
+    "userName": "User",
+    "status": "Free"
   },
-  "testPlanToggle": "Toggle Plan (Test): Current {{plan}}",
   "section": {
     "notification": "Notifications",
     "dataPrivacy": "Data & Privacy",

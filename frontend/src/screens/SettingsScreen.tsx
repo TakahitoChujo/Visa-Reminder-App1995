@@ -34,7 +34,7 @@ const EXTERNAL_LINKS = {
 export const SettingsScreen = React.memo(function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<SettingsScreenNavigationProp>();
-  const { t, currentLanguage } = useAppTranslation(['settings', 'common', 'plan']);
+  const { t, currentLanguage } = useAppTranslation(['settings', 'common']);
   const { clearAllData } = useResidenceStore();
 
   // アプリバージョン情報を取得
@@ -112,7 +112,7 @@ export const SettingsScreen = React.memo(function SettingsScreen() {
             <Text style={styles.profileIconText}>{t('settings:profile.iconText')}</Text>
           </View>
           <Text style={styles.profileName}>{t('settings:profile.userName')}</Text>
-          <Text style={styles.profileStatus}>{t('plan:status.freeActive')}</Text>
+          <Text style={styles.profileStatus}>{t('settings:profile.status')}</Text>
         </View>
 
         {/* 言語設定 */}
@@ -333,65 +333,6 @@ const styles = StyleSheet.create({
   profileStatus: {
     fontSize: theme.fontSize.md,
     color: theme.colors.textSecondary,
-  },
-  premiumBadge: {
-    color: theme.colors.premium,
-    fontWeight: theme.fontWeight.semibold,
-  },
-  // Premium card styles
-  premiumCardWrapper: {
-    paddingHorizontal: theme.spacing.lg,
-    marginBottom: theme.spacing.xl,
-  },
-  premiumCard: {
-    backgroundColor: theme.colors.premium,
-    borderRadius: theme.borderRadius.lg,
-    padding: theme.spacing.xl,
-  },
-  premiumHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.md,
-    marginBottom: theme.spacing.md,
-  },
-  premiumTitle: {
-    fontSize: theme.fontSize.xl,
-    fontWeight: theme.fontWeight.bold,
-    color: theme.colors.textWhite,
-  },
-  premiumDescription: {
-    fontSize: theme.fontSize.md,
-    color: theme.colors.textWhite,
-    lineHeight: 21,
-    marginBottom: theme.spacing.lg,
-    opacity: 0.9,
-  },
-  premiumFeatures: {
-    gap: theme.spacing.sm,
-    marginBottom: theme.spacing.lg,
-  },
-  premiumFeature: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.sm,
-  },
-  premiumFeatureText: {
-    fontSize: theme.fontSize.sm,
-    color: theme.colors.textWhite,
-    flex: 1,
-  },
-  premiumButton: {
-    backgroundColor: theme.colors.backgroundWhite,
-    borderRadius: theme.borderRadius.md,
-    paddingVertical: theme.spacing.md,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 44,
-  },
-  premiumButtonText: {
-    fontSize: theme.fontSize.lg,
-    fontWeight: theme.fontWeight.semibold,
-    color: theme.colors.premiumDark,
   },
   // Settings sections
   section: {

@@ -2,9 +2,9 @@
   "headerTitle": "设置",
   "profile": {
     "iconText": "在",
-    "userName": "用户"
+    "userName": "用户",
+    "status": "免费版"
   },
-  "testPlanToggle": "切换套餐（测试用）：当前 {{plan}}",
   "section": {
     "notification": "通知",
     "dataPrivacy": "数据与隐私",

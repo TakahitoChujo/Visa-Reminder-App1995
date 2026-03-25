@@ -1,139 +1,38 @@
 /**
- * ユーザープラン管理ストア - Zustand
+ * ユーザー設定ストア - Zustand
  */
 
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export type UserPlanType = 'free' | 'premium';
-
-export interface PlanLimits {
-  maxCards: number;
-  hasReminderCustomization: boolean;
-  hasChecklistNotes: boolean;
-  hasCloudSync: boolean;
-}
-
 interface UserStore {
   // State
-  userPlan: UserPlanType;
-  premiumExpiresAt: string | null;
   isLoading: boolean;
   hasCompletedOnboarding: boolean;
 
-  // Computed getters
-  isPremium: () => boolean;
-  canAddCard: (currentCardCount: number) => boolean;
-  getMaxCards: () => number;
-  getPlanLimits: () => PlanLimits;
-
   // Actions
-  loadUserPlan: () => Promise<void>;
-  updateUserPlan: (plan: UserPlanType, expiresAt?: string) => Promise<void>;
+  loadUserSettings: () => Promise<void>;
   completeOnboarding: () => Promise<void>;
 }
 
-const STORAGE_KEY = '@user_plan';
 const ONBOARDING_KEY = '@onboarding_completed';
 
-// プラン別の機能制限定義
-const PLAN_FEATURES: Record<UserPlanType, PlanLimits> = {
-  free: {
-    maxCards: 1,
-    hasReminderCustomization: false,
-    hasChecklistNotes: false,
-    hasCloudSync: false,
-  },
-  premium: {
-    maxCards: Infinity,
-    hasReminderCustomization: true,
-    hasChecklistNotes: true,
-    hasCloudSync: true,
-  },
-};
-
-export const useUserStore = create<UserStore>((set, get) => ({
+export const useUserStore = create<UserStore>((set) => ({
   // 初期状態
-  userPlan: 'free',
-  premiumExpiresAt: null,
   isLoading: false,
   hasCompletedOnboarding: false,
 
-  // プレミアムユーザーかどうか判定
-  isPremium: () => {
-    const { userPlan, premiumExpiresAt } = get();
-
-    // プレミアムプランでない場合はfalse
-    if (userPlan !== 'premium') return false;
-
-    // 期限が設定されていない場合は無期限プレミアム
-    if (!premiumExpiresAt) return true;
-
-    // 期限が現在時刻より後の場合のみtrue
-    return new Date(premiumExpiresAt) > new Date();
-  },
-
-  // 在留資格を追加できるかチェック
-  canAddCard: (currentCardCount: number) => {
-    const maxCards = get().getMaxCards();
-    return currentCardCount < maxCards;
-  },
-
-  // 最大登録可能数を取得
-  getMaxCards: () => {
-    const isPremium = get().isPremium();
-    return isPremium ? Infinity : 1;
-  },
-
-  // プラン別の機能制限を取得
-  getPlanLimits: () => {
-    const { userPlan } = get();
-    const isPremium = get().isPremium();
-
-    // 期限切れの場合は無料プランの制限を適用
-    if (!isPremium) {
-      return PLAN_FEATURES.free;
-    }
-
-    return PLAN_FEATURES[userPlan];
-  },
-
-  // ストレージからプラン情報を読み込み
-  loadUserPlan: async () => {
+  // ストレージからユーザー設定を読み込み
+  loadUserSettings: async () => {
     set({ isLoading: true });
 
     try {
-      const [planData, onboardingData] = await Promise.all([
-        AsyncStorage.getItem(STORAGE_KEY),
-        AsyncStorage.getItem(ONBOARDING_KEY),
-      ]);
-
-      if (planData) {
-        const { userPlan, premiumExpiresAt } = JSON.parse(planData);
-        set({ userPlan, premiumExpiresAt });
-      }
-
+      const onboardingData = await AsyncStorage.getItem(ONBOARDING_KEY);
       set({ hasCompletedOnboarding: onboardingData === 'true' });
     } catch (error) {
-      console.error('Failed to load user plan:', error);
+      console.error('Failed to load user settings:', error);
     } finally {
       set({ isLoading: false });
-    }
-  },
-
-  // プラン情報を更新
-  updateUserPlan: async (plan, expiresAt) => {
-    const data = {
-      userPlan: plan,
-      premiumExpiresAt: expiresAt || null,
-    };
-
-    set(data);
-
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch (error) {
-      console.error('Failed to save user plan:', error);
     }
   },
 

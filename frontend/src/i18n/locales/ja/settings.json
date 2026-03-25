@@ -2,9 +2,9 @@
   "headerTitle": "設定",
   "profile": {
     "iconText": "在",
-    "userName": "ユーザー"
+    "userName": "ユーザー",
+    "status": "無料版"
   },
-  "testPlanToggle": "プラン切り替え（テスト用）: 現在 {{plan}}",
   "section": {
     "notification": "通知",
     "dataPrivacy": "データとプライバシー",

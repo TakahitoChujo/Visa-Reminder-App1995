@@ -113,11 +113,11 @@ const linking = {
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   const { loadData } = useResidenceStore();
-  const { loadUserPlan } = useUserStore();
+  const { loadUserSettings } = useUserStore();
 
   useEffect(() => {
-    Promise.all([initI18n(), loadData(), loadUserPlan()]).then(() => setIsReady(true));
-  }, [loadData, loadUserPlan]);
+    Promise.all([initI18n(), loadData(), loadUserSettings()]).then(() => setIsReady(true));
+  }, [loadData, loadUserSettings]);
 
   if (!isReady) return null;
 

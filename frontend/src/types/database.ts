@@ -12,8 +12,6 @@ export interface User {
   created_at: string; // ISO 8601
   updated_at: string; // ISO 8601
   last_synced_at?: string | null; // ISO 8601
-  is_premium: boolean;
-  premium_expires_at?: string | null; // ISO 8601
 }
 
 /**

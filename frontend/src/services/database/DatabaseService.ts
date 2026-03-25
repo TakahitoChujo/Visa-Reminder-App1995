@@ -161,12 +161,8 @@ export class DatabaseService {
           device_id TEXT UNIQUE,
           created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
           updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          last_synced_at DATETIME,
-          is_premium INTEGER NOT NULL DEFAULT 0,
-          premium_expires_at DATETIME
+          last_synced_at DATETIME
         );
-
-        CREATE INDEX IF NOT EXISTS idx_users_premium ON users(is_premium, premium_expires_at);
 
         -- residence_types テーブル
         CREATE TABLE IF NOT EXISTS residence_types (

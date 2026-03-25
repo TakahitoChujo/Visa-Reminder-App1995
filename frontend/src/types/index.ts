@@ -130,38 +130,3 @@ export type TabParamList = {
   SettingsTab: undefined;
 };
 
-// ========== プラン機能関連の型定義 ==========
-
-// ユーザープランタイプ
-export type UserPlanType = 'free' | 'premium';
-
-// ユーザープラン情報
-export interface UserPlan {
-  planType: UserPlanType;
-  isPremium: boolean;
-  premiumExpiresAt?: string;
-}
-
-// プラン別機能制限
-export interface PlanLimits {
-  maxCards: number;
-  hasReminderCustomization: boolean;
-  hasChecklistNotes: boolean;
-  hasCloudSync: boolean;
-}
-
-// プラン機能定義（定数）
-export const PLAN_FEATURES = {
-  free: {
-    maxCards: 1,
-    hasReminderCustomization: false,
-    hasChecklistNotes: false,
-    hasCloudSync: false,
-  },
-  premium: {
-    maxCards: Infinity,
-    hasReminderCustomization: true,
-    hasChecklistNotes: true,
-    hasCloudSync: true,
-  },
-} as const;

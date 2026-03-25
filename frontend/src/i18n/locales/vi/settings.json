@@ -2,9 +2,9 @@
   "headerTitle": "Cài đặt",
   "profile": {
     "iconText": "V",
-    "userName": "Người dùng"
+    "userName": "Người dùng",
+    "status": "Miễn phí"
   },
-  "testPlanToggle": "Chuyển đổi gói (Thử nghiệm): Hiện tại {{plan}}",
   "section": {
     "notification": "Thông báo",
     "dataPrivacy": "Dữ liệu và Quyền riêng tư",
